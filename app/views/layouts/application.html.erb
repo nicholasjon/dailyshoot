@@ -2,12 +2,35 @@
 <html>
 <head>
 <title><%= @title %></title>
+<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">	
+<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<!-- <%= stylesheet_link_tag 'scaffold' %>-->
+<%= stylesheet_link_tag 'main' %>
+
 </head>
 <body>
+<div class="container"> 
 
-<h1>The Daily Shoot</h1>
+<div id="top" class="span-24">
+<h1>@dailyshoot</h1>
+</div>
 
 <%= yield :layout %>
+
+<div id="bottom" class="span-24">
+<!--
+<%= link_to 'Terms &amp; Conditions', :controller => 'welcome', :action => 'terms' %> | 
+<%= link_to 'Privacy Policy', :controller => 'welcome', :action => 'privacy' %>
+-->
+</div> <!-- footer -->
+<div> <!-- container -->
+
+<!-- end of body scripts -->
+<!-- disqus? -->
+<!-- google analytics -->
+
+
 </body>
 </html>
 
