@@ -3,13 +3,12 @@ require 'twitter'
 class Tweets
   
   def initialize
-    @httpauth = Twitter::HTTPAuth.new('dailyshoot', 'grek4woycs8e')
+    httpauth = Twitter::HTTPAuth.new('dailyshoot', 'grek4woycs8e')
+    @client = Twitter::Base.new(httpauth)
   end
   
-  def doit
-    client = Twitter::Base.new(@httpauth)
-    puts client.followers.size
-    client.mentions.each { |tweet| puts tweet.text }
+  def mentions
+    @client.mentions
   end
   
 end
