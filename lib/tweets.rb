@@ -8,7 +8,7 @@ class Tweets
   end
   
   def mentions
-    @client.mentions
+    @client.mentions[0..9]
   end
   
 end
