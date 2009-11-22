@@ -20,17 +20,17 @@ p {
 }
 
 #flickr-strip {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 
 #flickr-credit {
   margin-top: 0px;
-  padding-top: 0px;
+  padding-top: 5px;
   font-size: 9px;
   color: #888;
   float: right;
-  margin-right: 90px;
+  /* margin-right: 90px; */
 }
 
 #flickr-credit a {
