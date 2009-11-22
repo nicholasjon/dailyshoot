@@ -115,7 +115,7 @@ Nope. We&rsquo;re not about rules or regulations. We&rsquo;re about getting out 
 <div id="tweets">
   <% @tweets.each do |tweet| -%>
     <p>
-      <strong><%= h tweet.text %></strong>
+      <%= h tweet.text %>
     </p>
   <% end -%>
 </div>
