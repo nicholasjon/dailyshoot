@@ -35,15 +35,15 @@ Images are wrapped in divs classed "flickr_badge_image" with ids "flickr_badge_i
   Photography is an art and a craft. Getting better at both requires practice. Lots of practice. Daily practice if you can
   manage it. Sometimes, more often than we&rsquo;d like to admit, it can be hard to pick up the camera and start using it.
   Usually when this happens it&rsquo;s not that you don&rsquo;t want to make a photograph, but more like you don&rsquo;t
-  know what to go shoot or where to get started. You just need a little inspiration... That&rsquo;s where we come in.
+  know what to go shoot or where to get started. You just need a little inspiration... That&rsquo;s where @dailyshoot comes in.
 </p>
 
 <p style="font-size: 14px;">
-   <strong>The Daily Shoot is a simple daily assignment designed to encourage you to pick up your camera, get out there, and make some photographs.</strong>
+   <strong>The Daily Shoot is a simple daily assignment designed to encourage you to pick up your camera, get out there, and make some photographs!</strong>
 <p>
 
 <p>  
-  Maybe you&rsquo;ll pick up your digital SLR. Maybe it&rsquo;ll be a pocket cam. Even your mobile phone. Think of these exercises as a simply daily nudge in the right direction.
+  Maybe you&rsquo;ll pick up your digital SLR. Maybe it&rsquo;ll be a pocket cam. Even your mobile phone. Think of these exercises as a simple daily nudge in the right direction.
 </p>
 
 <h3>So how do I get started already?</h3>
@@ -51,7 +51,7 @@ Images are wrapped in divs classed "flickr_badge_image" with ids "flickr_badge_i
 <p>
   It's easy! <a href="http://twitter.com/dailyshoot">Follow @dailyshoot on Twitter</a>. Every day at 9 AM EST a new photo
   assignment will drop in. Sometimes it&rsquo;ll be simple. Other times it might require a wee bit of research to help stretch your knowledge base and get you out of your comfort zone. Either way, all the assignments are designed to do one simple thing: Inspire you to get out there
-  and make photographs! If you make a single photograph that fulfills the assignemnt, great. If you go further and make 30 or 300 because you get yourself on a creative roll, even better!
+  and make photographs! If you make a single photograph that fulfills the assignment, great. If you go further and make 30 or 300 because you get yourself on a creative roll, even better!
 </p>
 
 <h3>How do I share my photos?</h3>
@@ -79,20 +79,16 @@ Nope. We&rsquo;re not about rules or regulations. We&rsquo;re about getting out 
 <h3>Where is this thing going?</h3>
 
 <p>
-  Oh, you want a plan?! Sorry, it's not that kind of an operation. We like keeping things simple. We&rsquo;ve started out
-  with the simplest possible implementation of this idea. The fundamental goal is to inspire you to go out and
-  practice every day.
+  Oh, you want a five year plan?! Sorry, it's not that kind of an operation. We&rsquo;re all about keeping things simple and trying new ideas as they emerge. We view this project like a grassy common area between buildings. We want to see where people walk before we start building out the sidewalks that will finish things out. 
 </p>
 
 <p>
-  That said, it&rsquo;s amazing what people envision that could be done with this. We&rsquo;d like to see this site pull together a daily grid of
-  photographs that people reply back to the assignment tweet with that goes beyond the Flickr pool and encompasses other photo sharing sites. Suggesting assignments. Piping assignments to other
-  tools such as iPhone applications. It&rsquo;s all possible. 
+  That said, some things that could be very useful to the project are starting to become quite obvious. We&rsquo;d like to see this site pull together a daily grid of
+  photographs that people reply back to the assignment tweet with that goes beyond the Flickr pool and encompasses other photo sharing sites. We&rsquo;d love to provide a better way of suggesting assignments than tweets or email. And, we&rsquo;d love to see mobile camera applications pick up the daily assignments and present them to their users. It&rsquo;s all possible. 
 </p>
 
 <p>
-  We view this project as a commons. A lawn between buildings. We&rsquo;re watching where people walk to see where the sidewalks
-  should be. Now that the paths are starting to emerge, it&rsquo;s time to build a few of those sidewalks. We&rsquo;d love to have you actively participate in the process. If you&rsquo;re a Twitter API maven and know
+ We&rsquo;d love to have you actively participate in the process. If you&rsquo;re a Twitter API maven and know
   Ruby on Rails, please consider helping us out and check out our <a href="http://github.com/duncan/dailyshoot">GitHub
   repository with the source code for this site</a>. Not much is there yet, but with your help, we&rsquo;ll get there...
 </p>
@@ -104,12 +100,22 @@ Nope. We&rsquo;re not about rules or regulations. We&rsquo;re about getting out 
 
 <br clear="all">
 
-<h3>Latest @dailyshoot Tweets</h3>
+<h3>Latest Twitter Replies</h3>
 
 <div id="tweets">
   <% @mentions.each do |mention| -%>
     <p>
       <strong><%= auto_link_user("@#{mention.user.screen_name}") %></strong>: <%= auto_link(mention.text) %>
+    </p>
+  <% end -%>
+</div>
+
+<h3>Recent Assignments</h3>
+
+<div id="tweets">
+  <% @tweets.each do |tweet| -%>
+    <p>
+      <strong><%= h tweet.text %></strong>
     </p>
   <% end -%>
 </div>
