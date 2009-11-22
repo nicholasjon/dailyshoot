@@ -10,3 +10,21 @@ p {
   margin-top: 5px;
   margin-bottom: 15px;
 }
+
+#flickr-credit {
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: 9px;
+  color: #888;
+  float: right;
+  margin-right: 90px;
+}
+
+#flickr-credit a {
+  text-decoration: none;
+  color: #888;
+}
+
+#flickr-credit a:hover {
+  color: #77f;
+}
