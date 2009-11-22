@@ -3,7 +3,7 @@ require 'twitter'
 class Tweets
   
   def initialize
-    httpauth = Twitter::HTTPAuth.new('dailyshoot', 'grek4woycs8e')
+    httpauth = Twitter::HTTPAuth.new('dailyshoot', ENV['DAILYSHOOT_TWITTER_PASS'])
     @client = Twitter::Base.new(httpauth)
   end
   
