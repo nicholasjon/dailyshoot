@@ -8,7 +8,7 @@ class Tweets
   end
   
   def mentions
-    @client.mentions[0..9]
+    @client.mentions(:count => 10)
   end
   
   def tweets
