@@ -100,7 +100,13 @@ Images are wrapped in divs classed "flickr_badge_image" with ids "flickr_badge_i
 
 <h3>Latest @dailyshoot Tweets</h3>
 
-<p>This is a set of search results... To come.</p>
+<div id="tweets">
+  <% @mentions.each do |mention| -%>
+    <p>
+      <strong><%= auto_link_user("@#{mention.user.screen_name}") %></strong>: <%= auto_link(mention.text) %>
+    </p>
+  <% end -%>
+</div>
 
 
 
