@@ -6,6 +6,7 @@ class WelcomeController < ApplicationController
   def tweets
     tweets = Tweets.new
     @mentions = tweets.mentions
+    @tweets = tweets.tweets
   end
   
 end
