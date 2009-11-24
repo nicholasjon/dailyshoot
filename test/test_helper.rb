@@ -7,6 +7,10 @@ class ActiveSupport::TestCase
   self.use_instantiated_fixtures  = false
   fixtures :all
   
+  def login_admin
+    login! :admin
+  end
+  
 private
 
   def login!(login)

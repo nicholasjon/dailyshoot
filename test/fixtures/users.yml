@@ -7,7 +7,7 @@ admin:
   created_at: <%= 1.days.ago.utc.to_s(:db) %>
   updated_at: <%= 1.days.ago.utc.to_s(:db) %>
 
-joe:
+non_admin:
   login: joe
   email: joe@photos.com
   is_admin: false

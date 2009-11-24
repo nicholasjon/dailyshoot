@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "destroy should remove user_id from session" do
-    login! :admin
+    login_admin
 
     get :destroy
     assert_redirected_to new_session_url

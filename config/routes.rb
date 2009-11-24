@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.root :controller => 'welcome'
 
-  map.resource :assignments  
+  map.resources :assignments
   map.resource :session
   
   map.with_options(:controller => 'sessions') do |sessions|

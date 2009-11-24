@@ -1,0 +1,28 @@
+<h1>Assignments</h1>
+
+<table id="assignments" border="0" cellpadding="0" cellspacing="0">
+<% @assignments.each do |assignment| -%>
+  <tr>
+    <td class="date">
+      <%= link_to assignment.date, assignment %>
+    </td>
+    <td class="text">
+      <%= h assignment.text %>
+    </td>
+    <td class="tag">
+      <%= h assignment.tag %>
+    </td> 
+    <td>
+      <%= link_to 'Edit', edit_assignment_path(assignment) %>
+    </td>
+    <td>
+      <%= link_to 'Destroy', assignment, :confirm => 'Are you sure?', 
+                                         :method => :delete %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+
+<p>
+  <%= link_to 'New assignment', new_assignment_path %>
+</p>

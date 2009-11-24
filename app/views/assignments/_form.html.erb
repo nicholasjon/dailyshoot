@@ -1,0 +1,17 @@
+<% labeled_form_for @assignment do |f| -%>
+<fieldset>  
+  <%= f.error_messages %>
+  <%= f.text_field :text %>
+  <%= f.text_field :tag %>  
+  <%= f.date_select :date %>
+  <p>
+    <% if @assignment.new_record? -%>
+      <%= f.submit 'Create' %> or
+      <%=  link_to 'Cancel', assignments_path %>
+    <% else -%>
+      <%= f.submit 'Update' %> or
+      <%=  link_to 'Cancel', assignments_path %>
+    <% end -%>
+  </p>
+</fieldset>
+<% end -%>

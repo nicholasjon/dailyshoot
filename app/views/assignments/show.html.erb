@@ -1,0 +1,18 @@
+<p>
+  <b>Text:</b>
+  <%=h @assignment.text %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @assignment.date %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%=h @assignment.tag %>
+</p>
+
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>
