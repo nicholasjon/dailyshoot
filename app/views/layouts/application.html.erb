@@ -16,6 +16,10 @@
 <h1>@dailyshoot</h1>
 </div>
 
+<% flash.each do |name, message| -%>
+  <%= content_tag :div, message, :id => "flash_#{name}" %>
+<% end -%>
+
 <%= yield :layout %>
 
 <div id="bottom" class="span-24">

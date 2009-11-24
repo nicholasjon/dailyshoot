@@ -1,0 +1,17 @@
+admin:
+  login: admin
+  email: admin@photos.com
+  is_admin: true
+  password_hash: "d8fa32a5d48cf8104af1cd40f5132f894d6eb765" # hash of 'testing'
+  password_salt: abcd1234
+  created_at: <%= 1.days.ago.utc.to_s(:db) %>
+  updated_at: <%= 1.days.ago.utc.to_s(:db) %>
+
+joe:
+  login: joe
+  email: joe@photos.com
+  is_admin: false
+  password_hash: "d8fa32a5d48cf8104af1cd40f5132f894d6eb765" # hash of 'testing'
+  password_salt: abcd1234
+  created_at: <%= 1.days.ago.utc.to_s(:db) %>
+  updated_at: <%= 2.days.ago.utc.to_s(:db) %>
