@@ -5,15 +5,24 @@
 
 namespace :env do
   
+  def heroku_config_hash
+    hash = {}
+    config = `heroku config`
+    config.lines.each do |line|
+      bits = line.split
+      unless bits[0] == 'RACK_ENV'
+        hash[bits[0]] = bits[2]
+      end
+    end 
+    hash  
+  end
+  
   desc "Pulls configuration variables from Heroku and sets them for local use"
   task :pull do
     content = "# Configuration variables pulled from Heroku\n\n"
-     config = `heroku config`
-     config.lines.each do |line|
-       bits = line.split
-       unless bits[0] == 'RACK_ENV'
-         content << "ENV['#{bits[0]}'] = '#{bits[2]}'\n"
-       end
+     hash = heroku_config_hash
+     hash.keys.each do |key|
+       content << "ENV['#{key}'] = '#{hash[key]}'\n"
      end
      File.open("#{RAILS_ROOT}/config/initializers/env_local.rb", 'w') { |f|
        f.write(content)
@@ -24,12 +33,9 @@ namespace :env do
   desc "Creates a sample environment configuration based on active heroku config"
   task :sample do
     content = "# Configuration variables you'll need to set to play with the code\n\n"
-     config = `heroku config`
-     config.lines.each do |line|
-       bits = line.split
-       unless bits[0] == 'RACK_ENV'
-         content << "ENV['#{bits[0]}'] = 'sekret'\n"
-       end
+     hash = heroku_config_hash
+     hash.keys.each do |key|
+      content << "ENV['#{key}'] = 'sekret'\n"
      end
      File.open("#{RAILS_ROOT}/config/initializers/env_local.rb.sample", 'w') { |f|
        f.write(content)
