@@ -83,36 +83,15 @@ class Photo
   end
   
   def flickr
-    if ENV['FLICKR_API_KEY']
-      auth_flickr
-    else
-      no_auth_flickr
-    end
+      photo_id = self.url =~ %r(/p/(\w+)) ?
+        Base58.base58_to_int($1) :
+        self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
+      return unless photo_id
+      flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
+      doc = Nokogiri::XML(open(flickr_url))
+      doc.css('size[label=Square]').first['source']
+    rescue
+      raise flickr_url
   end
   
-  def auth_flickr
-    photo_id = self.url =~ %r(/p/(\w+)) ?
-      Base58.base58_to_int($1) :
-      self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
-    return unless photo_id
-    flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
-    raise flickr_url
-    doc = Nokogiri::XML(open(flickr_url))
-    doc.css('size[label=Square]').first['source']
-  rescue
-    raise flickr_url
-  end
-  
-  def no_auth_flickr
-    if self.url =~ /m\.flickr\.com/
-      self.url = self.url.gsub("m.flickr.com", "www.flickr.com").gsub("#/", "")
-    end
-    open(self.url) do |f|
-      doc = Nokogiri::HTML(self.url)
-      doc.css('#photoswftd .photoImgDiv img.reflect').each do |img|
-        img['src'].gsub(".jpg", "_s.jpg")
-      end
-    end
-  end
-
 end
