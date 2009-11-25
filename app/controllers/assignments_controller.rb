@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
   before_filter :admin_required, :except => [:index, :show]
   
   def index
-    @assignments = Assignment.all
+    @assignments = Assignment.all(:order => 'date')
 
     respond_to do |format|
       format.html
