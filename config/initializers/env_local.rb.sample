@@ -1,6 +1,6 @@
 # Configuration variables you'll need to set to play with the code
 
+ENV['DAILYSHOOT_TWITTER_PASS'] = 'sekret'
 ENV['BITLY_API_KEY'] = 'sekret'
 ENV['BITLY_LOGIN'] = 'sekret'
-ENV['DAILYSHOOT_TWITTER_PASS'] = 'sekret'
 ENV['FLICKR_API_KEY'] = 'sekret'
