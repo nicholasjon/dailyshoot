@@ -1,0 +1,7 @@
+# This file contains the ENV vars necessary to run the app locally.  
+# Some of these values are sensitive, and some are developer specific.
+
+ENV['DAILYSHOOT_TWITTER_PASS'] = 'sekret'
+ENV['FLICKR_API_KEY'] = 'sekret'
+ENV['BITLY_LOGIN'] = 'sekret'
+ENV['BITLY_API_KEY'] = 'sekret'
