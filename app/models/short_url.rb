@@ -12,7 +12,6 @@ class ShortURL
   end
   
   def expand
-    RAILS_DEFAULT_LOGGER.debug "[ShortURL] Expanding #{url}"
     case
       when url =~ /bit\.ly|j\.mp/: bitly
       when url =~ /tr\.im/: trim
