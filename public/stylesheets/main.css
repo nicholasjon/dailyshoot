@@ -6,6 +6,14 @@ p {
   margin-top: 20px;
 }
 
+#top a {
+  text-decoration: none;
+  color: #000;
+}
+
+#top a:hover {
+  color: #000;
+}
 
 #bottom {
   margin-top: 40px;
