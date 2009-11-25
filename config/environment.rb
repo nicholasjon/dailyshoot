@@ -6,13 +6,6 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-# Load local configuration vars from local config/env_local.rb file if it 
-# exists. This lets us have our own individual configs outside of heroku if 
-# needed
-
-local_env = File.join(RAILS_ROOT, 'config', 'env_local.rb')
-load(local_env) if File.exists?(local_env)
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
