@@ -25,25 +25,34 @@ class Photo
   end
 
   def initialize(url)
-    self.url = ShortURL.new(url).expand
+    self.url = url
+    compute_thumb_url
   end
   
-  def thumb_url
-    case
+  protected
+  
+  def compute_thumb_url
+    self.thumb_url = case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /(tweetphoto|twitpic)\.com/: twitpic
       when self.url =~ /yfrog\.com/: yfrog
       when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
-      when self.url =~ /flickr\.com|flic\.kr/: flickr
+      when self.url =~ /flickr\.com/: flickr
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
-    end || '/images/no-photo.png'
+      else
+        expanded_url = ShortURL.new(self.url).expand
+        if expanded_url != self.url
+          self.url = expanded_url
+          compute_thumb_url
+        else
+          '/images/no-photo.png'
+        end
+    end
   rescue => e
     raise ThumbRetrievalError.new(e, self.url)
   end
   
-protected
-
   def bestcam
     doc = Nokogiri::HTML(open(self.url))
     doc.css('#main-content .photo img').first['src'].gsub(/iphone/, 'thumb')    
@@ -74,31 +83,36 @@ protected
   end
   
   def flickr
+    if ENV['FLICKR_API_KEY']
+      auth_flickr
+    else
+      no_auth_flickr
+    end
+  end
+  
+  def auth_flickr
     photo_id = self.url =~ %r(/p/(\w+)) ?
       Base58.base58_to_int($1) :
       self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
     return unless photo_id
     flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
+    raise flickr_url
     doc = Nokogiri::XML(open(flickr_url))
     doc.css('size[label=Square]').first['source']
   rescue
     raise flickr_url
   end
   
-  # def flickr
-  #   if self.url =~ /static\.flickr\.com/      
-  #     self.thumb_url = self.url.gsub(/_?.\.jpg/, "_s.jpg")
-  #   else      
-  #     if self.url =~ /m\.flickr\.com/
-  #       self.url = self.url.gsub("m.flickr.com", "www.flickr.com").gsub("#/", "")
-  #     end
-  #     open_with_retry(self.url) do |f|
-  #       doc = Nokogiri::HTML(self.url)
-  #       doc.css('#photoswftd .photoImgDiv img.reflect').each do |img|
-  #         self.thumb_url = img['src'].gsub(".jpg", "_s.jpg")
-  #       end
-  #     end
-  #   end
-  # end
+  def no_auth_flickr
+    if self.url =~ /m\.flickr\.com/
+      self.url = self.url.gsub("m.flickr.com", "www.flickr.com").gsub("#/", "")
+    end
+    open(self.url) do |f|
+      doc = Nokogiri::HTML(self.url)
+      doc.css('#photoswftd .photoImgDiv img.reflect').each do |img|
+        img['src'].gsub(".jpg", "_s.jpg")
+      end
+    end
+  end
 
 end
