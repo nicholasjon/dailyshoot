@@ -41,11 +41,27 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo_url_expands(tweet, url)
   end
   
+  test "pnt.me should parse" do
+    tweet  = "@dailyshoot 11/24 - http://pnt.me/Sr6q0Z"
+    url    = "http://www.flickr.com/photos/spaceplatypus/4131695975/"
+    thumb  = "http://farm3.static.flickr.com/2538/4131695975_6db349916a_s.jpg"
+    
+    assert_photo_urls(tweet, url, thumb)
+  end
+  
   test "tr.im should expand" do
     tweet  = "@dailyshoot Grate Lake http://tr.im/FI9n"
     url    = "http://www.flickr.com/photos/97151260@N00/4132412954/"
 
     assert_photo_url_expands(tweet, url)
+  end
+  
+  test "tr.im should parse" do
+    tweet  = "@dailyshoot Grate Lake http://tr.im/FI9n"
+    url    = "http://www.flickr.com/photos/97151260@N00/4132412954/"
+    thumb  = "http://farm3.static.flickr.com/2668/4132412954_516be07418_s.jpg"
+
+    assert_photo_urls(tweet, url, thumb)
   end
   
   test "j.mp should expand" do
@@ -54,12 +70,28 @@ class PhotoTest < ActiveSupport::TestCase
 
     assert_photo_url_expands(tweet, url)
   end
+  
+  test "j.mp should parse" do
+    tweet  = "@dailyshoot Here's my shot for the water assignment. http://j.mp/7zgpjd"
+    url    = "http://www.flickr.com/photos/ejknapp/4131597128/in/pool-1251121@N24"
+    thumb  = "http://farm3.static.flickr.com/2565/4131597128_e04154164f_s.jpg"
+
+    assert_photo_urls(tweet, url, thumb)
+  end
 
   test "bit.ly should expand" do
     tweet  = "@dailyshoot: A low contrast droplet - http://bit.ly/8lfTwJ"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
 
     assert_photo_url_expands(tweet, url)
+  end
+  
+  test "bit.ly should parse" do
+    tweet  = "@dailyshoot: A low contrast droplet - http://bit.ly/8lfTwJ"
+    url    = "http://www.flickr.com/photos/clarkware/4131620353/"
+    thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
+
+    assert_photo_urls(tweet, url, thumb)
   end
   
 protected
