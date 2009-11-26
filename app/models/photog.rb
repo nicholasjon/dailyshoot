@@ -3,4 +3,8 @@ class Photog < ActiveRecord::Base
   
   has_many :photos, :dependent => :nullify
   
+  def to_param
+    screen_name
+  end
+  
 end

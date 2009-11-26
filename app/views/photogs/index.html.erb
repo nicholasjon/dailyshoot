@@ -1,0 +1,8 @@
+<ul id="photogs">
+<% @photogs.each do |photog| -%>
+  <% content_tag :li, :class => 'photog' do -%>
+    <%= link_to photog.screen_name,
+                'http://twitter.com/' + photog.screen_name %>
+  <% end -%>
+<% end -%>
+</ul>

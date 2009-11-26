@@ -1,0 +1,10 @@
+<h2><%= photog_twitter_link(@photog) %></h2>
+
+<div class="photos clearfix">
+<% @photog.photos.each do |photo| -%>
+  <% content_tag :div, :class => 'photo-thumb' do -%>
+    <%= link_to image_tag(photo.thumb_url, :alt => photo.url), 
+                photo.url, :title => "", :rel => 'nofollow', :popup => true %>
+  <% end -%>
+<% end -%>
+</div>
