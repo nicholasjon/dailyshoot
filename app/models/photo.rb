@@ -5,20 +5,15 @@
 
 require 'open-uri'
 
-class Photo
-  attr_accessor :url, :thumb_url
-  
-  class ThumbRetrievalError < StandardError
-    attr_accessor :original_exception, :url
-    def initialize(original_exception, url)
-      self.original_exception, self.url = original_exception, url
-    end
+class Photo < ActiveRecord::Base
     
-    def to_s
-      "%s raised %s" % [ url, original_exception ]
-    end
-  end
+  validates_presence_of :url
   
+  belongs_to :assignment
+  belongs_to :photog
+
+  before_create :compute_thumb_url
+    
   def self.from_tweet(tweet)
     urls = tweet.scan(/https?:\/\/\S+/)
     if urls.empty?
@@ -31,19 +26,14 @@ class Photo
           false
         end
       end
-      Photo.new(url)
+      p = Photo.new(:url => url)
+      p.compute_thumb_url
+      p
     end
   end
-
-  def initialize(url)
-    self.url = url
-    compute_thumb_url
-  end
-  
-  protected
   
   def compute_thumb_url
-    self.thumb_url = case
+    self.thumb_url ||= case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /(tweetphoto|twitpic)\.com/: twitpic
       when self.url =~ /yfrog\.com/: yfrog
@@ -63,6 +53,19 @@ class Photo
   rescue => e
     raise ThumbRetrievalError.new(e, self.url)
   end
+
+  class ThumbRetrievalError < StandardError
+    attr_accessor :original_exception, :url
+    def initialize(original_exception, url)
+      self.original_exception, self.url = original_exception, url
+    end
+
+    def to_s
+      "%s raised %s" % [ url, original_exception ]
+    end
+  end
+
+protected
   
   def bestcam
     doc = Nokogiri::HTML(open(self.url))
@@ -94,15 +97,18 @@ class Photo
   end
   
   def flickr
-      photo_id = self.url =~ %r(/p/(\w+)) ?
-        Base58.base58_to_int($1) :
-        self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
-      return unless photo_id
-      flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
-      doc = Nokogiri::XML(open(flickr_url))
-      doc.css('size[label=Square]').first['source']
-    rescue
-      raise flickr_url
+    if self.url =~ %r(/p/(\w+))
+      photo_id = Base58.base58_to_int($1)
+    else
+      photo_id = self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
+    end
+    return unless photo_id
+    
+    flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
+    doc = Nokogiri::XML(open(flickr_url))
+    doc.css('size[label=Square]').first['source']
+  rescue
+    raise flickr_url
   end
   
 end

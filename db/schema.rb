@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20091126133529) do
   add_index "photogs", ["screen_name"], :name => "index_photogs_on_screen_name", :unique => true
 
   create_table "photos", :force => true do |t|
-    t.string   "original_url",  :null => false
+    t.string   "url",           :null => false
     t.string   "thumb_url",     :null => false
     t.integer  "assignment_id"
     t.integer  "photog_id"

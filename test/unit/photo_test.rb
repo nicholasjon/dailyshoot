@@ -2,6 +2,12 @@ require 'test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
 
+  test "create should generate thumb url" do
+    p = Photo.new(:url => "http://bestc.am/oGuf")
+    assert p.save
+    assert_not_nil p.thumb_url
+  end
+  
   test "bestc.am should parse" do
     tweet  = "http://bestc.am/oGuf Fort Point Channel—Boston. (For @dailyshoot.)"
     url    = "http://bestc.am/oGuf"
