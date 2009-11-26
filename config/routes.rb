@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'welcome'
 
-  map.resources :assignments
+  map.resources :assignments, :has_many => :photos
   map.resource :session
   
   map.with_options(:controller => 'sessions') do |sessions|
