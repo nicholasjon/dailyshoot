@@ -20,30 +20,50 @@ class Photo
   end
   
   def self.from_tweet(tweet)
-    tweet =~ /(https?:\/\/\S+)/
-    Photo.new($1)
+    urls = tweet.scan(/https?:\/\/\S+/)
+    if urls.empty?
+      nil
+    else
+      url = urls.detect do |u|
+        begin
+          URI.parse(u)
+        rescue URI::InvalidURIError
+          false
+        end
+      end
+      Photo.new(url)
+    end
   end
 
   def initialize(url)
-    self.url = ShortURL.new(url).expand
+    self.url = url
+    compute_thumb_url
   end
   
-  def thumb_url
-    case
+  protected
+  
+  def compute_thumb_url
+    self.thumb_url = case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /(tweetphoto|twitpic)\.com/: twitpic
       when self.url =~ /yfrog\.com/: yfrog
       when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
-      when self.url =~ /flickr\.com|flic\.kr/: flickr
+      when self.url =~ /flickr\.com/: flickr
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
-    end || '/images/no-photo.png'
+      else
+        expanded_url = ShortURL.new(self.url).expand
+        if expanded_url != self.url
+          self.url = expanded_url
+          compute_thumb_url
+        else
+          '/images/no-photo.png'
+        end
+    end
   rescue => e
     raise ThumbRetrievalError.new(e, self.url)
   end
   
-protected
-
   def bestcam
     doc = Nokogiri::HTML(open(self.url))
     doc.css('#main-content .photo img').first['src'].gsub(/iphone/, 'thumb')    
@@ -73,29 +93,16 @@ protected
     self.url.gsub(/_\w\.jpg/, '_s.jpg')
   end
   
-  # def flickr
-  #   photo_id = self.url =~ %r(/p/(\w+)) ?
-  #     Base58.base58_to_int($1) :
-  #     self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
-  #   return unless photo_id
-  #   flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
-  #   doc = Nokogiri::XML(open(flickr_url))
-  #   doc.css('size[label=Square]').first['source']
-  # rescue
-  #   raise flickr_url
-  # end
-  
   def flickr
-    uri = URI.parse(self.url)
-    if uri =~ /static\.flickr\.com/
-      self.url.gsub(/_?.\.jpg/, "_s.jpg")
-    else
-      if uri =~ /m\.flickr\.com/
-        uri = uri.gsub("m.flickr.com", "www.flickr.com").gsub("#/", "")
-      end
-      doc = Nokogiri::HTML(open(self.url))
-      doc.css('#photoswftd .photoImgDiv img.reflect').first['src'].gsub(".jpg", "_s.jpg")
-    end
+      photo_id = self.url =~ %r(/p/(\w+)) ?
+        Base58.base58_to_int($1) :
+        self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
+      return unless photo_id
+      flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
+      doc = Nokogiri::XML(open(flickr_url))
+      doc.css('size[label=Square]').first['source']
+    rescue
+      raise flickr_url
   end
-
+  
 end
