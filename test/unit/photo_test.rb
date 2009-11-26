@@ -120,13 +120,13 @@ class PhotoTest < ActiveSupport::TestCase
   end
   
   # Do we even want to recognize something like this?
-  test "URL to a flickr set" do
-    tweet = "Today's @dailyshoot is street or sidewalk scene Mostly red #dailyshoot photos I took Monday http://flickr.com/ari/sets/72157622699478909/"
-    url   = "http://flickr.com/ari/sets/72157622699478909/"
-    thumb = "http://farm3.static.flickr.com/2658/4112081661_5074093236_s.jpg"
+#  test "URL to a flickr set" do
+#    tweet = "Today's @dailyshoot is street or sidewalk scene Mostly red #dailyshoot photos I took Monday http://flickr.com/ari/sets/72157622699478909/"
+#   url   = "http://flickr.com/ari/sets/72157622699478909/"
+#   thumb = "http://farm3.static.flickr.com/2658/4112081661_5074093236_s.jpg"
     
-    assert_photo_urls(tweet, url, thumb)
-  end
+#   assert_photo_urls(tweet, url, thumb)
+#  end
   
   test "correctly parse URLs" do
     tweet = "Just joined @dailyshoot after watching @dlnorman have so much fun with it. My first assignment: Water http://bi.. http://bit.ly/5msIMo"
