@@ -1,30 +1,3 @@
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# TODO:
-# 
-# 1. Make more test cases and make them all pass
-# 2. Use the flickr API and all other APIs if possible (like for the URL expansion)
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-
 require 'test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
@@ -133,7 +106,18 @@ class PhotoTest < ActiveSupport::TestCase
   end
   
   test "URL with link that isn't to a photo" do
+    tweet = "Really enjoying seeing what people contribute to @dailyshoot every day.  Here's the Flickr crowd: http://bit.ly/1zSBG5"
+    url   = "http://www.flickr.com/groups/1251121@N24/pool/"
+    thumb = nil
     
+    assert_photo_urls(tweet, url, thumb)
+  end
+  
+  test "correctly parse URLs" do
+    tweet = "Just joined @dailyshoot after watching @dlnorman have so much fun with it. My first assignment: Water http://bi.. http://bit.ly/5msIMo"
+    url   = "http://twitter.com/bgblogging/statuses/6018151103"
+    
+    assert_photo_url_expands(tweet, url)
   end
   
   def assert_photo_urls(tweet, url, thumb)

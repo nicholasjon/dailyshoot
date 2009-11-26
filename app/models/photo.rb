@@ -20,10 +20,18 @@ class Photo
   end
   
   def self.from_tweet(tweet)
-    if tweet =~ /(https?:\/\/\S+)/
-      Photo.new($1)
-    else
+    urls = tweet.scan(/https?:\/\/\S+/)
+    if urls.empty?
       nil
+    else
+      url = urls.detect do |u|
+        begin
+          URI.parse(u)
+        rescue URI::InvalidURIError
+          false
+        end
+      end
+      Photo.new(url)
     end
   end
 
