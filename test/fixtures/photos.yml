@@ -2,4 +2,5 @@ bestcam:
     url: "http://bestc.am/DjxE"
     thumb_url: "http://s3.amazonaws.com/cjapps/images/141503/thumb.jpg"
     assignment: default
+    photog: joe
     

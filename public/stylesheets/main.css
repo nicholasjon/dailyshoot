@@ -76,3 +76,35 @@ form input:submit {
   font-size: 1.25em; 
 }
 
+/* PHOTOS */
+
+.photos {
+  margin: 10px auto;
+  padding: 10px;
+  clear: left;
+}
+
+.photo-thumb {
+  margin: 5px;
+  float: left;
+}
+
+.photo-thumb img {
+  width: 75px;
+  height: 75px;
+  display: block;
+/*  border: 1px solid #333; */
+  padding: 3px;
+}
+
+.clearfix {
+  min-height: 1%;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

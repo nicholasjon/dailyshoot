@@ -1,0 +1,11 @@
+<div class="photos clearfix">
+<% @photos.each do |photo| -%>
+  <% content_tag :div, :class => 'photo-thumb' do -%>
+    <%= link_to image_tag(photo.thumb_url, :alt => photo.url), 
+                photo.url, :title => "", :rel => 'nofollow', :popup => true %>
+    <%= link_to truncate(photo.photog_screen_name, :length => 13), 
+                'http://twitter.com/' + photo.photog_screen_name, 
+                :title => photo.photog_screen_name %>
+  <% end -%>
+<% end -%>
+</div>

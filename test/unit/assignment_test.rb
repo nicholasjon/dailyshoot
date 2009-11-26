@@ -23,6 +23,13 @@ class AssignmentTest < ActiveSupport::TestCase
     end
   end
   
+  test "find photos with photogs should load photos" do
+    photos = assignments(:default).photos.with_photog
+    assert photos.include?(photos(:bestcam))
+    photo = photos.detect { |p| p == photos(:bestcam) }
+    assert_equal photogs(:joe).screen_name, photo.photog_screen_name
+  end
+  
 private
 
   def new_assignment(options={})
