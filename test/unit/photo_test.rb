@@ -125,7 +125,17 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo_urls(tweet, url, thumb)
   end
   
-
+  test "tweets without URLs aren't exceptional" do
+    tweet = "I've kept 3 shots for today's @dailyshoot. Can't decide which one to use. grumble."
+    photo = Photo.from_tweet(tweet)
+    
+    assert_nil photo
+  end
+  
+  test "URL with link that isn't to a photo" do
+    
+  end
+  
   def assert_photo_urls(tweet, url, thumb)
     photo = Photo.from_tweet(tweet)
     

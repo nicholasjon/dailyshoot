@@ -20,8 +20,11 @@ class Photo
   end
   
   def self.from_tweet(tweet)
-    tweet =~ /(https?:\/\/\S+)/
-    Photo.new($1)
+    if tweet =~ /(https?:\/\/\S+)/
+      Photo.new($1)
+    else
+      nil
+    end
   end
 
   def initialize(url)
