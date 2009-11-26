@@ -13,7 +13,6 @@ class ShortURL
   end
   
   def expand
-    RAILS_DEFAULT_LOGGER.debug "[ShortURL] Expanding #{url}"
     tries = 0
     uri = self.url
     prev_uri = nil

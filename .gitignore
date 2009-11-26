@@ -3,5 +3,5 @@ log/*.log
 tmp/**/*
 doc/api
 doc/app
-config/env_local.rb
+config/initializers/env_local.rb
 
