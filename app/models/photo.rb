@@ -42,18 +42,22 @@ class Photo < ActiveRecord::Base
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
       else
-        expanded_url = ShortURL.new(self.url).expand
-        if expanded_url != self.url
-          self.url = expanded_url
-          compute_thumb_url
-        else
-          '/images/no-photo.png'
-        end
+          expanded_url = ShortURL.new(self.url).expand
+          if expanded_url != self.url
+            self.url = expanded_url
+            compute_thumb_url
+          else
+            '/images/no-photo.png'
+          end
     end
   rescue => e
     raise ThumbRetrievalError.new(e, self.url)
   end
 
+  def is_compressed
+    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|tinyurl\.com|(is|pic)\.gd/
+  end
+  
   class ThumbRetrievalError < StandardError
     attr_accessor :original_exception, :url
     def initialize(original_exception, url)

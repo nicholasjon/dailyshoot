@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20091126133529) do
   end
 
   create_table "photogs", :force => true do |t|
-    t.string   "screen_name"
+    t.string   "screen_name", :null => false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(:version => 20091126133529) do
     t.string   "thumb_url",     :null => false
     t.integer  "assignment_id"
     t.integer  "photog_id"
+    t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["assignment_id", "photog_id"], :name => "index_photos_on_assignment_id_and_photog_id", :unique => true
+  add_index "photos", ["assignment_id"], :name => "index_photos_on_assignment_id"
   add_index "photos", ["photog_id"], :name => "index_photos_on_photog_id"
 
   create_table "users", :force => true do |t|

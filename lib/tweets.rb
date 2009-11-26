@@ -7,8 +7,8 @@ class Tweets
     @client = Twitter::Base.new(httpauth)
   end
   
-  def mentions
-    @client.mentions(:count => 8)
+  def mentions(options = {:count => 8})
+    @client.mentions(options)
   end
   
   def tweets

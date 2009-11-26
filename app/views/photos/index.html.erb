@@ -1,3 +1,5 @@
+<h3><%= @assignment.tag %>: <%= h @assignment.text %></h3>
+
 <div class="photos clearfix">
 <% @photos.each do |photo| -%>
   <% content_tag :div, :class => 'photo-thumb' do -%>

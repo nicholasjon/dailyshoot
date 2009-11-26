@@ -2,7 +2,7 @@ class CreatePhotogs < ActiveRecord::Migration
   
   def self.up
     create_table :photogs do |t|
-      t.string  :screen_name
+      t.string  :screen_name, :null => false
       t.string  :name
       t.timestamps
     end
