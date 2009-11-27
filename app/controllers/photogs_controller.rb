@@ -1,7 +1,7 @@
 class PhotogsController < ApplicationController
     
   def index
-    @photogs = Photog.all
+    @photogs = Photog.all(:order => 'screen_name')
     
     respond_to do |format|
       format.html

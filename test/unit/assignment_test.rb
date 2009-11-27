@@ -24,10 +24,15 @@ class AssignmentTest < ActiveSupport::TestCase
   end
   
   test "find photos with photogs should load photos" do
-    photos = assignments(:default).photos.with_photog
+    photos = assignments(:ds10).photos.with_photog
     assert photos.include?(photos(:bestcam))
     photo = photos.detect { |p| p == photos(:bestcam) }
     assert_equal photogs(:joe).screen_name, photo.photog_screen_name
+  end
+  
+  test "displaying as tweet should generated proper format" do
+    assert_equal "2009/11/25: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you! #ds10", 
+                 assignments(:ds10).as_tweet
   end
   
 private

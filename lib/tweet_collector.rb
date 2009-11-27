@@ -4,6 +4,10 @@ class TweetCollector
     @count = 0
     @tweets = Tweets.new
   end
+
+  def get_mentions(page)
+    @tweets.mentions(:page => page)
+  end
  
   def run
     create_sample_assignments # temporary
@@ -21,44 +25,27 @@ class TweetCollector
           break
         end
         next unless Photo.all(:conditions => {:source_id => mention[:id].to_i}).count.zero?
-        save mention
+        tweet = Tweet.new(mention)
+        if tweet.save
+          puts "#{@count}. #{tweet.photog.screen_name} #{tweet.assignment.tag}"
+        else
+          if tweet.hashtag && tweet.assignment.nil?
+            puts "Could not find assignment: #{tweet.hashtag}"
+          elsif tweet.photo.nil?
+            puts "Could not parse tweet: #{mention.text}" 
+          else
+            puts "Unable to save photo: #{tweet.photo.inspect}"
+          end
+        end
+        @count += 1
       end
       $stderr.puts "#{@count} mentions saved"
       @count = 0
       break if found
-      sleep 5
+      sleep 1
     end
   end
-  
-  def save(mention)
-    photog = Photog.find_by_screen_name(mention.user.screen_name)
-    unless photog
-      photog = Photog.create(:screen_name => mention.user.screen_name, 
-                             :name => mention.user.name)
-    end
-    if mention.text =~ /#(ds\d{1,3})/
-      assignment = Assignment.find_by_tag($1)
-      return unless assignment
-      
-      photo = Photo.from_tweet(mention.text)
-      unless photo 
-        puts "Could not parse tweet: #{mention.text}"
-        return
-      end
-      
-      photo.source_id = mention[:id].to_i
-      photo.assignment = assignment
-      photo.photog = photog
-      photo.save
-      puts "#{@count}. #{photog.screen_name} #{assignment.tag}"
-      @count += 1
-    end
-  end
-  
-  def get_mentions(page)
-    @tweets.mentions(:page => page)
-  end
-  
+    
   def create_sample_assignments
     Assignment.delete_all
     Assignment.create([

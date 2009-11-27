@@ -3,8 +3,17 @@ class Photog < ActiveRecord::Base
   
   has_many :photos, :dependent => :nullify
   
+  def self.for_twitter_user(user)
+    photog = self.find_by_screen_name(user.screen_name)
+    unless photog
+      photog = self.create!(:screen_name => user.screen_name, 
+                                   :name => user.name)
+    end
+    photog
+  end
+  
   def to_param
-    screen_name
+    self.screen_name
   end
   
 end
