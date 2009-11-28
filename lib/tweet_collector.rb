@@ -24,8 +24,11 @@ class TweetCollector
         end
         next unless Photo.all(:conditions => {:tweet_id => mention[:id].to_i}).count.zero?
         tweet = Tweet.new(mention)
-        tweet.save
-        puts "#{@count}. #{tweet.photog.screen_name} #{tweet.assignment.tag}"
+        if tweet.save
+          puts "#{@count}. #{tweet.photog.screen_name} #{tweet.assignment.tag}"
+        else
+          puts "Skipped: #{mention.text}"
+        end
         @count += 1
       end
       $stderr.puts "#{@count} mentions saved"

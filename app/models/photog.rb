@@ -11,7 +11,11 @@ class Photog < ActiveRecord::Base
     end
     photog
   end
-  
+
+  def twitter_url
+    "http://twitter.com/#{screen_name}"
+  end
+    
   def to_param
     self.screen_name
   end
