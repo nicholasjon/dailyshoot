@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 20091126133529) do
   end
 
   create_table "photogs", :force => true do |t|
-    t.string   "screen_name", :null => false
-    t.string   "name"
+    t.string   "screen_name",       :null => false
+    t.string   "profile_image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20091126133529) do
     t.string   "thumb_url",     :null => false
     t.integer  "assignment_id"
     t.integer  "photog_id"
-    t.integer  "source_id"
+    t.integer  "tweet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

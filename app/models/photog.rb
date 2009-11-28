@@ -1,5 +1,5 @@
 class Photog < ActiveRecord::Base
-  validates_presence_of :screen_name, :name
+  validates_presence_of :screen_name
   
   has_many :photos, :dependent => :nullify
   
@@ -7,7 +7,7 @@ class Photog < ActiveRecord::Base
     photog = self.find_by_screen_name(user.screen_name)
     unless photog
       photog = self.create!(:screen_name => user.screen_name, 
-                                   :name => user.name)
+                            :profile_image_url => user.profile_image_url)
     end
     photog
   end

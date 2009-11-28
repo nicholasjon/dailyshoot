@@ -8,21 +8,14 @@ class PhotogText < ActiveSupport::TestCase
       assert !photog.valid?
     end
   end
-  
-  test "create with blank name should fail" do
-    assert_no_difference "Photog.count" do
-      photog = new_photog :name => ""
-      assert !photog.valid?
-    end
-  end
-  
+
   test "identify with a new Twitter user should create new record" do
     twitter_user = stub_mentions.first.user
 
     assert_difference "Photog.count" do
       photog = Photog.for_twitter_user(twitter_user)
       assert_equal "clarkware", photog.screen_name
-      assert_equal "Mike Clark", photog.name
+      assert_equal "http://a1.twimg.com/profile_images/35409012/mike-120_normal.jpg", photog.profile_image_url
     end
   end
 
@@ -39,8 +32,8 @@ private
 
   def new_photog(options={})
     options = {
-      :screen_name => "@screen_name",
-      :name        => "Name"
+      :screen_name        => "@screen_name",
+      :profile_image_url  => "image url"
     }.merge(options)
 
     Photog.create(options)

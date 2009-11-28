@@ -1,4 +1,4 @@
-<h2><%= photog_twitter_link(@photog) %></h2>
+<h2><%= image_tag @photog.profile_image_url %> <%= photog_twitter_link(@photog) %></h2>
 
 <div class="photos clearfix">
 <% @photog.photos.each do |photo| -%>

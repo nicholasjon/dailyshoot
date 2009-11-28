@@ -12,6 +12,7 @@ class Tweet
   
   def save
     return false unless hashtag
+    
     @assignment = Assignment.find_by_tag(hashtag)
     return false unless @assignment
     
@@ -20,7 +21,7 @@ class Tweet
     
     @photog = Photog.for_twitter_user(self.mention.user)
           
-    @photo.source_id = self.mention[:id].to_i
+    @photo.tweet_id = self.mention[:id].to_i
     @photo.assignment = @assignment
     @photo.photog = @photog
     @photo.save

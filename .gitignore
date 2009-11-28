@@ -4,4 +4,4 @@ tmp/**/*
 doc/api
 doc/app
 config/initializers/env_local.rb
-
+db/tweets.json
