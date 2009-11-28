@@ -27,8 +27,11 @@ class Photo < ActiveRecord::Base
         end
       end
       p = Photo.new(:url => url)
-      p.compute_thumb_url
-      p
+      if p.compute_thumb_url
+        p
+      else
+        nil
+      end
     end
   end
   
@@ -41,21 +44,12 @@ class Photo < ActiveRecord::Base
       when self.url =~ /flickr\.com/: flickr
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
-      else
-          expanded_url = ShortURL.new(self.url).expand
-          if expanded_url != self.url
-            self.url = expanded_url
-            compute_thumb_url
-          else
-            '/images/no-photo.png'
-          end
+      when self.is_compressed : expand
+      else nil
     end
   rescue => e
+    self.thumb_url = '/images/no-photo.png'
     raise ThumbRetrievalError.new(e, self.url)
-  end
-
-  def is_compressed
-    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|tinyurl\.com|(is|pic)\.gd/
   end
   
   class ThumbRetrievalError < StandardError
@@ -70,7 +64,21 @@ class Photo < ActiveRecord::Base
   end
 
 protected
-  
+
+  def is_compressed
+    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|tinyurl\.com|(is|pic)\.gd/
+  end
+
+  def expand
+    expanded_url = ShortURL.new(self.url).expand
+    if expanded_url != self.url
+      self.url = expanded_url
+      compute_thumb_url
+    else
+      '/images/no-photo.png'
+    end
+  end
+    
   def bestcam
     doc = Nokogiri::HTML(open(self.url))
     doc.css('#main-content .photo img').first['src'].gsub(/iphone/, 'thumb')    

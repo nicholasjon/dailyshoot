@@ -1,5 +1,11 @@
 * RSS feed for assignments
 
+* Test that Flickr set URLs are handled properly on the collection
+
+* What about URL's that aren't imgages?
+
+* Add a cached count of photos for a photog
+
 * Pagination for photos and photogs, at a minimum
 
 * Make sure we're handling more than one photo URL in a tweet

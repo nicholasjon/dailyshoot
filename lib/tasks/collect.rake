@@ -34,5 +34,4 @@ namespace :collect do
       end
     end
   end
-  
 end

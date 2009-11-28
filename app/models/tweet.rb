@@ -25,5 +25,8 @@ class Tweet
     @photo.assignment = @assignment
     @photo.photog = @photog
     @photo.save
-  end  
+  rescue => e
+    puts "Unable to save tweet - #{@mention} : #{e}"
+    return false
+  end
 end
