@@ -3,10 +3,11 @@ class AssignmentsController < ApplicationController
   before_filter :admin_required, :except => [:index, :show]
   
   def index
-    @assignments = Assignment.all(:order => 'date')
+    @assignments = Assignment.all(:order => 'date desc')
 
     respond_to do |format|
       format.html
+      format.rss
       format.xml  { render :xml  => @assignments }
       format.json { render :json => @assignments }
     end
