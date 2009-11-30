@@ -1,5 +1,7 @@
 * RSS feed for assignments
 
+* Avoid duplicates
+
 * Test that Flickr set URLs are handled properly on the collection
 
 * What about URL's that aren't imgages?

@@ -61,6 +61,14 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo_urls(tweet, url, thumb)
   end
 
+  test "tweet with tweetphoto URL should assign url and thumb url" do
+    tweet  = "@dailyshoot #ds14 patterns  http://tweetphoto.com/5588888"
+    url    = "http://tweetphoto.com/5588888"
+    thumb  = "http://tweetphoto.com/show/thumb/5588888"
+    
+    assert_photo_urls(tweet, url, thumb)
+  end
+  
   test "tweet with imgur URL should assign url and thumb url" do
     tweet  = "@dailyshoot #ds2 http://imgur.com/TRxN1.jpg"
     url    = "http://imgur.com/TRxN1.jpg"
