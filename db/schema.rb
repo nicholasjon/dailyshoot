@@ -9,19 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091130035522) do
+ActiveRecord::Schema.define(:version => 20091130190150) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "text"
-    t.date     "date"
-    t.string   "tag"
+    t.string   "text",       :null => false
+    t.date     "date",       :null => false
+    t.string   "tag",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mentions", :force => true do |t|
+    t.integer  "tweet_id",                             :null => false
+    t.string   "text",                                 :null => false
+    t.integer  "user_id",                              :null => false
+    t.string   "screen_name",                          :null => false
+    t.string   "profile_image_url",                    :null => false
+    t.boolean  "was_parsed",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photogs", :force => true do |t|
     t.string   "screen_name",       :null => false
-    t.string   "profile_image_url"
+    t.string   "profile_image_url", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20091130035522) do
 
   create_table "suggestions", :force => true do |t|
     t.string   "who"
-    t.text     "what"
+    t.text     "what",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

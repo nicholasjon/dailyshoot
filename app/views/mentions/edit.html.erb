@@ -1,0 +1,13 @@
+<h2><%= link_to "Mention #{@mention.id}", @mention %></h2>
+
+<% labeled_form_for @mention do |f| -%>
+<fieldset>  
+  <%= f.error_messages %>
+  <%= f.text_field :text, :size => 140 %>  
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+</fieldset>
+<% end -%>
+
+<%= link_to 'All Mentions', mentions_path %>

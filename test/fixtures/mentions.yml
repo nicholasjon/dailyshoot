@@ -1,0 +1,15 @@
+one:
+  tweet_id: 1
+  text: MyString
+  user_id: 1
+  screen_name: MyString
+  profile_image_url: MyString
+  was_parsed: true
+  
+pending:
+  tweet_id: 2
+  text: MyString
+  user_id: 1
+  screen_name: MyString
+  profile_image_url: MyString
+  was_parsed: false

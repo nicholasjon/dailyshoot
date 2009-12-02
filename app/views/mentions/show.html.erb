@@ -1,0 +1,19 @@
+<h2><%= "Mention #{@mention.id}" %></h2>
+
+<p>
+  <b>Tweet ID:</b>
+  <%=h @mention.tweet_id %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%=h @mention.text %>
+</p>
+
+<p>
+  <b>Screen name:</b>
+  <%=h @mention.screen_name %>
+</p>
+
+<%= link_to 'Edit', edit_mention_path(@mention) %> |
+<%= link_to 'All Mentions', mentions_path %>

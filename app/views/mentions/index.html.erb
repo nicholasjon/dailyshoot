@@ -1,0 +1,12 @@
+<h2>Pending Mentions</h2>
+
+<table>
+<% @mentions.each do |mention| -%>
+  <tr>
+    <td><%= link_to mention.id, mention %>:</td>
+    <td><%=h mention.text %></td>
+    <td><%= link_to 'Edit', edit_mention_path(mention) %></td>
+    <td><%= link_to 'Destroy', mention, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end -%>
+</table>

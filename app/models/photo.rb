@@ -7,41 +7,37 @@ require 'open-uri'
 
 class Photo < ActiveRecord::Base
     
-  validates_presence_of :url
+  validates_presence_of :url, :thumb_url
   
   belongs_to :assignment
   belongs_to :photog
-
-  before_create :compute_thumb_url
     
-  def self.from_tweet(tweet)
-    urls = tweet.scan(/https?:\/\/\S+/)
-    if urls.empty?
-      nil
-    else
-      url = urls.detect do |u|
-        begin
-          URI.parse(u)
-        rescue URI::InvalidURIError
-          false
-        end
-      end
-      p = Photo.new(:url => url)
-      if p.compute_thumb_url
-        p
-      else
-        nil
+  def self.all_from_tweet(tweet)
+    photos = []
+    urls = tweet.scan(/https?:\/\/\S+/).select do |url|
+      begin
+        URI.parse(url)
+      rescue URI::InvalidURIError
+        false
       end
     end
+    urls.each do |url|
+      photo = Photo.new(:url => url)
+      if photo.compute_thumb_url
+        photos << photo
+      end
+    end
+    photos
   end
   
   def compute_thumb_url
-    self.thumb_url ||= case
+    self.thumb_url = case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /(tweetphoto|twitpic)\.com/: twitpic
       when self.url =~ /yfrog\.com/: yfrog
       when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
       when self.url =~ /flickr\.com/: flickr
+      when self.url =~ /flic\.kr/: flickr
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
       when self.is_compressed : expand

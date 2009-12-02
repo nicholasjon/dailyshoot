@@ -2,9 +2,9 @@ class CreateAssignments < ActiveRecord::Migration
   
   def self.up
     create_table :assignments do |t|
-      t.string :text
-      t.date   :date
-      t.string :tag
+      t.string :text, :null => false
+      t.date   :date, :null => false
+      t.string :tag, :null => false
       t.timestamps
     end
   end

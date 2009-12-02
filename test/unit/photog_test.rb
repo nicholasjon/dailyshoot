@@ -9,23 +9,19 @@ class PhotogText < ActiveSupport::TestCase
     end
   end
 
-  test "identify with a new Twitter user should create new record" do
+  test "identify with a new Twitter user should return new record" do
     twitter_user = stub_mentions.first.user
-
-    assert_difference "Photog.count" do
-      photog = Photog.for_twitter_user(twitter_user)
-      assert_equal "clarkware", photog.screen_name
-      assert_equal "http://a1.twimg.com/profile_images/35409012/mike-120_normal.jpg", photog.profile_image_url
-    end
+    photog = Photog.with_screen_name(twitter_user.screen_name)
+    
+    assert photog.new_record?
   end
 
-  test "identify with an existing Twitter user should not create new record" do
+  test "identify with an existing Twitter should find existing record" do
     twitter_user = stub_mentions.first.user
     twitter_user.screen_name = photogs(:joe).screen_name
-    
-    assert_no_difference "Photog.count" do
-      photog = Photog.for_twitter_user(twitter_user)
-    end
+    photog = Photog.with_screen_name(twitter_user.screen_name)
+
+    assert_equal photogs(:joe), photog
   end
   
 private
