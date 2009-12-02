@@ -7,7 +7,7 @@ class TwitterAPI
     @client = Twitter::Base.new(httpauth)
   end
   
-  def mentions(options = {:count => 8})
+  def mentions(options = {})
     @client.mentions(options)
   end
   

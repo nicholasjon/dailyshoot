@@ -4,7 +4,9 @@ namespace :collect do
   desc "Collect tweets and create photos and photogs"
   task :tweets => :environment do
     require 'tweet_collector'
-    TweetCollector.new.run
+    collector = TweetCollector.new(TwitterAPI.new)
+    collector.debug = true
+    collector.run
   end
   
   desc "Collect tweets and create photos and photogs from a local file"
@@ -12,15 +14,19 @@ namespace :collect do
     url = 'http://username:password@twitter.com:80/statuses/mentions.json'
     file_path = File.expand_path(File.dirname(__FILE__) + '/../../db/tweets.json')
 
-    twitter = TwitterAPI.new('username', 'password')
-    
     FakeWeb.register_uri(:get, url, {:body => File.read(file_path)})
 
+    twitter = TwitterAPI.new('username', 'password')
+    
     collector = TweetCollector.new(twitter)
     collector.debug = true
-    
-    client.mentions.each_with_index do |raw_mention, index|
-      collector.collect(raw_mention, index)
+
+    count = 0    
+    twitter.mentions.each_with_index do |raw_mention, index|
+      if collector.collect(raw_mention)
+        count += 1
+        puts "#{count}. #{raw_mention.user.screen_name} #{raw_mention.text}"
+      end  
     end
   end
   

@@ -9,25 +9,27 @@ class TweetCollector
   end
   
   def run(max_pages=100)
-    @debug = true
-    @count = 0
     page = 1
     
-    last = Photo.first(:order => 'created_at desc')
+    last = Mention.first(:order => 'tweet_id desc')
     loop do
+      @count = 0
       raw_mentions = @twitter.mentions(:page => page)
       break unless raw_mentions.first
       found = false
       raw_mentions.each do |raw_mention|
-        if last && raw_mention[:id].to_i <= last.tweet_id
+        if last && (raw_mention[:id].to_i <= last.tweet_id)
           found = true
           break
         end
-        next unless Photo.all(:conditions => {:tweet_id => raw_mention[:id].to_i}).count.zero?
-        collect(raw_mention)
+        next if Mention.find_by_tweet_id(raw_mention[:id].to_i)
+        if collect(raw_mention)
+          @count += 1
+          log "#{@count}. #{raw_mention.user.screen_name} #{raw_mention.text}"
+        end
       end
       log "#{@count} mentions saved"
-      count = 0
+      @count = 1
       break if found
       break if page == max_pages
       page += 1
@@ -62,7 +64,7 @@ class TweetCollector
     photog = mention.photog
     
     photos = photos.select do |photo| 
-      Photo.find_by_url_and_photog_id(photo.url, photog.id).nil? 
+      Photo.find_by_url_and_photog_id(photo.url, photog.id).nil?
     end
     if photos.empty?
       log "Duplicate - skipping: #{mention.text}" 
@@ -81,14 +83,11 @@ class TweetCollector
       photo.save
     end
 
-    log "#{@count}. #{mention.photog.screen_name} #{mention.assignment.tag}"
-
-    @count += 1          
     mention.was_parsed = true
     mention.save
     
   rescue => e
-    log "Unable to collect tweet: #{mention.text}: #{e.inspect}"
+    log "Unable to collect mention: #{mention.text}: #{e.inspect}"
     return false
   end
    

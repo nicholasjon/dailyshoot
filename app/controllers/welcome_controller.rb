@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   def index
     response.headers['Cache-Control'] = 'public, max-age=900'
     twitter = TwitterAPI.new
-    @mentions = twitter.mentions
+    @mentions = twitter.mentions(:count => 8)
     @tweets = twitter.tweets
   end
   
