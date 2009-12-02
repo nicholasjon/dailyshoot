@@ -27,8 +27,8 @@ class TweetCollectorTest < ActiveSupport::TestCase
     raw_mention = stub_mentions.first
     raw_mention.text = "##{assignments(:ds10).tag} http://bestc.am/oGuf"
 
-    collector = TweetCollector.new
-    
+    collector = TweetCollector.new(TwitterAPI.new)
+
     assert_difference "Mention.count" do
       assert_difference "Photo.count" do
         assert_difference "Photog.count" do
@@ -42,7 +42,7 @@ class TweetCollectorTest < ActiveSupport::TestCase
     raw_mention = stub_mentions.first
     raw_mention.text = "##{assignments(:ds10).tag} http://bestc.am/oGuf http://twitpic.com/qosz0"
 
-    collector = TweetCollector.new
+    collector = TweetCollector.new(TwitterAPI.new)
     
     assert_difference "Mention.count" do
       assert_difference "Photo.count", 2 do
@@ -59,7 +59,7 @@ class TweetCollectorTest < ActiveSupport::TestCase
     raw_mention = stub_mentions.first
     raw_mention.text = "##{assignments(:ds10).tag} http://bestc.am/oGuf"
 
-    collector = TweetCollector.new
+    collector = TweetCollector.new(TwitterAPI.new)
         
     assert_difference "Mention.count" do
       assert_no_difference "Photo.count" do
@@ -74,7 +74,7 @@ class TweetCollectorTest < ActiveSupport::TestCase
     raw_mention = stub_mentions.first
     raw_mention.user.screen_name = "unknown"
 
-    collector = TweetCollector.new
+    collector = TweetCollector.new(TwitterAPI.new)
         
     assert_difference "Mention.count" do
       assert_difference "Photo.count" do
@@ -89,7 +89,7 @@ class TweetCollectorTest < ActiveSupport::TestCase
     raw_mention = stub_mentions.first
     raw_mention.user.screen_name = photogs(:joe).screen_name
 
-    collector = TweetCollector.new
+    collector = TweetCollector.new(TwitterAPI.new)
         
     assert_difference "Mention.count" do
       assert_difference "Photo.count" do
@@ -103,7 +103,7 @@ class TweetCollectorTest < ActiveSupport::TestCase
 protected
 
   def assert_byproducts_not_saved(raw_mention)
-    collector = TweetCollector.new
+    collector = TweetCollector.new(TwitterAPI.new)
     assert_difference "Mention.count" do
       assert_no_difference "Photo.count" do
         assert_no_difference "Photog.count" do

@@ -2,20 +2,20 @@ class TweetCollector
 
   attr_accessor :debug
   
-  def initialize(tweets)
-    @tweets = tweets
+  def initialize(twitter)
+    @twitter = twitter
     @debug = false
+    @count = 0
   end
   
-  def run
+  def run(max_pages=100)
     @debug = true
-    count = 0
+    @count = 0
     page = 1
     
     last = Photo.first(:order => 'created_at desc')
     loop do
-      raw_mentions = @tweets.mentions(:page => page)
-      page += 1
+      raw_mentions = @twitter.mentions(:page => page)
       break unless raw_mentions.first
       found = false
       raw_mentions.each do |raw_mention|
@@ -24,19 +24,23 @@ class TweetCollector
           break
         end
         next unless Photo.all(:conditions => {:tweet_id => raw_mention[:id].to_i}).count.zero?
-        collect(raw_mention, count)
-        count += 1
+        collect(raw_mention)
       end
-      log "#{count} mentions saved"
+      log "#{@count} mentions saved"
       count = 0
       break if found
+      break if page == max_pages
+      page += 1
       sleep 1
     end
   end
   
-  def collect(raw_mention, count=1)
+  def collect(raw_mention)
     mention = Mention.from_raw_mention(raw_mention)
-    mention.save
+    unless mention.save
+      log "Unable to save original mention: #{mention.inspect}"
+      return false
+    end
 
     unless mention.tag
       log "No hashtag: #{mention.text}"
@@ -77,8 +81,9 @@ class TweetCollector
       photo.save
     end
 
-    log "#{count}. #{mention.photog.screen_name} #{mention.assignment.tag}"
-          
+    log "#{@count}. #{mention.photog.screen_name} #{mention.assignment.tag}"
+
+    @count += 1          
     mention.was_parsed = true
     mention.save
     

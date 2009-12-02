@@ -93,7 +93,7 @@ class AssignmentsControllerTest < ActionController::TestCase
     get :index, :format => "xml"
     assert_response :success
     xml = Hash.from_xml(@response.body)
-    assert_equal 1, xml["assignments"].length
+    assert_equal 3, xml["assignments"].length
   end
   
   test "show via API should return assignment record" do
