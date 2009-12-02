@@ -8,7 +8,7 @@ class TweetCollector
     @count = 0
   end
   
-  def run(max_pages=100)
+  def run(max_pages=1000)
     page = 1
     
     last = Mention.first(:order => 'tweet_id desc')
@@ -16,10 +16,10 @@ class TweetCollector
       @count = 0
       raw_mentions = @twitter.mentions(:page => page)
       break unless raw_mentions.first
-      found = false
+      mention_exists = false
       raw_mentions.each do |raw_mention|
         if last && (raw_mention[:id].to_i <= last.tweet_id)
-          found = true
+          mention_exists = true
           break
         end
         next if Mention.find_by_tweet_id(raw_mention[:id].to_i)
@@ -29,8 +29,7 @@ class TweetCollector
         end
       end
       log "#{@count} mentions saved"
-      @count = 1
-      break if found
+      break if mention_exists
       break if page == max_pages
       page += 1
       sleep 1
