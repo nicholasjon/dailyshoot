@@ -2,19 +2,19 @@ module Authentication
   
   # Surface the helpers to controllers that include this module.
   def self.included(controller)
-    controller.send :helper_method, :current_user, :logged_in? 
+    controller.send :helper_method, :current_user, :admin? 
   end
   
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
-  def logged_in?
+  def admin?
     current_user && current_user.is_admin? 
   end
   
   def admin_required
-    return if logged_in?
+    return if admin?
       
     respond_to do |format| 
       format.html do
