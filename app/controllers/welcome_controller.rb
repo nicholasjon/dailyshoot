@@ -2,9 +2,9 @@ class WelcomeController < ApplicationController
 
   def index
     response.headers['Cache-Control'] = 'public, max-age=900'
-    tweets = Tweets.new
-    @mentions = tweets.mentions
-    @tweets = tweets.tweets
+    twitter = TwitterAPI.new
+    @mentions = twitter.mentions
+    @tweets = twitter.tweets
   end
   
   # for apps verification. Will kill soon enough.

@@ -2,7 +2,8 @@ class TweetCollector
 
   attr_accessor :debug
   
-  def initialize
+  def initialize(tweets)
+    @tweets = tweets
     @debug = false
   end
   
@@ -10,13 +11,12 @@ class TweetCollector
     @debug = true
     count = 0
     page = 1
-    tweets = Tweets.new
     
     last = Photo.first(:order => 'created_at desc')
     loop do
-      raw_mentions = tweets.mentions(:page => page)
+      raw_mentions = @tweets.mentions(:page => page)
       page += 1
-      break unless mentions.first
+      break unless raw_mentions.first
       found = false
       raw_mentions.each do |raw_mention|
         if last && raw_mention[:id].to_i <= last.tweet_id
@@ -33,7 +33,7 @@ class TweetCollector
       sleep 1
     end
   end
-
+  
   def collect(raw_mention, count=1)
     mention = Mention.from_raw_mention(raw_mention)
     mention.save
