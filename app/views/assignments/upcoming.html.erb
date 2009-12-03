@@ -13,6 +13,9 @@
       <%= h assignment.tag %>
     </td> 
     <td>
+      <%= link_to 'Photos', assignment_photos_path(assignment) %>
+    </td>
+    <td>
       <%= link_to 'Edit', edit_assignment_path(assignment) %>
     </td>
     <td>

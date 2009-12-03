@@ -1,31 +1,9 @@
 <h2>Assignments</h2>
 
-<table id="assignments">
+<ul id="assignments">
 <% @assignments.each do |assignment| -%>
-  <tr>
-    <td class="date">
-      <%= link_to assignment.date, assignment %>
-    </td>
-    <td class="text">
-      <%= h assignment.text %>
-    </td>
-    <td class="tag">
-      <%= h assignment.tag %>
-    </td> 
-    <td>
-      <%= link_to 'Photos', assignment_photos_path(assignment) %>
-    </td>
-    <td>
-      <%= link_to 'Edit', edit_assignment_path(assignment) %>
-    </td>
-    <td>
-      <%= link_to 'Destroy', assignment, :confirm => 'Are you sure?', 
-                                         :method => :delete %>
-    </td>
-  </tr>
+  <li style="list-style: none; padding: 2px 0;">
+      <%= link_to assignment.as_tweet, assignment %>
+  </li>
 <% end -%>
-</table>
-
-<p>
-  <%= link_to 'New Assignment', new_assignment_path %>
-</p>
+</ul>
