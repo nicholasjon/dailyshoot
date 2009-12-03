@@ -7,6 +7,7 @@ class CreateMentions < ActiveRecord::Migration
       t.string :screen_name, :null => false
       t.string :profile_image_url, :null => false
       t.boolean :was_parsed, :default => false
+      t.datetime :tweeted_at
       t.timestamps
     end
   end

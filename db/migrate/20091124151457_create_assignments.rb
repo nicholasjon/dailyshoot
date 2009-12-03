@@ -5,6 +5,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.string :text, :null => false
       t.date   :date, :null => false
       t.string :tag, :null => false
+      t.integer :position
       t.timestamps
     end
   end

@@ -1,3 +1,7 @@
+* Position column on assignment
+
+* Use assignment tag rather than id?
+
 * RSS feed for assignments
 
 * Test that Flickr set URLs are handled properly on the collection

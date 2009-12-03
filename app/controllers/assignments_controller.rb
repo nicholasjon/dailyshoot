@@ -14,7 +14,7 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_tag(params[:id])
 
     respond_to do |format|
       format.html
@@ -47,7 +47,7 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_tag(params[:id])
   end
 
   def create
@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_tag(params[:id])
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
@@ -85,7 +85,7 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_tag(params[:id])
     @assignment.destroy
 
     respond_to do |format|

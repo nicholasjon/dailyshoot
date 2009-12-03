@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
     t.string   "text",       :null => false
     t.date     "date",       :null => false
     t.string   "tag",        :null => false
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
     t.string   "screen_name",                          :null => false
     t.string   "profile_image_url",                    :null => false
     t.boolean  "was_parsed",        :default => false
+    t.datetime "tweeted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
     t.integer  "assignment_id"
     t.integer  "photog_id"
     t.integer  "tweet_id"
+    t.datetime "tweeted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,7 +9,8 @@ class Assignment < ActiveRecord::Base
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})
       find(:all, 
-           :joins => :photog, 
+           :joins => :photog,
+           :order => 'tweeted_at asc', 
            :select => "photos.*, photogs.screen_name as photog_screen_name")
     end
   end
@@ -28,5 +29,10 @@ class Assignment < ActiveRecord::Base
   
   def rfc822_date
     Time.mktime(self.date.year, self.date.month, self.date.day, 9, 0, 0, 0).to_s(:rfc822)
-  end  
+  end
+  
+  def to_param
+    self.tag
+  end
+  
 end
