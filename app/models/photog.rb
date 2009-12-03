@@ -11,7 +11,6 @@ class Photog < ActiveRecord::Base
     end
   end
   
-  
   def self.with_screen_name(screen_name)
     self.find_by_screen_name(screen_name) || self.new(:screen_name => screen_name)
   end
