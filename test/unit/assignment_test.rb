@@ -16,6 +16,13 @@ class AssignmentTest < ActiveSupport::TestCase
     
     assert_equal assignments(:today), assignment
   end
+
+  test "should have one upcoming assignment" do
+    assignments = Assignment.upcoming
+    
+    assert_equal 1, assignments.size
+    assert_equal assignments(:future), assignments[0]
+  end
   
   test "create with blank text should fail" do
     assert_no_difference "Assignment.count" do

@@ -4,6 +4,7 @@ class Assignment < ActiveRecord::Base
   validates_length_of :text, :maximum => (140 - 18), :message => "less than {{count}}, please!"
   
   named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
+  named_scope :upcoming,  :order => "date desc", :conditions => ['date > ?', Date.today]
 
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})

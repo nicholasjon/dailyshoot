@@ -23,6 +23,19 @@ class AssignmentsController < ApplicationController
     end
   end
 
+# ADMIN ONLY
+
+  def upcoming
+    @assignments = Assignment.upcoming
+
+    respond_to do |format|
+      format.html
+      format.rss
+      format.xml  { render :xml  => @assignments }
+      format.json { render :json => @assignments }
+    end
+  end
+
   def new
     @assignment = Assignment.new
 

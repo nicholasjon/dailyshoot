@@ -1,7 +1,15 @@
 class Photog < ActiveRecord::Base
   validates_presence_of :screen_name
   
-  has_many :photos, :dependent => :nullify
+  has_many :photos, :dependent => :nullify do
+    def with_assignment(options={})
+      find(:all, 
+           :joins => :assignment, 
+           :select => "photos.*, assignments.id as assignment_id, assignments.tag as assignment_tag",
+           :order => "photos.created_at desc")
+    end
+  end
+  
   
   def self.with_screen_name(screen_name)
     self.find_by_screen_name(screen_name) || self.new(:screen_name => screen_name)

@@ -16,6 +16,20 @@ class AssignmentsControllerTest < ActionController::TestCase
     assert_template "assignments/show"
   end
 
+  test "upcoming should redirect to login when non-admin requests it" do
+    get :upcoming
+    assert_response :redirect
+    assert_redirected_to new_session_url
+  end
+
+  test "upcoming should load assignments and render page" do
+    login_admin
+    get :upcoming
+    assert_not_nil assigns(:assignments)
+    assert_response :success
+    assert_template "assignments/upcoming"
+  end
+
   test "new should redirect to login when non-admin requests it" do
     get :new
     assert_response :redirect
