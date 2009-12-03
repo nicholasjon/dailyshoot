@@ -2,18 +2,22 @@ future:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: <%= 1.days.from_now.to_s(:db) %>
   tag: ds99
-
+  position: 4
+  
 today:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: <%= Date.today %>
   tag: ds98
-
+  position: 3
+  
 ds10:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: 2009-11-25
   tag: ds10
-
+  position: 2
+  
 ds1:
   text: Today's theme is red. Red hot? Red paint? Or something else? You decide. Make your photo and then reply with a link!
   date: 2009-11-16
   tag: ds1
+  position: 1

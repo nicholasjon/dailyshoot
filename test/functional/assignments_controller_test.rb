@@ -111,7 +111,7 @@ class AssignmentsControllerTest < ActionController::TestCase
   end
   
   test "show via API should return assignment record" do
-    get :show, :id => assignments(:ds10).tag, :format => "xml"
+    get :show, :id => assignments(:ds10).to_param, :format => "xml"
     assert_response :success
     xml = Hash.from_xml(@response.body)
     assert_equal assignments(:ds10).id, xml["assignment"]["id"]
@@ -147,7 +147,7 @@ class AssignmentsControllerTest < ActionController::TestCase
   
   test "update via API with validation errors should respond with 422" do
     login_admin
-    put :update, :id => assignments(:ds10).tag, 
+    put :update, :id => assignments(:ds10).to_param, 
                  :assignment => { :tag => "" }, 
                  :format => "xml"
     assert_response :unprocessable_entity
@@ -157,7 +157,7 @@ class AssignmentsControllerTest < ActionController::TestCase
 
   test "update via API should update assignment and respond with 200" do
     login_admin
-    put :update, :id => assignments(:ds10).tag, 
+    put :update, :id => assignments(:ds10).to_param, 
                  :assignment => { :tag => "another-tag" }, 
                  :format => "xml"
     assert_response :success  
@@ -168,7 +168,7 @@ class AssignmentsControllerTest < ActionController::TestCase
   test "destroy via API should remove assignment and respond with 200" do
     login_admin
     assert_difference "Assignment.count", -1 do
-      delete :destroy, :id => assignments(:ds10).tag, :format => "xml"
+      delete :destroy, :id => assignments(:ds10).to_param, :format => "xml"
       assert_response :success
     end
   end
