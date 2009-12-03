@@ -10,6 +10,10 @@
 <% content_tag :div, :class => 'photo-thumb' do -%>
     <%= link_to image_tag(photo.thumb_url, :alt => photo.url), 
                 photo.url, :title => "", :rel => 'nofollow', :popup => true %>
+    <% content_tag :div, :class => 'photog-name' do -%>
+       <%= photo.photog.screen_name %>
+    <% end -%>
+    
   <% end -%>
 <% end %>
 </div> <!-- end photowall -->

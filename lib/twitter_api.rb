@@ -1,13 +1,13 @@
 require 'twitter'
 
-class Tweets
+class TwitterAPI
   
-  def initialize
-    httpauth = Twitter::HTTPAuth.new('dailyshoot', ENV['DAILYSHOOT_TWITTER_PASS'])
+  def initialize(username='dailyshoot', password=ENV['DAILYSHOOT_TWITTER_PASS'])
+    httpauth = Twitter::HTTPAuth.new(username, password)
     @client = Twitter::Base.new(httpauth)
   end
   
-  def mentions(options = {:count => 8})
+  def mentions(options = {})
     @client.mentions(options)
   end
   

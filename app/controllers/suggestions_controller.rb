@@ -2,6 +2,10 @@ class SuggestionsController < ApplicationController
 
   before_filter :admin_required, :except => [:new, :create]
 
+  def index
+    @suggestions = Suggestion.all(:order => 'created_at desc')
+  end
+
   def new
     @suggestion = Suggestion.new
   end
@@ -16,15 +20,7 @@ class SuggestionsController < ApplicationController
       render :action => "new"
     end
   end
-
-  def index
-    @suggestions = Suggestion.all
-  end
-
-  def show
-    @suggestion = Suggestion.find(params[:id])
-  end
-
+  
   def destroy
     @suggestion = Suggestion.find(params[:id])
     @suggestion.destroy

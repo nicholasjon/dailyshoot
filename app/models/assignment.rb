@@ -1,6 +1,9 @@
 class Assignment < ActiveRecord::Base
   validates_presence_of :text, :tag, :date
+  validates_uniqueness_of :tag
   validates_length_of :text, :maximum => (140 - 18), :message => "less than {{count}}, please!"
+  
+  named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
 
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})
@@ -8,6 +11,10 @@ class Assignment < ActiveRecord::Base
            :joins => :photog, 
            :select => "photos.*, photogs.screen_name as photog_screen_name")
     end
+  end
+  
+  def self.today
+    self.first(:conditions => ['date = ?', Date.today])
   end
   
   def tweet_date

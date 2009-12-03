@@ -16,20 +16,6 @@ class SuggestionsControllerTest < ActionController::TestCase
     assert_template "suggestions/index"
   end
 
-  test "show should redirect to login when non-admin requests it" do
-    get :show, :id => suggestions(:one)
-    assert_response :redirect
-    assert_redirected_to new_session_url
-  end
-  
-  test "show should load suggestion and render page" do
-    login_admin
-    get :show, :id => suggestions(:one)
-    assert_equal suggestions(:one), assigns(:suggestion)
-    assert_response :success
-    assert_template "suggestions/show"
-  end
-
   test "new should render page" do
     get :new
     assert_response :success

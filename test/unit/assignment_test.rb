@@ -1,6 +1,21 @@
 require 'test_helper'
 
 class AssignmentTest < ActiveSupport::TestCase
+
+  test "should have three published assignments" do
+    assignments = Assignment.published
+    
+    assert_equal 3, assignments.size
+    assert_equal assignments(:today), assignments[0]
+    assert_equal assignments(:ds10), assignments[1]
+    assert_equal assignments(:ds1), assignments[2]
+  end
+
+  test "should have one today assignment" do
+    assignment = Assignment.today
+    
+    assert_equal assignments(:today), assignment
+  end
   
   test "create with blank text should fail" do
     assert_no_difference "Assignment.count" do

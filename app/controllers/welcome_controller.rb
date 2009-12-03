@@ -2,14 +2,9 @@ class WelcomeController < ApplicationController
 
   def index
     response.headers['Cache-Control'] = 'public, max-age=900'
-    tweets = Tweets.new
-    
-    # TODO make this today's assignment, not just the most recent
-    @assignment = Assignment.first :order => "date DESC" 
-    @photos = Photo.all :limit => 30, :order => "created_at DESC"
-    
-   # @mentions = [] #tweets.mentions
-  #  @tweets = [] #tweets.tweets
+    twitter = TwitterAPI.new
+    @mentions = twitter.mentions(:count => 8)
+    @tweets = twitter.tweets
   end
   
   # for apps verification. Will kill soon enough.
