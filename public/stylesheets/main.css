@@ -3,16 +3,67 @@ p {
 }
 
 #top {
-  margin-top: 20px;
+  background-color: #666;
+  margin-bottom: 15px;
+}
+
+#top h1 {
+  margin-top: 15px;
+  text-transform: uppercase;
+  color: #999;
+  text-align: right;
+  padding-right: 18px;
+  font-size: 25px;
 }
 
 #top a {
   text-decoration: none;
-  color: #000;
+  color: #eee;
 }
 
 #top a:hover {
-  color: #000;
+  color: #eee;
+}
+
+#assignment {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: #999;
+}
+
+#assignment .today {
+  font-size: 14px;
+  margin-bottom: -4px;
+}
+
+#assignment .text {
+  color: #777;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 32px;
+  text-align: center;
+}
+
+#assignment .hashtag {
+  margin-top: 2px;
+  text-align: right;
+  font-size: 14px;
+}
+
+#photowall {
+  margin-bottom: 25px;
+}
+
+#photowall .photo-thumb {
+  padding-right: 5px;
+}
+
+#photowall .photo-thumb img {
+  width: 75px;
+  height: 75px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 #bottom {
@@ -78,24 +129,29 @@ form input:submit {
 
 /* PHOTOS */
 
+/*
 .photos {
   margin: 10px auto;
   padding: 10px;
   clear: left;
 }
+*/
 
+/*
 .photo-thumb {
-  margin: 5px;
+  margin: 8px;
   float: left;
 }
+*/
 
+/*
 .photo-thumb img {
   width: 75px;
   height: 75px;
-  display: block;
+  display: block; */
 /*  border: 1px solid #333; */
-  padding: 3px;
-}
+/*  padding: 3px;
+} */
 
 .clearfix {
   min-height: 1%;

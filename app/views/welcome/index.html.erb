@@ -1,38 +1,18 @@
-<div class="span-24" id="flickr-strip">
-<!-- Start of Flickr Badge -->
-<style type="text/css">
-/*
-Images are wrapped in divs classed "flickr_badge_image" with ids "flickr_badge_imageX" where "X" is an integer specifying ordinal position. Below are some styles to get you started!
-*/
-#flickr_badge_uber_wrapper {padding-bottom: 40px;}
-#flickr_badge_wrapper {}
-.flickr_badge_image {margin:0 20px 0px 0px; float: left;}
-#flickr_badge_image10 {margin:0 0px 0px 0px; float: left;}
-.flickr_badge_image img {border: 1px solid grey !important;}
-#flickr_badge_source {}
-#flickr_badge_icon {}
-#flickr_www {}
-#flickr_badge_uber_wrapper a:hover,
-#flickr_badge_uber_wrapper a:link,
-#flickr_badge_uber_wrapper a:active,
-#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
-#flickr_badge_wrapper {}
-#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
-</style>
 
-<div id="flickr_badge_uber_wrapper">
-<div id="flickr_badge_wrapper">
-<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?show_name=1&count=10&display=latest&size=s&layout=x&context=in%2Fpool-1251121%40N24%2F&source=group&group=1251121%40N24"></script>
-
-</div>
-</div>
-<!-- End of Flickr Badge -->
-<br clear="all">
-<div id="flickr-credit">
-Photos from the <a href="http://www.flickr.com/groups/1251121@N24/pool/">Daily Shoot Flickr Pool</a>
+<div class="span-22 prepend-1 append-1 last" id="assignment">
+<div class="today">Today&rsquo;s Daily Shoot assignment is:</div>
+<div class="text"><%= @assignment.text %></div>
+<div class="hashtag">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: #<%= @assignment.tag %></div>
 </div>
 
-</div>
+<div class="span-24" id="photowall">
+<% @photos.each do |photo| %>	
+<% content_tag :div, :class => 'photo-thumb' do -%>
+    <%= link_to image_tag(photo.thumb_url, :alt => photo.url), 
+                photo.url, :title => "", :rel => 'nofollow', :popup => true %>
+  <% end -%>
+<% end %>
+</div> <!-- end photowall -->
 
 
 <div class="span-14">
@@ -105,26 +85,6 @@ Nope. We&rsquo;re not about rules or regulations. We&rsquo;re about getting out 
 
 
 <br clear="all">
-
-<h3>Latest Twitter Replies</h3>
-
-<div id="tweets">
-  <% @mentions.each do |mention| -%>
-    <p>
-      <strong><%= auto_link_user("@#{mention.user.screen_name}") %></strong>: <%= auto_link(mention.text) %>
-    </p>
-  <% end -%>
-</div>
-
-<h3>Recent Assignments</h3>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| -%>
-    <p>
-      <%= h tweet.text %>
-    </p>
-  <% end -%>
-</div>
 
 <h3>Who&rsquo;s Behind This?</h3>
 
