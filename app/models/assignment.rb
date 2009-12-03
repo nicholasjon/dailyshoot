@@ -17,12 +17,15 @@ class Assignment < ActiveRecord::Base
     self.first(:conditions => ['date = ?', Date.today])
   end
   
-  def tweet_date
-    self.date.to_s(:tweet_date)
-  end
-  
   def as_tweet
     "#{self.tweet_date}: #{self.text} ##{self.tag}"
   end
   
+  def tweet_date
+    self.date.to_s(:tweet_date)
+  end
+  
+  def rfc822_date
+    Time.mktime(self.date.year, self.date.month, self.date.day, 9, 0, 0, 0).to_s(:rfc822)
+  end  
 end
