@@ -1,7 +1,7 @@
 <div class="span-22 prepend-1 append-1 last" id="assignment">
 <div class="today">The Daily Shoot assignment for <%= @assignment.date %> was:</div>
 <div class="text"><%= @assignment.text %></div>
-<div class="hashtag">There have been <%= @assignment.photos.count %> replies tweeted to this assignment</div>
+<div class="action">There have been <%= @assignment.photos.count %> replies using the #<%= @assignment.tag%> hashtag</div>
 </div>
 
 <div class="span-24" id="photowall">	

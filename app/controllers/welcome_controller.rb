@@ -6,7 +6,10 @@ class WelcomeController < ApplicationController
     #@mentions = twitter.mentions(:count => 8)
     #@tweets = twitter.tweets
     @assignment = Assignment.today
+    @assignment = Assignment.first if @assignment == nil
     @photos = Photo.most_recent(30)
+    @photog_count = Photog.count
+    @photos_count = Photo.count
   end
   
   # for apps verification. Will kill soon enough.

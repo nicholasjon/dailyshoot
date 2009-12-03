@@ -2,7 +2,7 @@
 <div class="span-22 prepend-1 append-1 last" id="assignment">
 <div class="today">Today&rsquo;s Daily Shoot assignment is:</div>
 <div class="text"><%= @assignment.text %></div>
-<div class="hashtag">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: #<%= @assignment.tag %></div>
+<div class="action">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: #<%= @assignment.tag %></div>
 </div>
 
 
@@ -24,6 +24,10 @@
 <% end -%>
 </div> <!-- end photowall -->
 
+
+<div class="span-22 prepend-1 append-1 last" id="stats">
+<%= @photog_count %> photographers have submitted <%= @photos_count %> daily shoot tweets.
+</div>
 
 <div class="span-14">
 
