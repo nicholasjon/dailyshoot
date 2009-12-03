@@ -76,6 +76,7 @@ p {
   font-size: 10px;
   text-align: right;
   color: #555;
+  width: 75px;
 }
 
 #photowall .photo-caption a {
