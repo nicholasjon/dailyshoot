@@ -27,7 +27,7 @@ p {
 
 #assignment {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: #999;
 }
 
@@ -56,22 +56,36 @@ p {
 
 #photowall .photo-thumb {
   float: left;
-  margin-right: 10px;
+  margin-right: 21px;
   margin-bottom: 10px;
 }
 
-#photowall .photo-thumb img {
+#photowall .photo-thumb:last-child {
+  margin-right: 0px;
+}
+
+#photowall  img {
   width: 75px;
   height: 75px;
 
 }
 
-#photowall .photo-thumb .photog-name {
+#photowall .photog-name {
   margin-top: 0px;
   padding-top: 0px;
   font-size: 10px;
   text-align: right;
   color: #555;
+}
+
+#photowall .photog-name a {
+  text-decoration: none;
+  color: #999;
+}
+
+#photowall .photog-name a:hover {
+  text-decoration: none;
+  color: #333;
 }
 
 
