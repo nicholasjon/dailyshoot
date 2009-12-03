@@ -13,6 +13,11 @@ class PhotogsController < ApplicationController
   def show
     @photog = Photog.find_by_screen_name(params[:id])
     
+    unless @photog
+      redirect_to(photogs_url) 
+      return
+    end
+      
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @photog }

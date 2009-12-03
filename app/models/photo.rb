@@ -12,6 +12,14 @@ class Photo < ActiveRecord::Base
   belongs_to :assignment
   belongs_to :photog
     
+  def self.most_recent(options={})
+    find(:all, 
+         :limit => 30,
+         :order => 'created_at desc',
+         :joins => :photog, 
+         :select => "photos.*, photogs.screen_name as photog_screen_name")
+  end
+  
   def self.all_from_tweet(tweet)
     photos = []
     urls = tweet.scan(/https?:\/\/\S+/).select do |url|
