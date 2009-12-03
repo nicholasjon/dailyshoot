@@ -1,0 +1,31 @@
+<h2>Upcoming Assignments</h2>
+
+<table id="assignments">
+<% @assignments.each do |assignment| -%>
+  <tr>
+    <td class="date">
+      <%= link_to assignment.date, assignment %>
+    </td>
+    <td class="text">
+      <%= h assignment.text %>
+    </td>
+    <td class="tag">
+      <%= h assignment.tag %>
+    </td> 
+    <td>
+      <%= link_to 'Photos', assignment_photos_path(assignment) %>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_assignment_path(assignment) %>
+    </td>
+    <td>
+      <%= link_to 'Destroy', assignment, :confirm => 'Are you sure?', 
+                                         :method => :delete %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+
+<p>
+  <%= link_to 'New Assignment', new_assignment_path %>
+</p>

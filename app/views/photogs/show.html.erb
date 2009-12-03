@@ -1,7 +1,7 @@
 <h2><%= link_to(image_tag(@photog.profile_image_url), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has tweeted <%= @photog.photos.count %> daily shoot assignments.</h2>
 
 <div class="span-24" id="photowall">	
-<% @photog.photos.in_groups_of(10).each do |row| -%>
+<% @photog.photos.with_assignment.in_groups_of(10).each do |row| -%>
   <% content_tag :div, :class => 'row' do -%>
     <% row.each do |photo| -%>
       <% next if photo == nil -%>
@@ -10,7 +10,7 @@
 
         <%= link_to image_tag(photo.thumb_url, :alt => photo.url), photo.url, :title => "", :rel => 'nofollow', :popup => true %>
         <% content_tag :div, :class => 'photo-caption' do -%>
-           <%= link_to photo.assignment.tag, assignment_url(photo.assignment) %>
+           <%= link_to photo.assignment_tag, assignment_url(photo.assignment_id) %>
         <% end -%>
       <% end -%>
 	<% end -%>
