@@ -56,7 +56,7 @@ p {
 
 #photowall .photo-thumb {
   float: left;
-  margin-right: 21px;
+  margin-right: 20px;
   margin-bottom: 10px;
 }
 
@@ -67,23 +67,24 @@ p {
 #photowall  img {
   width: 75px;
   height: 75px;
-
+  border: 1px #999 solid;
 }
 
-#photowall .photog-name {
+#photowall .photo-caption {
   margin-top: 0px;
   padding-top: 0px;
   font-size: 10px;
   text-align: right;
   color: #555;
+  width: 75px;
 }
 
-#photowall .photog-name a {
+#photowall .photo-caption a {
   text-decoration: none;
   color: #999;
 }
 
-#photowall .photog-name a:hover {
+#photowall .photo-caption a:hover {
   text-decoration: none;
   color: #333;
 }
