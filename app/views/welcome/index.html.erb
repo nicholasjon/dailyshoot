@@ -5,17 +5,23 @@
 <div class="hashtag">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: #<%= @assignment.tag %></div>
 </div>
 
+
 <div class="span-24" id="photowall">	
-<% @photos.each do |photo| %>	
-<% content_tag :div, :class => 'photo-thumb' do -%>
-    <%= link_to image_tag(photo.thumb_url, :alt => photo.url), 
-                photo.url, :title => "", :rel => 'nofollow', :popup => true %>
-    <% content_tag :div, :class => 'photog-name' do -%>
-       <%= link_to photo.photog_screen_name, photog_url(photo.photog_screen_name) %>
-    <% end -%>
-    
+<% @photos.in_groups_of(10).each do |row| -%>
+  <% content_tag :div, :class => 'row' do -%>
+    <% row.each do |photo| -%>
+      <% content_tag :div, :class => 'photo-thumb' do -%>
+
+
+        <%= link_to image_tag(photo.thumb_url, :alt => photo.url), photo.url, :title => "", :rel => 'nofollow', :popup => true %>
+        <% content_tag :div, :class => 'photog-name' do -%>
+           <%= link_to photo.photog_screen_name, photog_url(photo.photog_screen_name) %>
+        <% end -%>
+      <% end -%>
+	<% end -%>
   <% end -%>
-<% end %>
+  <br clear="all">
+<% end -%>
 </div> <!-- end photowall -->
 
 
