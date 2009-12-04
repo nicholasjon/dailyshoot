@@ -57,6 +57,10 @@ class Photo < ActiveRecord::Base
     raise ThumbRetrievalError.new(e, self.url)
   end
   
+  def cache_key
+    self.url
+  end
+  
   class ThumbRetrievalError < StandardError
     attr_accessor :original_exception, :url
     def initialize(original_exception, url)

@@ -7,11 +7,11 @@ module AssignmentsHelper
   def navigation_links(assignment)
     links = []
     unless @assignment.first?
-      links << link_to("Previous", assignment_path(@assignment.position - 1))
+      links << link_to("&larr; Previous Assignment", assignment_path(@assignment.position - 1))
     end
-    links << link_to('All', assignments_path)
+    links << link_to('All Assignments', assignments_path)
     unless @assignment.last?
-      links << link_to("Next", assignment_path(@assignment.position + 1))
+      links << link_to("Next Assignment &rarr;", assignment_path(@assignment.position + 1))
     end
     links.join(nav_link_separator)
   end

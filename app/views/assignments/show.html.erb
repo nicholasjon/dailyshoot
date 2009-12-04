@@ -1,7 +1,7 @@
 <div class="span-22 prepend-1 append-1 last" id="assignment">
-<div class="today">The Daily Shoot assignment for <%= @assignment.date %> was:</div>
+<div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %> was:</div>
 <div class="text"><%= @assignment.text %></div>
-<div class="hashtag">There have been <%= @photos.count %> replies tweeted to this assignment</div>
+<div class="hashtag">There have been <strong><%= @photos.count %> replies</strong> tweeted to this assignment</div>
 </div>
 
 <div class="span-24" id="photowall">	
@@ -10,8 +10,10 @@
     <% row.each do |photo| -%>
       <% next if photo == nil -%>
       <% content_tag :div, :class => 'photo-thumb' do -%>
-        <%= link_to image_tag(photo.thumb_url, :alt => photo.url), photo.url, 
-                    :title => "", :rel => 'nofollow', :popup => true %>
+        <%# cache [photo, '2009112206'] do -%>
+          <%= link_to image_tag(photo.thumb_url, :alt => photo.url), photo.url, 
+                      :title => "", :rel => 'nofollow', :popup => true %>
+        <%# end -%>
         <% content_tag :div, :class => 'photo-caption' do -%>
            <%= link_to photo.photog_screen_name, photog_url(photo.photog_screen_name) %>
         <% end -%>
