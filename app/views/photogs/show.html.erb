@@ -1,4 +1,6 @@
-<h2><%= link_to(image_tag(@photog.profile_image_url), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has tweeted <%= @photog.photos.count %> daily shoot assignments.</h2>
+<div class="span-22 prepend-1 append-1 last" id="photog-header">
+<h2><%= link_to(image_tag(@photog.profile_image_url, :size => "45x45", :alt => @photog.screen_name, :class => 'twitter-avatar'), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has tweeted <%= @photog.photos.count %> daily shoot assignments.</h2>
+</div>
 
 <div class="span-24" id="photowall">	
 <% @photog.photos.with_assignment.in_groups_of(10).each do |row| -%>

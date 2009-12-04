@@ -52,6 +52,15 @@ p {
   font-size: 14px;
 }
 
+#photog-header {
+  background-color: #eee;
+  margin-bottom: 20px;
+}
+
+#photog-header h2 {
+  vertical-align: middle;
+}
+
 #photowall {
   padding-bottom: 5px;
 }
@@ -105,12 +114,18 @@ p {
   font-weight: bold;
 }
 
+.twitter-avatar {
+  margin-top: 20px;
+}
+
 #bottom {
   background-color: #eee;
   padding-top: 20px;
   padding-bottom: 30px;
   color: #aaa;
   font-size: 11px;
+  position: fixed;
+  bottom: 0px;
 }
 
 #bottom a {
