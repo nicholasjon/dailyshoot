@@ -1,7 +1,7 @@
 class PhotogsController < ApplicationController
     
   def index
-    @photogs = Photog.all(:order => 'screen_name')
+    @photogs = Photog.all_by_photos_count
     @photog_count = Photog.count
     @photos_count = Photo.count 
     

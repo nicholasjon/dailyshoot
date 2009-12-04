@@ -11,7 +11,7 @@ class Photo < ActiveRecord::Base
   
   belongs_to :assignment
   belongs_to :photog, :counter_cache => true
-    
+      
   def self.most_recent(options={})
     find(:all, 
          :limit => 30,
