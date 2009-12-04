@@ -43,7 +43,8 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
-
+    @assignment.tag = "ds#{Assignment.last.position + 1}"
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @assignment }

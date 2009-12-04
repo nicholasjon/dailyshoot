@@ -1,7 +1,8 @@
 <% labeled_form_for @assignment do |f| -%>
 <fieldset>  
-  <%= f.text_field :text %>
-  <%= f.text_field :tag %>  
+  <%= f.text_area :text, :class => "countdown limit_122_" %>
+  <strong><span class="remaining"></span></strong>
+  <%= f.text_field :tag, :size => 5 %>  
   <%= f.date_select :date %>
   <p>
     <% if @assignment.new_record? -%>
