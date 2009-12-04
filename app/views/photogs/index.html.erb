@@ -1,9 +1,16 @@
-<h2>Photogs</h2>
+<div class="span-22 prepend-1 append-1 last" id="photog-header">
+<p><%=@photog_count%> photographers have tagged <%= @photos_count %> daily shoot photos.</p>	
+</div>
 
-<ul id="photogs">
+<div class="span-24">
 <% @photogs.each do |photog| -%>
-  <% content_tag :li, :class => 'photog' do -%>
-    <%= link_to photog.screen_name, photog_url(photog) %>
-  <% end -%>
+  <div class="photog-rect">
+    <div class="avatar">
+    <%= link_to(image_tag(photog.profile_image_url, :size => "45x45", :alt => photog.screen_name, :class => 'twitter-avatar'), photog_url(photog.screen_name)) %> 
+	</div>
+	<div class="info">
+	<%= link_to "#{photog.screen_name}", photog_url(photog.screen_name) %><br><%= photog.photos.count %> photos.
+	</div>
+  </div>
 <% end -%>
-</ul>
+</div>

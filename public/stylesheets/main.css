@@ -61,6 +61,22 @@ p {
   vertical-align: middle;
 }
 
+.photog-rect {
+  float: left;
+  width: 170px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+}
+
+.photog-rect .avatar {
+  float: left;
+}
+
+.photog-rect .info {
+  float: left;
+  margin-left: 10px;
+}
+
 #photowall {
   padding-bottom: 5px;
 }
@@ -112,10 +128,6 @@ p {
   line-height: 24px;
   color: #888;
   font-weight: bold;
-}
-
-.twitter-avatar {
-  margin-top: 20px;
 }
 
 #bottom {
