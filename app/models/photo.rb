@@ -116,7 +116,8 @@ protected
   def flickr_static    
     self.url.gsub(/_\w\.jpg/, '_s.jpg')
   end
-  
+
+  # There's a flickr gem to do this, too.  
   def flickr
     if self.url =~ %r(/p/(\w+))
       photo_id = Base58.base58_to_int($1)

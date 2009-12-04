@@ -1,7 +1,9 @@
-<div class="span-22 prepend-1 append-1 last" id="assignment">
-<div class="today">The Daily Shoot assignment for <%= @assignment.date %> was:</div>
-<div class="text"><%= @assignment.text %></div>
-<div class="hashtag">There have been <%= @photos.count %> replies tweeted to this assignment</div>
+<div class="span-22 prepend-1 append-1 last" id="second">
+<div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %> was:</div>
+<div class="text"><%= h @assignment.text %></div>
+<div class="hashtag">
+  There have been <%= pluralize(@photos.count, 'reply') %> tweeted to this assignment
+</div>
 </div>
 
 <div class="span-24" id="photowall">  
