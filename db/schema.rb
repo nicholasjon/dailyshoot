@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091130190150) do
+ActiveRecord::Schema.define(:version => 20091204160530) do
 
   create_table "assignments", :force => true do |t|
     t.string   "text",       :null => false
@@ -33,10 +33,11 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
   end
 
   create_table "photogs", :force => true do |t|
-    t.string   "screen_name",       :null => false
-    t.string   "profile_image_url", :null => false
+    t.string   "screen_name",                      :null => false
+    t.string   "profile_image_url",                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "photos_count",      :default => 0
   end
 
   add_index "photogs", ["screen_name"], :name => "index_photogs_on_screen_name", :unique => true
