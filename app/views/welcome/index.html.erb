@@ -2,7 +2,7 @@
 <div class="span-22 prepend-1 append-1 last" id="assignment">
 <div class="today">Today&rsquo;s Daily Shoot assignment is:</div>
 <div class="text"><%= @assignment.text %></div>
-<div class="action">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: #<%= @assignment.tag %></div>
+<div class="action">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %></div>
 </div>
 
 
@@ -28,7 +28,7 @@
 <div class="span-12 prepend-1 append-1" id="mission">
 <p>The Daily Shoot is a simple tool that encourages the daily practice of photography. It&rsquo;s not a contest. There aren&rsquo;t any prizes. We&rsquo;re simply about helping you pick up the camera and make photographs.</p>
 
-<p>Since we&rsquo;ve started, <span class="stats"><%= @photog_count %> photographers have tagged <%= @photos_count %> daily shoot photos.</span></p>
+<p>Since we&rsquo;ve started, <span class="stats"><%= link_to "#{@photog_count} photographers", '/photogs' %> have tagged <%= @photos_count %> daily shoot photos.</span></p>
 
 <p>Here&rsquo;s how it works: Every day at 9AMEST (14:00 GMT) a new photo assignment is pushed to the <a href="http://twitter.com/dailyshoot">@dailyshoot</a> twitter account. Sometimes it&rsquo;ll be simple. Sometimes it may be challenging, requiring you to do a bit of research. Either way, that&rsquo;s your cue to get out there and make a few photographs.</p>
 
