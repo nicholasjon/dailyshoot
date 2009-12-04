@@ -10,7 +10,7 @@ module AssignmentsHelper
       links << link_to("&larr; Previous Assignment", assignment_path(@assignment.position - 1))
     end
     links << link_to('All Assignments', assignments_path)
-    unless @assignment.last?
+    if !@assignment.last? && @assignment.lower_item.published?
       links << link_to("Next Assignment &rarr;", assignment_path(@assignment.position + 1))
     end
     links.join(nav_link_separator)

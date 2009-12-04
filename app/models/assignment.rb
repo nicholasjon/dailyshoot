@@ -20,6 +20,10 @@ class Assignment < ActiveRecord::Base
   def self.today
     self.first(:conditions => ['date = ?', Date.today])
   end
+
+  def published?
+    self.date <= Date.today
+  end
   
   def as_tweet
     "#{self.tweet_date}: #{self.text} ##{self.tag}"
