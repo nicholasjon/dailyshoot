@@ -3,7 +3,7 @@
 <% @suggestions.each do |suggestion| -%>
   <p>
     <%= suggestion.created_at.to_s(:at) %> -
-    <em><%= h suggestion.who %></em> said:
+    <em><%= h suggestion.who %></em> (<%= h suggestion.email || "no email" %>) said:
   </p>
   <p>
     <strong><%= h suggestion.what %></strong>
