@@ -1,6 +1,7 @@
 <h2>Assignment Suggestion</h2>
 
 <% form_for @suggestion do |f| -%>
+<%= f.error_messages %>
 <fieldset>  
   <p>
     <%= f.label :who, 'Name' %>
