@@ -15,6 +15,7 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Assignment.find_by_position(params[:id])
+    @photos = @assignment.photos.with_photog
     
     respond_to do |format|
       format.html
