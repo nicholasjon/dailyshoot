@@ -23,6 +23,10 @@ class AssignmentTest < ActiveSupport::TestCase
     assert_equal 1, assignments.size
     assert_equal assignments(:future), assignments[0]
   end
+
+  test "should use position as the param" do
+    assert_equal 1, assignments(:ds1).to_param.to_i
+  end
   
   test "create with blank text should fail" do
     assert_no_difference "Assignment.count" do
@@ -42,6 +46,14 @@ class AssignmentTest < ActiveSupport::TestCase
     assert_no_difference "Assignment.count" do
       assignment = new_assignment :date => nil
       assert !assignment.valid?
+    end
+  end
+
+  test "create should set position" do
+    assert_difference "Assignment.count" do
+      assignment = new_assignment
+      assignment.save
+      assert_not_nil assignment.reload.position
     end
   end
   

@@ -2,14 +2,17 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :text, :tag, :date
   validates_uniqueness_of :tag
   validates_length_of :text, :maximum => (140 - 18), :message => "less than {{count}}, please!"
-  
+
+  acts_as_list
+    
   named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
   named_scope :upcoming,  :order => "date desc", :conditions => ['date > ?', Date.today]
 
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})
       find(:all, 
-           :joins => :photog, 
+           :joins => :photog,
+           :order => 'tweeted_at asc', 
            :select => "photos.*, photogs.screen_name as photog_screen_name")
     end
   end
@@ -28,5 +31,10 @@ class Assignment < ActiveRecord::Base
   
   def rfc822_date
     Time.mktime(self.date.year, self.date.month, self.date.day, 9, 0, 0, 0).to_s(:rfc822)
-  end  
+  end
+  
+  def to_param
+    self.position.to_s
+  end
+  
 end

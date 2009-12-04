@@ -8,7 +8,8 @@ class Mention < ActiveRecord::Base
                 :text => raw_mention.text,
                 :user_id => raw_mention.user[:id].to_i, 
                 :screen_name => raw_mention.user.screen_name,
-                :profile_image_url => raw_mention.user.profile_image_url)
+                :profile_image_url => raw_mention.user.profile_image_url,
+                :tweeted_at => raw_mention.created_at)
   end
   
   def tag

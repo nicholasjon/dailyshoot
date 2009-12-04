@@ -4,12 +4,12 @@ class Photog < ActiveRecord::Base
   has_many :photos, :dependent => :nullify do
     def with_assignment(options={})
       find(:all, 
+           :order => 'tweeted_at desc',
            :joins => :assignment, 
            :select => "photos.*, assignments.id as assignment_id, assignments.tag as assignment_tag",
-           :order => "photos.created_at desc")
+           :order => "tweeted_at asc")
     end
   end
-  
   
   def self.with_screen_name(screen_name)
     self.find_by_screen_name(screen_name) || self.new(:screen_name => screen_name)

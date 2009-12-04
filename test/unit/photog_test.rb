@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class PhotogText < ActiveSupport::TestCase
+
+  test "should use screen_name as the param" do
+    assert_equal 'joe', photogs(:joe).to_param
+  end
   
   test "create with blank screen_name should fail" do
     assert_no_difference "Photog.count" do

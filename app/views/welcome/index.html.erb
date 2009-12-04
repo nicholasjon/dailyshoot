@@ -6,7 +6,7 @@
 </div>
 
 
-<div class="span-24" id="photowall">	
+<div class="span-24 last" id="photowall">	
 <% @photos.in_groups_of(10).each do |row| -%>
   <% content_tag :div, :class => 'row' do -%>
     <% row.each do |photo| -%>
@@ -24,86 +24,27 @@
 <% end -%>
 </div> <!-- end photowall -->
 
+<div class="span-24 last" id="allaboutit">
+<div class="span-12 prepend-1 append-1" id="mission">
+<p>The Daily Shoot is a simple tool that encourages the daily practice of photography. It&rsquo;s not a contest. There aren&rsquo;t any prizes. We&rsquo;re simply about helping you pick up the camera and make photographs.</p>
 
-<div class="span-22 prepend-1 append-1 last" id="stats">
-<%= @photog_count %> photographers have submitted <%= @photos_count %> daily shoot tweets.
+<p>Since we&rsquo;ve started, <span class="stats"><%= @photog_count %> photographers have tagged <%= @photos_count %> daily shoot photos.</span></p>
+
+<p>Here&rsquo;s how it works: Every day at 9AMEST (14:00 GMT) a new photo assignment is pushed to the <a href="http://twitter.com/dailyshoot">@dailyshoot</a> twitter account. Sometimes it&rsquo;ll be simple. Sometimes it may be challenging, requiring you to do a bit of research. Either way, that&rsquo;s your cue to get out there and make a few photographs.</p>
+
+<p>When you come up with a photo you want to share, simply upload it to one of the major photo sharing sites and then tweet a link it to @dailyshoot with the assignment&rsquo;s hashtag. We&rsquo;ll periodically process those tweets (every hour or so, most hours) and include thumbnails to your photos here on this site, just like the 30 recent photos above.</p>
+
+<p>Have an assignment suggestion? We&rsquo;ll soon have a form for you!</p>
 </div>
 
-<div class="span-14">
-
-<p>
-  Photography is an art and a craft. Getting better at both requires practice. Lots of practice. Daily practice if you can
-  manage it. Sometimes, more often than we&rsquo;d like to admit, it can be hard to pick up the camera and start using it.
-  Usually when this happens it&rsquo;s not that you don&rsquo;t want to make a photograph, but more like you don&rsquo;t
-  know what to go shoot or where to get started. You just need a little inspiration... That&rsquo;s where @dailyshoot comes in.
-</p>
-
-<p style="font-size: 14px;">
-   <strong>The Daily Shoot is a simple daily assignment designed to encourage you to pick up your camera, get out there, and make some photographs!</strong>
-<p>
-
-<p>  
-  Maybe you&rsquo;ll pick up your digital SLR. Maybe it&rsquo;ll be a pocket cam. Even your mobile phone. Think of these exercises as a simple daily nudge in the right direction.
-</p>
-
-<h3>So how do I get started already?</h3>
-
-<p>
-  It's easy! <a href="http://twitter.com/dailyshoot">Follow @dailyshoot on Twitter</a>. Every day at 9 AM EST a new photo
-  assignment will drop in. Sometimes it&rsquo;ll be simple. Other times it might require a wee bit of research to help stretch your knowledge base and get you out of your comfort zone. Either way, all the assignments are designed to do one simple thing: Inspire you to get out there
-  and make photographs! If you make a single photograph that fulfills the assignment, great. If you go further and make 30 or 300 because you get yourself on a creative roll, even better!
-</p>
-
-<h3>How do I share my photos?</h3>
-
-<p>
-  We want you to use the tools and services that you&rsquo;re already comfortable with. To share your photos with other @dailyshoot fans, upload your photos to your favorite photo site and send a reply tweet to <a
-  href="http://twitter.com/dailyshoot">@dailyshoot</a> with a link. If you're a Flickr user, you can also add your photo to
-  <a href="http://www.flickr.com/groups/1251121@N24/pool/">The Daily Shoot Flickr Pool</a>. The photos across the top of this page come from the Flickr pool.
-</p>
-
-<h3>How do I see other photos?</h3>
-
-<p>
-  The simple way is to look over to the right and see the most recent tweet replies the @dailyshoot account is receiving. You can see more by simply searching Twitter with &ldquo;<a
-  href="http://twitter.com/#search?q=%40dailyshoot">@dailyshoot</a>&rdquo; as the search term. Flickr users can also check the <a
-  href="http://www.flickr.com/groups/1251121@N24/pool/">Daily Shoot Flickr Pool</a>.
-</p>
-
-<h3>There must be rules, right?</h3>
-
-<p>
-Nope. We&rsquo;re not about rules or regulations. We&rsquo;re about getting out and making photographs. Whatever helps you do it should be your own personal ruleset.
-</p>
-
-<h3>Where is this thing going?</h3>
-
-<p>
-  Oh, you want a five-year plan?! Sorry, it's not that kind of an operation. We&rsquo;re all about keeping things simple and trying new ideas as they emerge. We view this project like a grassy common area between buildings. We want to see where people walk before we start building out the sidewalks that will finish things out. 
-</p>
-
-<p>
-  That said, some things that could be very useful to the project are starting to become quite obvious. We&rsquo;d like to see this site pull together a daily grid of
-  photographs that people reply back to the assignment tweet with that goes beyond the Flickr pool and encompasses other photo sharing sites. We&rsquo;d love to provide a better way of suggesting assignments than tweets or email. And, we&rsquo;d love to see mobile camera applications pick up the daily assignments and present them to their users. It&rsquo;s all possible. 
-</p>
-
-<p>
- We&rsquo;d love to have you actively participate in the process. If you&rsquo;re a Twitter API maven and know
-  Ruby on Rails, please consider helping us out and check out our <a href="http://github.com/duncan/dailyshoot">GitHub
-  repository with the source code for this site</a>. Not much is there yet, but with your help, we&rsquo;ll get there...
-</p>
-
-</div>
-
-<div class="span-9 prepend-1 last">
-
-
-<br clear="all">
-
+<div class="span-8 prepend-1 append-1 last" id="about">
 <h3>Who&rsquo;s Behind This?</h3>
 
-<p><img src="/images/duncan.jpg" width="75" height="110" style="float: right; margin-left: 10px;"><a href="http://duncandavidson.com">James Duncan Davidson</a> is a photographer, author, and recovering software developer. He travels around the world shooting events like <a href="http://conferences.ted.com/TEDIndia/">TEDIndia</a> and <a href="http://www.web2summit.com/web2009">Web 2.0 Summit</a>. You can find some of his photography in his <a href="http://www.flickr.com/photos/x180/">Flickr stream</a>.</p>
+<p><img src="/images/duncan.jpg" width="75" height="110" style="float: right; margin-left: 10px; border: 1px #ccc solid;"><a href="http://duncandavidson.com">James Duncan Davidson</a> is a photographer, author, and recovering software developer. He travels around the world shooting events like <a href="http://conferences.ted.com/TEDIndia/">TEDIndia</a> and <a href="http://www.web2summit.com/web2009">Web 2.0 Summit</a>. You can find some of his photography in his <a href="http://www.flickr.com/photos/x180/">Flickr stream</a>.</p>
 
-<p><img src="/images/mike.jpg" width="75" height="110" style="float: left; margin-right: 10px;"><a href="http://clarkware.com/about.html">Mike Clark</a> is a programmer, consultant, and author based in Denver, CO. He also runs training events through <a href="http://http://pragmaticstudio.com/">The Pragmatic Studio</a>. You can find some of his photography in his <a href="http://www.flickr.com/photos/clarkware/">Flickr stream</a>.</p>
+<p><img src="/images/mike.jpg" width="75" height="110" style="float: left; margin-right: 10px;  border: 1px #ccc solid;"><a href="http://clarkware.com/about.html">Mike Clark</a> is a programmer, consultant, and author based in Denver, CO. He also runs training events through <a href="http://http://pragmaticstudio.com/">The Pragmatic Studio</a>. You can find some of his photography in his <a href="http://www.flickr.com/photos/clarkware/">Flickr stream</a>.</p>
 
+<p>Some of the <a href="http://github.com/duncan/dailyshoot">code that makes this site hum along</a> was written by <a href="http://github.com/ujh">Urban Hafner</a> and <a href="http://github.com/scoop">Patrick Lenz</a>.</p>
+
+</div>
 </div>

@@ -15,7 +15,7 @@ class Photo < ActiveRecord::Base
   def self.most_recent(options={})
     find(:all, 
          :limit => 30,
-         :order => 'created_at desc',
+         :order => 'tweeted_at desc',
          :joins => :photog, 
          :select => "photos.*, photogs.screen_name as photog_screen_name")
   end
@@ -55,6 +55,10 @@ class Photo < ActiveRecord::Base
   rescue => e
     self.thumb_url = '/images/no-photo.png'
     raise ThumbRetrievalError.new(e, self.url)
+  end
+  
+  def cache_key
+    self.url
   end
   
   class ThumbRetrievalError < StandardError

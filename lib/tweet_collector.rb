@@ -77,6 +77,7 @@ class TweetCollector
 
     photos.each do |photo|    
       photo.tweet_id = mention.tweet_id
+      photo.tweeted_at = mention.tweeted_at
       photo.assignment = assignment
       photo.photog = photog
       photo.save

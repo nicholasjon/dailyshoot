@@ -7,6 +7,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer :assignment_id
       t.integer :photog_id
       t.integer :tweet_id
+      t.datetime :tweeted_at
       t.timestamps
     end
     add_index :photos, :assignment_id

@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   
   def index
     @assignments = Assignment.published
-
+    
     respond_to do |format|
       format.html
       format.rss
@@ -14,8 +14,9 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @assignment = Assignment.find(params[:id])
-
+    @assignment = Assignment.find_by_position(params[:id])
+    @photos = @assignment.photos.with_photog
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @assignment }
@@ -47,7 +48,7 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_position(params[:id])
   end
 
   def create
@@ -68,7 +69,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_position(params[:id])
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
@@ -85,7 +86,7 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find_by_position(params[:id])
     @assignment.destroy
 
     respond_to do |format|
