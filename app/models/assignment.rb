@@ -1,13 +1,15 @@
 class Assignment < ActiveRecord::Base
   validates_presence_of :text, :tag, :date
   validates_uniqueness_of :tag
-  validates_length_of :text, :maximum => (140 - 18), :message => "less than {{count}}, please!"
+  validates_length_of :text, 
+                      :maximum => (140 - 18), 
+                      :message => "Only {{count}} characters, please!"
 
-  acts_as_list
-    
   named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
   named_scope :upcoming,  :order => "date desc", :conditions => ['date > ?', Date.today]
 
+  acts_as_list
+    
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})
       find(:all, 

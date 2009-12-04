@@ -6,11 +6,9 @@
   <%= f.date_select :date %>
   <p>
     <% if @assignment.new_record? -%>
-      <%= f.submit 'Create' %> or
-      <%=  link_to 'Cancel', assignments_path %>
+      <%= f.submit 'Create' %>
     <% else -%>
-      <%= f.submit 'Update' %> or
-      <%=  link_to 'Cancel', assignments_path %>
+      <%= f.submit 'Update' %>
     <% end -%>
   </p>
 </fieldset>

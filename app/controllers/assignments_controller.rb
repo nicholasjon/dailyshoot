@@ -44,6 +44,7 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
     @assignment.tag = "ds#{Assignment.last.position + 1}"
+    @assignment.date = Date.tomorrow
     
     respond_to do |format|
       format.html
@@ -62,7 +63,7 @@ class AssignmentsController < ApplicationController
     respond_to do |format|
       if @assignment.save
         flash[:notice] = 'Assignment was successfully created.'
-        format.html { redirect_to @assignment }
+        format.html { redirect_to upcoming_assignments_url }
         format.xml  { render :xml  => @assignment, :status => :created, :location => @assignment }
         format.json { render :json => @assignment, :status => :created, :location => @assignment }
       else
@@ -79,7 +80,7 @@ class AssignmentsController < ApplicationController
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
         flash[:notice] = 'Assignment was successfully updated.'
-        format.html { redirect_to @assignment }
+        format.html { redirect_to upcoming_assignments_url }
         format.xml  { render :xml => @assignment }
         format.json { render :json => @assignment }        
       else
@@ -95,7 +96,8 @@ class AssignmentsController < ApplicationController
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(assignments_url) }
+      flash[:notice] = 'Assignment was successfully deleted.'
+      format.html { redirect_to(upcoming_assignments_url) }
       format.any(:xml, :json)  { head :ok }
     end
   end
