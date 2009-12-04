@@ -24,7 +24,7 @@ p {
   color: #eee;
 }
 
-#assignment {
+#second {
   margin-top: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -33,12 +33,12 @@ p {
   background-color: #eee;
 }
 
-#assignment .today {
+#second .today {
   font-size: 14px;
   margin-bottom: -4px;
 }
 
-#assignment .text {
+#second .text {
   color: #777;
   font-size: 30px;
   font-weight: bold;
@@ -46,19 +46,10 @@ p {
   text-align: center;
 }
 
-#assignment .action {
+#second .action {
   margin-top: 2px;
   text-align: right;
   font-size: 14px;
-}
-
-#photog-header {
-  background-color: #eee;
-  margin-bottom: 20px;
-}
-
-#photog-header h2 {
-  vertical-align: middle;
 }
 
 .photog-rect {
@@ -143,29 +134,6 @@ p {
   color: #777;
 }
 
-#flickr-strip {
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-
-#flickr-credit {
-  margin-top: 0px;
-  padding-top: 5px;
-  font-size: 9px;
-  color: #888;
-  float: right;
-  /* margin-right: 90px; */
-}
-
-#flickr-credit a {
-  text-decoration: none;
-  color: #888;
-}
-
-#flickr-credit a:hover {
-  color: #77f;
-}
-
 /* FORMS */
 
 form {
@@ -191,32 +159,6 @@ form input {
 form input:submit {
   font-size: 1.25em; 
 }
-
-/* PHOTOS */
-
-/*
-.photos {
-  margin: 10px auto;
-  padding: 10px;
-  clear: left;
-}
-*/
-
-/*
-.photo-thumb {
-  margin: 8px;
-  float: left;
-}
-*/
-
-/*
-.photo-thumb img {
-  width: 75px;
-  height: 75px;
-  display: block; */
-/*  border: 1px solid #333; */
-/*  padding: 3px;
-} */
 
 .clearfix {
   min-height: 1%;
