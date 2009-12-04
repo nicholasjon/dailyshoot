@@ -2,6 +2,14 @@ require 'test_helper'
 
 class AssignmentTest < ActiveSupport::TestCase
 
+  test "past assignment should unpublished" do
+    assert assignments(:ds1).published?
+  end
+
+  test "future assignment should be unpublished" do
+    assert !assignments(:future).published?
+  end
+  
   test "should have three published assignments" do
     assignments = Assignment.published
     

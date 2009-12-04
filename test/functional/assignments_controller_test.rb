@@ -9,11 +9,17 @@ class AssignmentsControllerTest < ActionController::TestCase
     assert_template "assignments/index"
   end
   
-  test "show should load assignment and render page" do
+  test "show a published assignment should load assignment and render page" do
     get :show, :id => assignments(:ds10).to_param
     assert_equal assignments(:ds10), assigns(:assignment)
     assert_response :success
     assert_template "assignments/show"
+  end
+
+  test "show an unpublished assignment should redirect" do
+    get :show, :id => assignments(:future).to_param
+    assert_response :redirect
+    assert_redirected_to assignments_url
   end
 
   test "upcoming should redirect to login when non-admin requests it" do
