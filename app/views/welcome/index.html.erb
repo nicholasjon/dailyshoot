@@ -24,11 +24,18 @@
 <% end -%>
 </div> <!-- end photowall -->
 
+
 <div class="span-24 last" id="allaboutit">
+	<div class="span-22 prepend-1 append-1 last" id="stats">
+	  <!--<div class="preamble">
+		Since we started in November of 2009,
+	  </div>  -->
+	 <div class="count"><%= link_to "#{@photog_count} photographers", '/photogs' %> have made <%= @photos_count %> photos for <a href="/assignments"><%= @assignment_count %> assignments</a>.</div>
+   <!--    <div class="action">over adsf adf asd fads f</div> -->
+	</div>
+
 <div class="span-12 prepend-1 append-1" id="mission">
 <p>The Daily Shoot is a simple tool that encourages the daily practice of photography. It&rsquo;s not a contest. There aren&rsquo;t any prizes. We&rsquo;re simply about helping you pick up the camera and make photographs.</p>
-
-<p>Since we&rsquo;ve started, <span class="stats"><%= link_to "#{@photog_count} photographers", '/photogs' %> have tagged <%= @photos_count %> daily shoot photos.</span></p>
 
 <p>Here&rsquo;s how it works: Every day at 9AMEST (14:00 GMT) a new photo assignment is pushed to the <a href="http://twitter.com/dailyshoot">@dailyshoot</a> twitter account. Sometimes it&rsquo;ll be simple. Sometimes it may be challenging, requiring you to do a bit of research. Either way, that&rsquo;s your cue to get out there and make a few photographs.</p>
 

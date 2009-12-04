@@ -114,11 +114,25 @@ p {
   padding-bottom: 30px;
 }
 
-.stats {
+#stats {
+  margin-bottom: 25px;
+}
+
+#stats .preamble {
+  margin-left: 40px;
+}
+
+#stats .count{
   font-size: 24px;
   line-height: 24px;
   color: #888;
   font-weight: bold;
+  text-align: center;
+}
+
+#stats .action {
+  text-align: right;
+  margin-right: 40px;
 }
 
 #bottom {
