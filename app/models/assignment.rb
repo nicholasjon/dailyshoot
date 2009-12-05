@@ -5,8 +5,8 @@ class Assignment < ActiveRecord::Base
                       :maximum => (140 - 18), 
                       :message => "Only {{count}} characters, please!"
 
-  named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
-  named_scope :upcoming,  :order => "date", :conditions => ['date > ?', Date.today]
+  named_scope :published, lambda {{:order => "date desc", :conditions => ['date <= ?', Date.today]}}
+  named_scope :upcoming,  lambda {{:order => "date", :conditions => ['date > ?', Date.today]}}
 
   acts_as_list
     

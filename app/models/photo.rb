@@ -9,7 +9,7 @@ class Photo < ActiveRecord::Base
     
   validates_presence_of :url, :thumb_url
   
-  belongs_to :assignment
+  belongs_to :assignment, :counter_cache => true
   belongs_to :photog, :counter_cache => true
       
   def self.most_recent(options={})

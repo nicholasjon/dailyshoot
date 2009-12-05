@@ -9,15 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091204224704) do
+ActiveRecord::Schema.define(:version => 20091205152745) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "text",       :null => false
-    t.date     "date",       :null => false
-    t.string   "tag",        :null => false
+    t.string   "text",                        :null => false
+    t.date     "date",                        :null => false
+    t.string   "tag",                         :null => false
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "photos_count", :default => 0
   end
 
   create_table "mentions", :force => true do |t|
