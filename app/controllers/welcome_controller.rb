@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
 
+  before_filter :set_cache_control, :only => [:index, :show]
+
   def index
-    response.headers['Cache-Control'] = 'public, max-age=600'
     twitter = TwitterAPI.new
     @assignment = Assignment.today
     @assignment = Assignment.first if @assignment == nil

@@ -1,9 +1,9 @@
 class AssignmentsController < ApplicationController
   
   before_filter :admin_required, :except => [:index, :show]
-  
+  before_filter :set_cache_control, :only => [:index, :show]
+
   def index
-    response.headers['Cache-Control'] = 'public, max-age=600'
     @assignments = Assignment.published
   
     respond_to do |format|
@@ -15,7 +15,6 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    response.headers['Cache-Control'] = 'public, max-age=600'
     @assignment = Assignment.published.find_by_position(params[:id])
     unless @assignment
       redirect_to assignments_url
