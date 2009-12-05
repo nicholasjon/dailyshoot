@@ -1,6 +1,7 @@
 class PhotogsController < ApplicationController
     
   def index
+    response.headers['Cache-Control'] = 'public, max-age=600'
     @photogs = Photog.all_by_photos_count
     @photog_count = Photog.count
     @photos_count = Photo.count 
@@ -13,6 +14,7 @@ class PhotogsController < ApplicationController
   end
   
   def show
+    response.headers['Cache-Control'] = 'public, max-age=600'
     @photog = Photog.find_by_screen_name(params[:id])
     
     unless @photog
