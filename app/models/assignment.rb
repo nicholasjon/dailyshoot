@@ -18,7 +18,7 @@ class Assignment < ActiveRecord::Base
            :select => "photos.*, photogs.screen_name as photog_screen_name")
     end
   end
-  
+    
   def self.today
     self.first(:conditions => ['date = ?', Date.today])
   end

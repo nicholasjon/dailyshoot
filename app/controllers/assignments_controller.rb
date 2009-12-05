@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   
   def index
     @assignments = Assignment.published
-    
+  
     respond_to do |format|
       format.html
       format.rss
