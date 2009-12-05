@@ -5,7 +5,7 @@
 <div class="action">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %></div>
 </div>
 
-<%= render :partial => 'shared/photowall', :locals => {:photos => @photos} %>
+<%= render :partial => 'shared/photowall', :locals => {:photos => @photos, :caption => 'photog'} %>
 
 <div class="span-24 last" id="allaboutit">
 	<div class="span-22 prepend-1 append-1 last" id="stats">
