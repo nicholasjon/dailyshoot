@@ -1,5 +1,5 @@
 <div class="span-22 prepend-1 append-1 last" id="second">
-<div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %> was:</div>
+<div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %>:</div>
 <div class="text"><%= h @assignment.text %></div>
 <div class="hashtag">
   There are <%= pluralize(@photos.count, 'photo') %> tweeted to this assignment with the: <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %> hashtag.
