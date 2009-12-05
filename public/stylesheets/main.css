@@ -84,6 +84,20 @@ p {
   border: 1px #999 solid;
 }
 
+.assignment-rect .icon .credit {
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: 10px;
+  text-align: right;
+  color: #555;
+  width: 75px;  
+}
+
+.assignment-rect .icon .credit a {
+  text-decoration: none;
+  color: #999;
+}
+
 .assignment-rect .info {
   float: left;
   width: 310px;
