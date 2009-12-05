@@ -69,6 +69,7 @@ class Mention < ActiveRecord::Base
       photo.tweeted_at = self.tweeted_at
       photo.assignment = assignment
       photo.photog = photog
+      photo.screen_name = photog.screen_name
       photo.save!
     end
 

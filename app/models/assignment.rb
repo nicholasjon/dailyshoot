@@ -29,6 +29,10 @@ class Assignment < ActiveRecord::Base
     self.first(:conditions => ['date = ?', Date.today])
   end
 
+  def random_photo
+    self.photos[rand(self.photos.length)]
+  end
+  
   def published?
     self.date <= Date.today
   end
