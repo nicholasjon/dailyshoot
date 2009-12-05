@@ -10,7 +10,7 @@
 <%= link_to image_tag(photo.thumb_url, :alt => photo.url), assignment_url(assignment), :title => ""%>
     </div>
     <div class="info">
-	   <div><span class="hash"><%= link_to(assignment.tag,assignment_url(assignment))  %></span> // <%= assignment.photos.count %> photos</div>
+	   <div><span class="hash"><%= link_to(assignment.tag,assignment_url(assignment))  %></span> // <%= pluralize(assignment.photos.count, 'photo') %></div>
 	  <div class="text"><%= assignment.text %></div>
 	</div>
   </div>
