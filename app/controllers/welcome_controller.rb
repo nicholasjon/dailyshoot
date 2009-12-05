@@ -13,9 +13,4 @@ class WelcomeController < ApplicationController
     @assignment_count = Assignment.published.count
   end
   
-  # for apps verification. Will kill soon enough.
-  def google 
-    render :text => "google8b45b5396fa7dfda"
-  end
-  
 end
