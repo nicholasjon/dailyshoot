@@ -6,6 +6,13 @@
 </div>
 </div>
 
+<% nav =  render :partial => 'navigation', :locals => {:assignment => @assignment} %>
+<% if @photos.count > 0 -%>
+<%= nav %>
 <%= render :partial => 'shared/photowall', :locals => {:photos => @photos, :caption => 'photog'} %>
 
-<%= render :partial => 'navigation', :locals => {:assignment => @assignment} %>
+<% else -%>
+<div class="assignment-nophotos">No photographs for this assignment yet.<br>Get out there and be one of the first to make some!</div>
+<% end -%>
+
+<%= nav %>
