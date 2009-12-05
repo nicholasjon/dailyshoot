@@ -1,9 +1,19 @@
-<h2>Assignments</h2>
+<div class="span-22 prepend-1 append-1 last" id="second">
+<h2>Assignments</h2>	
+</div>
 
-<ul id="assignments">
+<div class="span-22 prepend-1 append-1 last">
 <% @assignments.each do |assignment| -%>
-  <li style="list-style: none; padding: 2px 0;">
-      <%= link_to assignment.as_tweet, assignment %>
-  </li>
+  <div class="assignment-rect">
+    <div class="icon">
+<% photo = assignment.photos.first %>
+<%= link_to image_tag(photo.thumb_url, :alt => photo.url), assignment_url(assignment), :title => ""%>
+    </div>
+    <div class="info">
+	   <div><span class="hash"><%= link_to(assignment.tag,assignment_url(assignment))  %></span> // <%= assignment.photos.count %> photos</div>
+	  <div class="text"><%= assignment.text %></div>
+	</div>
+  </div>
 <% end -%>
-</ul>
+
+</div>

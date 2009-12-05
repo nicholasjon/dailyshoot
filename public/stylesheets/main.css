@@ -68,6 +68,33 @@ p {
   margin-left: 10px;
 }
 
+.assignment-rect {
+  margin-bottom: 40px; 
+  float: left;
+  width: 420px;
+}
+
+.assignment-rect .icon {
+  float: left;
+  margin-right: 10px;
+}
+.assignment-rect .icon img {
+  width: 75px;
+  height: 75px;	
+  border: 1px #999 solid;
+}
+
+.assignment-rect .info {
+  float: left;
+  width: 310px;
+}
+
+.assignment-rect .hash a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
 #photowall {
   padding-bottom: 5px;
 }
