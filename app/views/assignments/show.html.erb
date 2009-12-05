@@ -2,7 +2,7 @@
 <div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %> was:</div>
 <div class="text"><%= h @assignment.text %></div>
 <div class="hashtag">
-  There have been <%= pluralize(@photos.count, 'reply') %> tweeted to this assignment
+  There are <%= pluralize(@photos.count, 'photo') %> tweeted to this assignment with the: <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %> hashtag.
 </div>
 </div>
 

@@ -27,7 +27,7 @@ p {
 #second {
   margin-top: 0px;
   padding-top: 20px;
-  padding-bottom: 20px;
+ 
   margin-bottom: 20px;
   color: #999;
   background-color: #eee;
@@ -46,10 +46,11 @@ p {
   text-align: center;
 }
 
-#second .action {
+#second .action, #second .hashtag {
   margin-top: 2px;
   text-align: right;
   font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .photog-rect {
