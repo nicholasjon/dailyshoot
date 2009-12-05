@@ -6,7 +6,7 @@ class Assignment < ActiveRecord::Base
                       :message => "Only {{count}} characters, please!"
 
   named_scope :published, :order => "date desc", :conditions => ['date <= ?', Date.today]
-  named_scope :upcoming,  :order => "date desc", :conditions => ['date > ?', Date.today]
+  named_scope :upcoming,  :order => "date", :conditions => ['date > ?', Date.today]
 
   acts_as_list
     

@@ -1,9 +1,10 @@
-<h2><%= link_to "Mention #{@mention.id}", @mention %></h2>
+<div id="second" class="span-22 prepend-1 append-1 last"><h2><%= link_to "Mention #{@mention.id}", @mention %></h2></div>
 
+<div class="span-22 prepend-1 append-1 last">
 <% labeled_form_for @mention do |f| -%>
-<fieldset>  
+<fieldset style="width: 840px;">  
   <%= f.error_messages %>
-  <%= f.text_field :text, :size => 140 %>  
+  <%= f.text_field :text, :size => 140, :style => "width: 840px;" %>  
   <p>
     <%= f.submit 'Update' %>
   </p>
@@ -11,3 +12,4 @@
 <% end -%>
 
 <%= link_to 'All Mentions', mentions_path %>
+</div>

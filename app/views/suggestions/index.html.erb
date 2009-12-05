@@ -1,5 +1,8 @@
+<div id="second" class="span-22 prepend-1 append-1 last">
 <h2>Suggestions</h2>
+</div>
 
+<div class="span-22 prepend-1 append-1 last">
 <% @suggestions.each do |suggestion| -%>
   <p>
     <%= suggestion.created_at.to_s(:at) %> -
@@ -14,3 +17,4 @@
   </p>
   <hr/>
 <% end -%>
+</div>
