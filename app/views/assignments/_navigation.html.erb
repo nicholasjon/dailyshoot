@@ -1,0 +1,15 @@
+<div class="assignment-nav">
+	<span class="previous">
+	<%= link_to("&larr; Previous Assignment", assignment_path(assignment.position - 1))%>
+	</span>
+	
+	<span class="all">
+	<%= link_to('All Assignments', assignments_path) %>
+	</span>
+	
+	<% if !assignment.last? && assignment.lower_item.published? -%>
+	<span class="next">
+	<%= link_to("Next Assignment &rarr;", assignment_path(assignment.position + 1)) %>
+	</span>
+	<% end -%>
+</div>

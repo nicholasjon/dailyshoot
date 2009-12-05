@@ -24,6 +24,4 @@
 <% end -%>
 </div> <!-- end photowall -->
 
-<p>
-  <%= navigation_links(@assignment) %>
-</p>
+<%= render :partial => 'navigation', :locals => {:assignment => @assignment} %>
