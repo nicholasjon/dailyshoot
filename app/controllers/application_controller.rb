@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
     
 protected
-
+  
+  # default duration is 10 minutes. Might want to fine tune in filter call.
   def set_cache_control(duration=600)
     response.headers['Cache-Control'] = "public, max-age=#{duration}"
   end
