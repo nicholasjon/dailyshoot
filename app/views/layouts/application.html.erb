@@ -35,19 +35,8 @@ All other content licensed under <a rel="license" href="http://creativecommons.o
 
 <div> <!-- container -->
 
-
 <%# JavaScript content at the end of the page so that it can load in after page display. This is from the Yahoo performance guidelines. %>
-
-<%= javascript_include_tag('jquery', 'application')  %>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-7818568-6");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+<%= javascript_include_tag('jquery', 'application', 'ga')  %>
 
 </body>
 </html>
