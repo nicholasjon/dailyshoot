@@ -3,21 +3,23 @@
 </div>
 
 <div class="span-22 prepend-1 append-1 last">
+
 <p>
-  <b>Tweet ID:</b>
-  <%=h @mention.tweet_id %>
+  <%= link_to @mention.screen_name, photog_path(@mention.screen_name) %> tweeted 
+  (#<%= h @mention.tweet_id %>):
 </p>
 
 <p>
-  <b>Text:</b>
-  <%=h @mention.text %>
+  <strong><%= h @mention.text %></strong>
 </p>
 
 <p>
-  <b>Screen name:</b>
-  <%=h @mention.screen_name %>
+  <b>Parsed:</b>
+  <%= @mention.was_parsed %>
 </p>
 
 <%= link_to 'Edit', edit_mention_path(@mention) %> |
+<%= link_to "Reparse", parse_mention_path(@mention), :method => :post %> |
 <%= link_to 'All Mentions', mentions_path %>
+
 </div>

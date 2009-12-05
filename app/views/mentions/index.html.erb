@@ -1,14 +1,15 @@
 <div id="second" class="span-22 prepend-1 append-1 last">
-<h2>Pending Mentions</h2>
+<h2><%= @mentions.count %> Pending Mentions</h2>
 </div>
 
 <div class="span-22 prepend-1 append-1 last">
 <table>
 <% @mentions.each do |mention| -%>
   <tr>
-    <td><%= link_to mention.id, mention %>:</td>
-    <td><%= h mention.text %></td>
+    <td><%= link_to mention.tweeted_at.to_s(:tweet_date), mention %>:</td>
+    <td><%= auto_link mention.text %></td>
     <td><%= link_to 'Edit', edit_mention_path(mention) %></td>
+    <td><%= link_to "Reparse", parse_mention_path(mention), :method => :post %></td>
     <td><%= link_to 'Destroy', mention, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end -%>

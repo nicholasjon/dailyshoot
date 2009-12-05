@@ -1,15 +1,18 @@
 one:
   tweet_id: 1
-  text: MyString
+  text: "#ds1 http://bestc.am/DjxE"
   user_id: 1
-  screen_name: MyString
-  profile_image_url: MyString
+  screen_name: clarkware
+  profile_image_url: my_profile_image_url
   was_parsed: true
+  tweeted_at: <%= Time.now %>
   
 pending:
   tweet_id: 2
-  text: MyString
+  text: "#ds2 http://bestc.am/DjxE"
   user_id: 1
-  screen_name: MyString
-  profile_image_url: MyString
+  screen_name: clarkware
+  profile_image_url: my_profile_image_url
   was_parsed: false
+  tweeted_at: <%= Time.now %>
+  

@@ -43,52 +43,12 @@ class TweetCollector
       return false
     end
 
-    unless mention.tag
-      log "No hashtag: #{mention.text}"
+    unless mention.parse!
+      log mention.parse_message
       return false
     end
     
-    assignment = mention.assignment
-    unless assignment
-      log "Unknown assignment tag: #{mention.tag}"
-      return false
-    end
-    
-    photos = mention.photos
-    if photos.empty?
-      log "Photo URL parse error: #{mention.text}" 
-      return false
-    end
-
-    photog = mention.photog
-    
-    photos = photos.select do |photo| 
-      Photo.find_by_url_and_photog_id(photo.url, photog.id).nil?
-    end
-    if photos.empty?
-      log "Duplicate - skipping: #{mention.text}" 
-      return false
-    end
-    
-    if photog.new_record?
-      photog.profile_image_url = mention.profile_image_url
-      photog.save
-    end
-
-    photos.each do |photo|    
-      photo.tweet_id = mention.tweet_id
-      photo.tweeted_at = mention.tweeted_at
-      photo.assignment = assignment
-      photo.photog = photog
-      photo.save
-    end
-
-    mention.was_parsed = true
-    mention.save
-    
-  rescue => e
-    log "Unable to collect mention: #{mention.text}: #{e.inspect}"
-    return false
+    true
   end
    
 private

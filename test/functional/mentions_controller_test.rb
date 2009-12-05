@@ -57,6 +57,30 @@ class MentionsControllerTest < ActionController::TestCase
     assert_redirected_to mention_path(assigns(:mention))
   end
 
+  test "parse should redirect to login when non-admin requests it" do
+    post :parse, :id => mentions(:pending).to_param
+    assert_response :redirect
+    assert_redirected_to new_session_url
+  end
+
+  test "parse valid mention should parse mention and redirect" do
+    login_admin
+    post :parse, :id => mentions(:pending).to_param
+    assert mentions(:pending, :reload).was_parsed
+    assert_redirected_to mention_path(assigns(:mention))
+  end
+
+  test "parse invalid mention should not parse and show mention" do
+    mentions(:pending).text = "missing hashtag and url"
+    mentions(:pending).save
+    
+    login_admin
+    post :parse, :id => mentions(:pending).to_param
+    assert !mentions(:pending, :reload).was_parsed
+    assert_response :success
+    assert_template 'mentions/show'
+  end
+
   test "destroy should redirect to login when non-admin requests it" do
     delete :destroy, :id => mentions(:one).to_param
     assert_response :redirect

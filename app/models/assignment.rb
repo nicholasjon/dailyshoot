@@ -19,6 +19,12 @@ class Assignment < ActiveRecord::Base
     end
   end
     
+  def self.published_with_photos
+    with_scope(:find => {:include => :photos}) do
+      self.published
+    end
+  end
+  
   def self.today
     self.first(:conditions => ['date = ?', Date.today])
   end

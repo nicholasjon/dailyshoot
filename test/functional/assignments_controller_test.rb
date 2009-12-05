@@ -61,7 +61,7 @@ class AssignmentsControllerTest < ActionController::TestCase
       post :create, 
            :assignment => {:text => "Text", :tag => "tag", :date => Time.now}
     end
-    assert_redirected_to(assignment_path(assigns(:assignment)))
+    assert_redirected_to upcoming_assignments_url
   end
 
   test "edit should redirect to login when non-admin requests it" do
@@ -89,7 +89,7 @@ class AssignmentsControllerTest < ActionController::TestCase
     put :update, :id => assignments(:ds10).to_param, 
                  :assignment => { :tag => "new-tag" }
     assert_equal "new-tag", assignments(:ds10, :reload).tag
-    assert_redirected_to assignment_path(assigns(:assignment))
+    assert_redirected_to upcoming_assignments_url
   end
 
   test "destroy should redirect to login when non-admin requests it" do
@@ -104,7 +104,7 @@ class AssignmentsControllerTest < ActionController::TestCase
       delete :destroy, :id => assignments(:ds10).to_param
     end
 
-    assert_redirected_to assignments_path
+    assert_redirected_to upcoming_assignments_path
   end
   
   # === API tests ===

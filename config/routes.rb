@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :assignments, 
                 :has_many => :photos, 
                 :collection => { :upcoming => :get }
-  map.resources :mentions
+  map.resources :mentions, :member => { :parse => :post }
   map.resources :photogs
   map.resource  :session
   map.resources :suggestions

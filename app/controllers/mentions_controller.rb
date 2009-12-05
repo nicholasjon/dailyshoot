@@ -24,9 +24,21 @@ class MentionsController < ApplicationController
     end
   end
 
+  def parse
+    @mention = Mention.find(params[:id])
+    if @mention.parse!
+      flash[:notice] = "Successfully parsed mention."
+      redirect_to @mention
+    else    
+      flash.now[:error] = "Parse error: #{@mention.parse_message}"
+      render :action => "show"
+    end
+  end
+
   def destroy
     @mention = Mention.find(params[:id])
     @mention.destroy
+
     redirect_to mentions_url
   end
   

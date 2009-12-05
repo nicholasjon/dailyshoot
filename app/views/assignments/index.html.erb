@@ -5,12 +5,12 @@
 <div class="span-22 prepend-1 append-1 last">
 <% @assignments.each do |assignment| -%>
   <div class="assignment-rect">
-    <% photo = assignment.photos.with_photog.first %>
+    <% photo = assignment.photos.first %>
     <% if photo -%>
     <div class="icon">
       <%= link_to image_tag(photo.thumb_url, :alt => photo.url), assignment_url(assignment), :title => ""%>
       <div class="credit">
-	    <%= link_to photo.photog_screen_name, photog_url(photo.photog_screen_name) %>
+	    <%= link_to photo.screen_name, photog_url(photo.screen_name) %>
 	  </div>
     </div>
     <% end %>
