@@ -2,14 +2,16 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title><%= @title || 'The Daily Shoot' %></title>
+	<title><%= page_title %></title>
 	<link rel="stylesheet" href="<%= stylesheet_path 'blueprint/screen' %>" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="<%= stylesheet_path 'blueprint/print' %>" type="text/css" media="print">
 	<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	<link rel="stylesheet" href="<%= stylesheet_path 'main' %>" type="text/css" media="screen, projection">
 		
+		<!--
 	<link rel="alternate" type="application/rss+xml" title="Assignments RSS" 
         href="http://feeds2.feedburner.com/dailyshoot_assignments">
+    -->
 </head>
 
 <body>
@@ -26,7 +28,7 @@
 <%= yield :layout %>
 
 <div id="bottom" class="span-22 prepend-1 append-1 last">
-Copyright &copy;2009
+Copyright &copy; 2009
 <br>
 Third party content (Tweets and photo thumbnails from third party services such as Flickr) belongs to their respective owners and is accessed by public API.
 <br>

@@ -2,7 +2,7 @@ class AssignmentsController < ApplicationController
   
   before_filter :admin_required, :except => [:index, :show]
   before_filter :set_cache_control, :only => [:index, :show]
-
+  
   def index
     @assignments = Assignment.published_with_photos
   
