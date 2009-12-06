@@ -22,7 +22,7 @@ class TweetCollector
           mention_exists = true
           break
         end
-        next if Mention.find_by_tweet_id(raw_mention[:id].to_i)
+        next if Mention.find_by_tweet_id(raw_mention[:id].to_s)
         if collect(raw_mention)
           @count += 1
           log "#{@count}. #{raw_mention.user.screen_name} #{raw_mention.text}"
