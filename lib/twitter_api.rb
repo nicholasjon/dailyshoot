@@ -18,4 +18,8 @@ class TwitterAPI
     tweets[0..2]
   end
   
+  def tweet(text, options={})
+    @client.update(text, options)
+  end
+  
 end
