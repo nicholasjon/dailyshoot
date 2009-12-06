@@ -2,11 +2,12 @@ class CreatePhotos < ActiveRecord::Migration
   
   def self.up
     create_table :photos do |t|
-      t.string  :url, :null => false
-      t.string  :thumb_url, :null => false
-      t.integer :assignment_id
-      t.integer :photog_id
-      t.integer :tweet_id
+      t.string   :url, :null => false
+      t.string   :thumb_url, :null => false
+      t.string   :screen_name, :null => false
+      t.integer  :assignment_id
+      t.integer  :photog_id
+      t.integer  :tweet_id
       t.datetime :tweeted_at
       t.timestamps
     end

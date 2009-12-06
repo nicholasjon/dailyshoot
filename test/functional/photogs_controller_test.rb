@@ -32,5 +32,4 @@ class PhotogsControllerTest < ActionController::TestCase
     assert_equal photogs(:joe).id, xml["photog"]["id"]
   end
   
-  
 end

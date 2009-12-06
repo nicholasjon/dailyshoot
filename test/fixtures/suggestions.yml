@@ -1,9 +1,9 @@
 one:
-  who: MyString
+  name: MyString
   email: Email
-  what: MyText
+  suggestion: MyText
 
 two:
-  who: MyString
+  name: MyString
   email: Email
-  what: MyText
+  suggestion: MyText

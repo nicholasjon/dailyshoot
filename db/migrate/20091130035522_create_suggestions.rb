@@ -2,8 +2,9 @@ class CreateSuggestions < ActiveRecord::Migration
   
   def self.up
     create_table :suggestions do |t|
-      t.string :who
-      t.text   :what, :null => false
+      t.string :name
+      t.string :email
+      t.text   :suggestion
       t.timestamps
     end
   end

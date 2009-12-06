@@ -9,16 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091206031022) do
+ActiveRecord::Schema.define(:version => 20091130190150) do
 
   create_table "assignments", :force => true do |t|
     t.string   "text",                        :null => false
     t.date     "date",                        :null => false
     t.string   "tag",                         :null => false
     t.integer  "position"
+    t.integer  "photos_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "photos_count", :default => 0
   end
 
   create_table "mentions", :force => true do |t|
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20091206031022) do
   create_table "photogs", :force => true do |t|
     t.string   "screen_name",                      :null => false
     t.string   "profile_image_url",                :null => false
+    t.integer  "photos_count",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "photos_count",      :default => 0
   end
 
   add_index "photogs", ["screen_name"], :name => "index_photogs_on_screen_name", :unique => true
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(:version => 20091206031022) do
   create_table "photos", :force => true do |t|
     t.string   "url",           :null => false
     t.string   "thumb_url",     :null => false
+    t.string   "screen_name",   :null => false
     t.integer  "assignment_id"
     t.integer  "photog_id"
     t.integer  "tweet_id"
     t.datetime "tweeted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "screen_name"
   end
 
   add_index "photos", ["assignment_id"], :name => "index_photos_on_assignment_id"
@@ -60,10 +60,10 @@ ActiveRecord::Schema.define(:version => 20091206031022) do
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
-    t.text     "suggestion", :null => false
+    t.string   "email"
+    t.text     "suggestion"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
   end
 
   create_table "users", :force => true do |t|

@@ -55,7 +55,8 @@ class TweetCollectorTest < ActiveSupport::TestCase
 
   test "mention with duplicate photo URL should not save byproducts" do
     photo = Photo.create(:url => "http://bestc.am/oGuf", 
-                         :thumb_url => "http://bestc.am/oGuf")
+                         :thumb_url => "http://bestc.am/oGuf",
+                         :screen_name => "clarkware")
     raw_mention = stub_mentions.first
     raw_mention.text = "##{assignments(:ds10).tag} http://bestc.am/oGuf"
 

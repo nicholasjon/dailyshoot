@@ -4,6 +4,7 @@ class CreatePhotogs < ActiveRecord::Migration
     create_table :photogs do |t|
       t.string  :screen_name, :null => false
       t.string  :profile_image_url, :null => false
+      t.integer :photos_count, :default => 0
       t.timestamps
     end
     add_index :photogs, :screen_name, :unique => true

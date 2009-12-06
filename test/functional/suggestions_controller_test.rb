@@ -25,11 +25,11 @@ class SuggestionsControllerTest < ActionController::TestCase
   test "create should create suggestion and redirect" do
     assert_difference('Suggestion.count') do
       post :create, 
-           :suggestion => {:who => "@clarkware", 
+           :suggestion => {:name => "Joe Photog", 
                            :email => "me@email.com",
-                           :what => "Here's an idea..."}
+                           :suggestion => "Here's an idea..."}
     end
-    assert_redirected_to(new_suggestion_path)
+    assert_redirected_to(thanks_suggestion_path(assigns(:suggestion)))
   end
 
   test "destroy should redirect to login when non-admin requests it" do

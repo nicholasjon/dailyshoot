@@ -4,4 +4,5 @@ bestcam:
     assignment: ds10
     photog: joe
     screen_name: joe
+    tweeted_at: <%= Time.now %>
     
