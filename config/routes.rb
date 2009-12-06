@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :mentions, :member => { :parse => :post }
   map.resources :photogs
   map.resource  :session
-  map.resources :suggestions
+  map.resources :suggestions, :member => { :thanks => :get }
   
   map.with_options(:controller => 'sessions') do |sessions|
     sessions.login  'login',  :action => 'new'

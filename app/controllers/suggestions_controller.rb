@@ -14,8 +14,7 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.new(params[:suggestion])
 
     if @suggestion.save
-      flash[:notice] = 'Thanks for your suggestion!'
-      redirect_to new_suggestion_url
+      redirect_to thanks_suggestion_url(@suggestion)
     else
       render :action => "new"
     end
@@ -27,4 +26,11 @@ class SuggestionsController < ApplicationController
 
     redirect_to suggestions_url
   end
+  
+  def thanks
+    @suggestion = Suggestion.find(params[:id])
+    @photos = Photo.most_recent(10)
+  end
+  
 end
+
