@@ -1,7 +1,7 @@
 class Mention < ActiveRecord::Base
   validates_presence_of :tweet_id, :text, :user_id, :screen_name, :profile_image_url
   
-  named_scope :pending, :conditions => ['was_parsed = ?', false]
+  named_scope :pending, :conditions => ['was_parsed = ?', false], :order => 'tweeted_at desc'
 
   attr_reader :parse_message
     
