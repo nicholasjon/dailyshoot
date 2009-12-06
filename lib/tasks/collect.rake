@@ -1,4 +1,3 @@
-require 'fakeweb'
 namespace :collect do
 
   desc "Collect tweets and create photos and photogs"
@@ -11,6 +10,10 @@ namespace :collect do
   
   desc "Collect tweets and create photos and photogs from a local file"
   task :test => :environment do
+    
+    # only need fakeweb in testing, not in production up on heroku
+    require 'fakeweb'
+    
     url = 'http://username:password@twitter.com:80/statuses/mentions.json'
     file_path = File.expand_path(File.dirname(__FILE__) + '/../../db/tweets.json')
 
