@@ -3,6 +3,7 @@
   <%= f.text_area :text, :rows => 3, :class => "countdown limit_122_" %>
   <strong><p class="remaining"></p></strong>
   <%= f.text_field :tag, :size => 5 %>  
+  <%= f.text_field :position, :size => 3 %>  
   <%= f.date_select :date %>
   <p>
     <% if @assignment.new_record? -%>

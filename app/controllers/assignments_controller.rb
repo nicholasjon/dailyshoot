@@ -44,6 +44,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
+    @assignment.position = Assignment.last.position + 1
     @assignment.tag = "ds#{Assignment.last.position + 1}"
     @assignment.date = Date.tomorrow
     

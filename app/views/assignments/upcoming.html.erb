@@ -12,7 +12,7 @@
   <li style="list-style: none; padding: 2px 0;">
     <hr/>
     <p>
-      <%= assignment.as_tweet %>
+      <strong>#<%= assignment.position %></strong>. <%= assignment.as_tweet %>
     </p>
     <p>
       ( <%= link_to 'Edit', edit_assignment_path(assignment) %> |
