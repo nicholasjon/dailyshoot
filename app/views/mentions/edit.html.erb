@@ -1,17 +1,22 @@
 <div id="second" class="span-22 prepend-1 append-1 last">
-<h2><%= link_to "Mention #{@mention.id}", @mention %></h2>
+<h2>Edit Mention</h2>
 </div>
 
-<div class="span-22 prepend-1 append-1 last">
+<div class="span-12 prepend-1 appened-1">
 <% labeled_form_for @mention do |f| -%>
-<fieldset style="width: 840px;">  
+<fieldset>  
   <%= f.error_messages %>
-  <%= f.text_field :text, :size => 140, :style => "width: 840px;" %>  
+  <%= f.text_area :text, :rows => 3, :class => "countdown limit_122_" %>
+  <strong><p class="remaining"></p></strong>
   <p>
     <%= f.submit 'Update' %>
   </p>
 </fieldset>
 <% end -%>
+</div>
 
-<%= link_to 'All Mentions', mentions_path %>
+<div class="span-9 prepend-1 last">
+<p>
+  <%= link_to 'All Mentions', mentions_path %>
+</p> 
 </div>

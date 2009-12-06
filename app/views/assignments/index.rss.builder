@@ -1,7 +1,7 @@
 xml.rss :version => "2.0" do
   xml.channel do 
     xml.title "The Daily Shoot"
-    xml.link 'http://twitter.com/dailyshoot'
+    xml.link 'http://dailyshoot.com'
     xml.description "Daily shooting assignments to inspire and motivate you to practice your photography, and share your results!"
     xml.language 'en'
     xml.pubDate @assignments.first.rfc822_date
@@ -12,7 +12,7 @@ xml.rss :version => "2.0" do
         xml.description assignment.text
         xml.pubDate assignment.rfc822_date
         xml.link assignment_url(assignment)
-        xml.guid({:isPermaLink => "false"}, assignment[:id])
+        xml.guid({:isPermaLink => "false"}, assignment.to_param)
       end
     end
   end

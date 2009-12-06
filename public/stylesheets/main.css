@@ -251,6 +251,12 @@ form input:submit {
   font-size: 1.25em; 
 }
 
+textarea {
+  width:300px;
+  height:auto;
+  padding:5px;
+}
+
 .clearfix {
   min-height: 1%;
 }
