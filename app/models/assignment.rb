@@ -14,7 +14,7 @@ class Assignment < ActiveRecord::Base
     def with_photog(options={})
       find(:all, 
            :joins => :photog,
-           :order => 'tweeted_at asc', 
+           :order => 'tweeted_at desc', 
            :select => "photos.*, photogs.screen_name as photog_screen_name")
     end
   end

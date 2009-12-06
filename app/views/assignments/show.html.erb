@@ -14,7 +14,7 @@
 <% if @photos.size > 0 -%>
 <%= nav %>
 <%= render :partial => 'shared/photowall', 
-           :locals => {:photos => @photos.sort_by { rand }, :caption => 'photog'} %>
+           :locals => {:photos => @photos, :caption => 'photog'} %>
 
 <% else -%>
 <div class="assignment-nophotos">

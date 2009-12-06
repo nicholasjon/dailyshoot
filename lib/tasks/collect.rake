@@ -7,7 +7,7 @@ namespace :collect do
     collector.debug = true
     collector.run
   end
-  
+    
   desc "Collect tweets and create photos and photogs from a local file"
   task :test => :environment do
     
