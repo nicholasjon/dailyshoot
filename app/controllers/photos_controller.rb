@@ -1,7 +1,11 @@
 class PhotosController < ApplicationController
     
   def index
-    @assignment = Assignment.find_by_position(params[:assignment_id])
+    @assignment = Assignment.published.find_by_position(params[:id])
+    unless @assignment
+      redirect_to assignments_url
+      return
+    end
     @photos = @assignment.photos.with_photog
     
     respond_to do |format|

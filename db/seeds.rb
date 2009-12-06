@@ -96,5 +96,20 @@ Assignment.create([
     :date => Date.parse('2009/12/03'),
     :text => "One of the popular sayings among photographers is \"get closer and fill the frame\". Make a frame filling photo today.",
     :tag  => "ds18"
+  },
+  {
+    :date => Date.parse('2009/12/04'),
+    :text => "Weather affects our lives in so many ways. Make a photograph that illustrates the weather where you are today.",
+    :tag  => "ds19"
+  },
+  {
+    :date => Date.parse('2009/12/05'),
+    :text => "Where would civilization be without the wheel? They're all around. Make a photograph of a wheel near you.",
+    :tag  => "ds20"
+  },
+  {
+    :date => Date.parse('2009/12/06'),
+    :text => "Sunday challenge time! Make a photo of your favorite keepsake in soft diffuse light. Hint: http://bit.ly/ds21",
+    :tag  => "ds21"
   }
 ])

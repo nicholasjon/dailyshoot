@@ -20,7 +20,7 @@ class AssignmentsController < ApplicationController
       redirect_to assignments_url
       return
     end
-    @photos = @assignment.photos
+    @photos = @assignment.photos.with_photog
     
     respond_to do |format|
       format.html
