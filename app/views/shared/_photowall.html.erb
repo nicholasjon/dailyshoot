@@ -7,7 +7,7 @@
 		<%= link_to image_tag(photo.thumb_url, :alt => photo.url), photo.url, :title => "", :rel => 'nofollow', :popup => true %>
 			<div class="photo-caption">
 			<% if caption == 'assignment' -%>
-				<%= link_to photo.assignment.tag, assignment_url(photo.assignment_id) %>
+				<%= link_to "#{photo.tweeted_at.to_s(:tweet_date)} ##{photo.assignment.tag}", assignment_url(photo.assignment_id) %>
 			<% else -%>
 				<%= link_to photo.photog_screen_name, photog_url(photo.photog_screen_name) %>
 			<% end -%>
