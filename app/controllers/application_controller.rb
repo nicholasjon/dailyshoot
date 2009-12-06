@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include SslRequirement
   
   helper :all
   
@@ -14,6 +15,12 @@ protected
   # default duration is 10 minutes. Might want to fine tune in filter call.
   def set_cache_control(duration=600)
     response.headers['Cache-Control'] = "public, max-age=#{duration}"
+  end
+
+  # Overridden from SslRequirement to allow local requests
+  def ssl_required?
+    return false if local_request? || RAILS_ENV == 'test'
+    super
   end
 
   def render_404
