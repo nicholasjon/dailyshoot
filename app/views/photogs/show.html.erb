@@ -1,5 +1,5 @@
 <div class="span-22 prepend-1 append-1 last" id="second">
-<h2><%= link_to(image_tag(@photog.profile_image_url, :size => "45x45", :alt => @photog.screen_name, :class => 'twitter-avatar'), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has tweeted <%= @photog.photos.count %> daily shoot assignments.</h2>
+<h2 style="text-align:center;"><%= link_to(image_tag(@photog.profile_image_url, :size => "45x45", :alt => @photog.screen_name, :class => 'twitter-avatar'), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has tweeted <%= @photog.photos.count %> daily shoot assignments.</h2>
 </div>
 
 <%= render :partial => 'shared/photowall', :locals => {:photos => @photog.photos.with_assignment, :caption => 'assignment'} %>
