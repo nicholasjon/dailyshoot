@@ -15,10 +15,13 @@
     </div>
     <% end %>
     <div class="info">
-	   <div><span class="hash"><%= link_to(assignment.tag,assignment_url(assignment))  %></span> // <%= pluralize(assignment.photos_count, 'photo') %></div>
-	  <div class="text"><%= assignment.text %></div>
-	</div>
+	    <div>
+	      <span class="hash"><%= link_to(assignment.tweet_date, assignment_url(assignment)) %> &bull; 
+	      <%= link_to("##{assignment.tag}",assignment_url(assignment)) %></span> 
+	      (<%= pluralize(assignment.photos_count, 'photo') %>)
+	    </div>
+	    <div class="text"><%= assignment.text %></div>
+	  </div>
   </div>
 <% end -%>
-
 </div>
