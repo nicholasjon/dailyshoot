@@ -268,3 +268,11 @@ textarea {
   clear: both;
   visibility: hidden;
 }
+
+/* ERRORS */
+
+.error_message {
+  display: block;
+  color: #D00;
+  font-size: 1em;
+}

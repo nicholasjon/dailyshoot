@@ -6,10 +6,10 @@
 <% @suggestions.each do |suggestion| -%>
   <p>
     <%= suggestion.created_at.to_s(:at) %> -
-    <em><%= h suggestion.who %></em> (<%= mail_to suggestion.email %>) said:
+    <em><%= h suggestion.name %></em> (<%= mail_to suggestion.email %>) said:
   </p>
   <p>
-    <strong><%= h suggestion.what %></strong>
+    <strong><%= h suggestion.suggestion %></strong>
   </p>
   <p>
     <%= link_to 'Delete', suggestion, 

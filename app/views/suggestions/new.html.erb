@@ -4,21 +4,11 @@
 
 <div class="span-12 prepend-1 appened-1">
 
-<% form_for @suggestion do |f| -%>
-<%= f.error_messages %>
+<% labeled_form_for @suggestion do |f| -%>
 <fieldset>  
-  <p>
-    <%= f.label :who, 'Name' %>
-    <%= f.text_field :who %>
-  </p>
-  <p>
-    <%= f.label :email, 'E-mail' %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :what, 'Suggestion' %>
-    <%= f.text_area :what, :rows => 5 %>
-  </p>
+  <%= f.text_field :name %>
+  <%= f.text_field :email %>
+  <%= f.text_area  :suggestion, :rows => 5 %>
   <p>
     <%= f.submit 'Submit' %>
   </p>

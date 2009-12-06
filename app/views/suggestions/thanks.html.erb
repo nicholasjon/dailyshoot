@@ -1,23 +1,21 @@
 <div id="second" class="span-22 prepend-1 append-1 last">
-<h2>Thanks, <%= @suggestion.who %>!</h2>
+<h2>Thanks, <%= @suggestion.name %>!</h2>
 </div>
 
 <div class="span-22 prepend-1 appened-1 last" style="margin-bottom: 20px;">
   <p>
-    We appreciate you taking the time to suggest an assignment for The Daily Shoot:
+    We appreciate you taking the time to <%= link_to "suggest an assignment", new_suggestion_url %>
+     for The Daily Shoot:
+  </p>
+  <p style="margin-left: 20px;">
+    <strong><%= h @suggestion.suggestion %></strong>
   </p>
   <p>
-    <strong><%= h @suggestion.what %></strong>
-  </p>
-  <p>
-    Look for it to appear in a future tweet.  In the meantime, here are some pretty
-    pictures for your viewing enjoyment!
+    Look for it to appear in a future @dailyshoot tweet.  
+    In the meantime, here are some pretty pictures made by The Daily Shoot 
+    photogs for your viewing enjoyment!
   </p>
 </div>
+
   <%= render :partial => 'shared/photowall', 
              :locals => {:photos => @photos.shuffle, :caption => 'photog'} %>  
-<div class="span-12 prepend-1 append-1 last" style="margin-top: 20px;">
-  <p>
-    <%= link_to "Suggest another assignment!", new_suggestion_url %>
-  </p>
-</div>

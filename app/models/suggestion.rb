@@ -1,3 +1,3 @@
 class Suggestion < ActiveRecord::Base
-  validates_presence_of :who, :what, :email
+  validates_presence_of :name, :email, :suggestion
 end
