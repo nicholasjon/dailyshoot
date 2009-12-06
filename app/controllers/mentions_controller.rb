@@ -29,7 +29,7 @@ class MentionsController < ApplicationController
     if @mention.parse!
       flash[:notice] = "Successfully parsed mention."
       redirect_to @mention
-    else    
+    else  
       flash.now[:error] = "Parse error: #{@mention.parse_message}"
       render :action => "show"
     end

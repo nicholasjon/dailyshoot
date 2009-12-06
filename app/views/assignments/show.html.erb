@@ -6,7 +6,7 @@
 </div>
 </div>
 
-<% nav =  render :partial => 'navigation', :locals => {:assignment => @assignment} %>
+<% nav =  render :partial => 'assignments/navigation', :locals => {:assignment => @assignment} %>
 <% if @photos.count > 0 -%>
 <%= nav %>
 <%= render :partial => 'shared/photowall', :locals => {:photos => @photos, :caption => 'photog'} %>
