@@ -18,4 +18,4 @@
 </div>
 
   <%= render :partial => 'shared/photowall', 
-             :locals => {:photos => @photos.shuffle, :caption => 'photog'} %>  
+             :locals => {:photos => @photos.sort_by { rand }, :caption => 'photog'} %>  
