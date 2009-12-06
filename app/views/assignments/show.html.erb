@@ -3,7 +3,7 @@
 <div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %>:</div>
 <div class="text"><%= h @assignment.text %></div>
 <div class="hashtag">
-  There are <%= pluralize(@photos.count, 'photo') %> tweeted to this assignment with the 
+  There are <%= pluralize(@photos.size, 'photo') %> tweeted to this assignment with the 
   <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %>   
   hashtag.
 </div>
@@ -11,7 +11,7 @@
 
 <% nav = render :partial => 'assignments/navigation', 
                 :locals => {:assignment => @assignment} %>
-<% if @photos.count > 0 -%>
+<% if @photos.size > 0 -%>
 <%= nav %>
 <%= render :partial => 'shared/photowall', 
            :locals => {:photos => @photos.shuffle, :caption => 'photog'} %>
