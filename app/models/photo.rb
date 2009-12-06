@@ -42,7 +42,8 @@ class Photo < ActiveRecord::Base
   def compute_thumb_url
     self.thumb_url = case
       when self.url =~ /bestc\.am/: bestcam
-      when self.url =~ /(tweetphoto|twitpic)\.com/: twitpic
+      when self.url =~ /twitpic\.com/: twitpic
+      when self.url =~ /tweetphoto\.com/: tweetphoto
       when self.url =~ /yfrog\.com/: yfrog
       when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
       when self.url =~ /flickr\.com/: flickr
@@ -95,6 +96,11 @@ protected
   
   def twitpic
     self.url.gsub(/(\w+)$/, 'show/thumb/\1')
+  end
+
+  def tweetphoto
+    api_url = "http://TweetPhotoAPI.com/api/TPAPI.svc/imagefromurl?size=thumbnail&url="
+    open(api_url + self.url) { |f| f.base_uri.to_s }
   end
   
   def yfrog

@@ -50,7 +50,7 @@ class PhotoTest < ActiveSupport::TestCase
   test "tweet with tweetphoto URL should assign url and thumb url" do
     tweet  = "@dailyshoot #ds14 patterns  http://tweetphoto.com/5588888"
     url    = "http://tweetphoto.com/5588888"
-    thumb  = "http://tweetphoto.com/show/thumb/5588888"
+    thumb  = "http://cdn.cloudfiles.mosso.com/c54112/x2_554798"
     
     assert_one_photo(tweet, url, thumb)
   end
