@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
   end
 
   create_table "mentions", :force => true do |t|
-    t.integer  "tweet_id",                             :null => false
+    t.string   "tweet_id",                             :null => false
     t.string   "text",                                 :null => false
-    t.integer  "user_id",                              :null => false
+    t.string   "user_id",                              :null => false
     t.string   "screen_name",                          :null => false
     t.string   "profile_image_url",                    :null => false
     t.boolean  "was_parsed",        :default => false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
     t.string   "screen_name",   :null => false
     t.integer  "assignment_id"
     t.integer  "photog_id"
-    t.integer  "tweet_id"
+    t.string   "tweet_id"
     t.datetime "tweeted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

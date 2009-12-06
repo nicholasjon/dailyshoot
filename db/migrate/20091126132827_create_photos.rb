@@ -7,7 +7,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string   :screen_name, :null => false
       t.integer  :assignment_id
       t.integer  :photog_id
-      t.integer  :tweet_id
+      t.string   :tweet_id
       t.datetime :tweeted_at
       t.timestamps
     end

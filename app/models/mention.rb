@@ -6,9 +6,9 @@ class Mention < ActiveRecord::Base
   attr_reader :parse_message
     
   def self.from_raw_mention(raw_mention)
-    Mention.new(:tweet_id => raw_mention[:id].to_i,
+    Mention.new(:tweet_id => raw_mention[:id].to_s,
                 :text => raw_mention.text,
-                :user_id => raw_mention.user[:id].to_i, 
+                :user_id => raw_mention.user[:id].to_s, 
                 :screen_name => raw_mention.user.screen_name,
                 :profile_image_url => raw_mention.user.profile_image_url,
                 :tweeted_at => raw_mention.created_at)

@@ -18,7 +18,7 @@ class TweetCollector
       break unless raw_mentions.first
       mention_exists = false
       raw_mentions.each do |raw_mention|
-        if last && (raw_mention[:id].to_i <= last.tweet_id)
+        if last && (raw_mention[:id].to_i <= last.tweet_id.to_i)
           mention_exists = true
           break
         end
