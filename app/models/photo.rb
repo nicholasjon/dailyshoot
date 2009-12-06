@@ -12,9 +12,9 @@ class Photo < ActiveRecord::Base
   belongs_to :assignment, :counter_cache => true
   belongs_to :photog, :counter_cache => true
       
-  def self.most_recent(options={})
+  def self.most_recent(limit=30)
     find(:all, 
-         :limit => 30,
+         :limit => limit,
          :order => 'tweeted_at desc',
          :joins => :photog, 
          :select => "photos.*, photogs.screen_name as photog_screen_name")
