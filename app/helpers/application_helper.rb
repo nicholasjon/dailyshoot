@@ -10,5 +10,14 @@ module ApplicationHelper
     options = args.extract_options!.merge(:builder => LabeledFormBuilder)
     form_for(*(args + [options]), &block)
   end
-  
+
+  def custom_javascript_includes
+    @javascripts ||= []
+    @javascripts.map { |s| javascript_include_tag(s) }.join("\n")
+  end
+
+  def add_javascript(name)
+    @javascripts ||= []
+    @javascripts << name
+  end  
 end

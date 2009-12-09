@@ -7,7 +7,7 @@ class AssignmentTest < ActiveSupport::TestCase
   end
 
   test "future assignment should be unpublished" do
-    assert !assignments(:future).published?
+    assert !assignments(:upcoming_1).published?
   end
   
   test "should have three published assignments" do
@@ -25,11 +25,12 @@ class AssignmentTest < ActiveSupport::TestCase
     assert_equal assignments(:today), assignment
   end
 
-  test "should have one upcoming assignment" do
+  test "should have two upcoming assignments" do
     assignments = Assignment.upcoming
     
-    assert_equal 1, assignments.size
-    assert_equal assignments(:future), assignments[0]
+    assert_equal 2, assignments.size
+    assert_equal assignments(:upcoming_1), assignments[0]
+    assert_equal assignments(:upcoming_2), assignments[1]
   end
 
   test "should use position as the param" do
@@ -42,26 +43,16 @@ class AssignmentTest < ActiveSupport::TestCase
       assert !assignment.valid?
     end
   end
-  
-  test "create with blank tag should fail" do
-    assert_no_difference "Assignment.count" do
-      assignment = new_assignment :tag => ""
-      assert !assignment.valid?
-    end
-  end
-  
-  test "create with no date should fail" do
-    assert_no_difference "Assignment.count" do
-      assignment = new_assignment :date => nil
-      assert !assignment.valid?
-    end
-  end
 
-  test "create should set position" do
+  test "create should set position, tag, and date" do
     assert_difference "Assignment.count" do
       assignment = new_assignment
       assignment.save
-      assert_not_nil assignment.reload.position
+      
+      assignment.reload
+      assert_not_nil assignment.position
+      assert_equal "ds6", assignment.tag
+      assert_not_nil assignment.date
     end
   end
   
@@ -75,6 +66,56 @@ class AssignmentTest < ActiveSupport::TestCase
   test "displaying as tweet should generated proper format" do
     assert_equal "2009/11/25: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you! #ds10", 
                  assignments(:ds10).as_tweet
+  end
+  
+  test "first upcoming assignment can't be moved higher" do
+    assert !assignments(:upcoming_1).can_move_higher
+  end
+  
+  test "last upcoming assignment can be moved higher" do
+    assert assignments(:upcoming_2).can_move_higher
+  end
+  
+  test "move assignment up should update positions, tags, and dates" do
+    assert_equal 4, assignments(:upcoming_1).position
+    assert_equal 5, assignments(:upcoming_2).position
+    assert assignments(:upcoming_1).date < assignments(:upcoming_2).date
+    
+    assert assignments(:upcoming_2).move('up')
+    
+    assert_equal 4,     assignments(:upcoming_2, :reload).position
+    assert_equal 5,     assignments(:upcoming_1, :reload).position
+    assert_equal "ds4", assignments(:upcoming_2).tag
+    assert_equal "ds5", assignments(:upcoming_1).tag
+    assert assignments(:upcoming_2).date < assignments(:upcoming_1).date
+  end
+  
+  test "move assignment down should reorder positions and update tags" do
+    assert_equal 4, assignments(:upcoming_1).position
+    assert_equal 5, assignments(:upcoming_2).position
+    assert assignments(:upcoming_1).date < assignments(:upcoming_2).date
+    
+    assert assignments(:upcoming_1).move('down')
+    
+    assert_equal 4, assignments(:upcoming_2, :reload).position
+    assert_equal 5, assignments(:upcoming_1, :reload).position
+    assert_equal "ds4", assignments(:upcoming_2).tag
+    assert_equal "ds5", assignments(:upcoming_1).tag
+    assert assignments(:upcoming_2).date < assignments(:upcoming_1).date
+  end
+  
+  test "move last assignment up should not reorder positions or update tags" do
+    assert_equal 4, assignments(:upcoming_1).position
+    assert_equal 5, assignments(:upcoming_2).position
+    assert assignments(:upcoming_1).date < assignments(:upcoming_2).date
+    
+    assert_nil assignments(:upcoming_1).move('up')
+    
+    assert_equal 4, assignments(:upcoming_1).position
+    assert_equal 5, assignments(:upcoming_2).position
+    assert_equal "ds98", assignments(:upcoming_1).tag
+    assert_equal "ds99", assignments(:upcoming_2).tag
+    assert assignments(:upcoming_1).date < assignments(:upcoming_2).date
   end
   
 private

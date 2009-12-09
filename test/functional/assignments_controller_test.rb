@@ -17,7 +17,7 @@ class AssignmentsControllerTest < ActionController::TestCase
   end
 
   test "show an unpublished assignment should redirect" do
-    get :show, :id => assignments(:future).to_param
+    get :show, :id => assignments(:upcoming_1).to_param
     assert_response :redirect
     assert_redirected_to assignments_url
   end
@@ -87,8 +87,8 @@ class AssignmentsControllerTest < ActionController::TestCase
   test "update should change assignment and redirect" do
     login_admin
     put :update, :id => assignments(:ds10).to_param, 
-                 :assignment => { :tag => "new-tag" }
-    assert_equal "new-tag", assignments(:ds10, :reload).tag
+                 :assignment => { :text => "new text" }
+    assert_equal "new text", assignments(:ds10, :reload).text
     assert_redirected_to upcoming_assignments_url
   end
 
@@ -104,6 +104,14 @@ class AssignmentsControllerTest < ActionController::TestCase
       delete :destroy, :id => assignments(:ds10).to_param
     end
 
+    assert_redirected_to upcoming_assignments_path
+  end
+  
+  test "reorder should reorder assignment and redirect" do
+    login_admin
+    assert_equal 5, assignments(:upcoming_2).position
+    get :reorder, :id => assignments(:upcoming_2).to_param, :direction => 'up'
+    assert_equal 4, assignments(:upcoming_2, :reload).position
     assert_redirected_to upcoming_assignments_path
   end
   
@@ -154,7 +162,7 @@ class AssignmentsControllerTest < ActionController::TestCase
   test "update via API with validation errors should respond with 422" do
     login_admin
     put :update, :id => assignments(:ds10).to_param, 
-                 :assignment => { :tag => "" }, 
+                 :assignment => { :text => "" }, 
                  :format => "xml"
     assert_response :unprocessable_entity
     xml = Hash.from_xml(@response.body)
@@ -164,11 +172,11 @@ class AssignmentsControllerTest < ActionController::TestCase
   test "update via API should update assignment and respond with 200" do
     login_admin
     put :update, :id => assignments(:ds10).to_param, 
-                 :assignment => { :tag => "another-tag" }, 
+                 :assignment => { :text => "new text" }, 
                  :format => "xml"
     assert_response :success  
     xml = Hash.from_xml(@response.body)    
-    assert_equal "another-tag", xml["assignment"]["tag"]
+    assert_equal "new text", xml["assignment"]["text"]
   end
 
   test "destroy via API should remove assignment and respond with 200" do

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="<%= stylesheet_path 'main' %>" type="text/css" media="screen, projection">
 	<link rel="alternate" type="application/rss+xml" title="Assignments RSS" 
         href="http://feeds.feedburner.com/dailyshoot_assignments">
+  <%= custom_javascript_includes %>
 </head>
 
 <body>
@@ -35,7 +36,8 @@ All other content licensed under <a rel="license" href="http://creativecommons.o
 <div> <!-- container -->
 
 <%# JavaScript content at the end of the page so that it can load in after page display. This is from the Yahoo performance guidelines. %>
-<%= javascript_include_tag('jquery', 'application', 'ga')  %>
+<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag 'ga'  %>
 
 </body>
 </html>

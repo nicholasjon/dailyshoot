@@ -1,15 +1,19 @@
 class Assignment < ActiveRecord::Base
-  validates_presence_of :text, :tag, :date
+  validates_presence_of :text
   validates_uniqueness_of :tag
   validates_length_of :text, 
                       :maximum => (140 - 18), 
                       :message => "Only {{count}} characters, please!"
 
   named_scope :published, lambda {{:order => "date desc", :conditions => ['date <= ?', Date.today]}}
-  named_scope :upcoming,  lambda {{:order => "date", :conditions => ['date > ?', Date.today]}}
+  named_scope :upcoming,  lambda {{:order => "position", :conditions => ['date > ?', Date.today]}}
 
   acts_as_list
-    
+
+  # before_save alone won't do what we want with acts_as_list 
+  before_create :set_tag_and_date
+  before_update :set_tag_and_date
+  
   has_many :photos, :dependent => :nullify do
     def with_photog(options={})
       find(:all, 
@@ -27,6 +31,10 @@ class Assignment < ActiveRecord::Base
   
   def self.today
     self.first(:conditions => ['date = ?', Date.today])
+  end
+  
+  def self.lowest_position
+    self.published.first.position + 1
   end
 
   def random_photo
@@ -51,6 +59,25 @@ class Assignment < ActiveRecord::Base
   
   def to_param
     self.position.to_s
+  end
+  
+  def can_move_higher(lowest_position=self.class.lowest_position)
+    self.position > lowest_position
+  end
+  
+  def move(direction)
+    case direction
+      when 'up'   then self.move_higher if self.can_move_higher
+      when 'down' then self.move_lower
+    end
+  end 
+  
+  def set_tag_and_date
+    RAILS_DEFAULT_LOGGER.info "Changing #{self[:position]} with lowest #{self.class.lowest_position}"
+    if self[:position]
+      self.tag = "ds#{self[:position]}"
+      self.date = Date.today + (self[:position] - self.class.lowest_position)
+    end 
   end
   
 end

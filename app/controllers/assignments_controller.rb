@@ -32,6 +32,7 @@ class AssignmentsController < ApplicationController
 # ADMIN ONLY
 
   def upcoming
+    @lowest_position = Assignment.lowest_position
     @assignments = Assignment.upcoming
 
     respond_to do |format|
@@ -102,6 +103,12 @@ class AssignmentsController < ApplicationController
       format.html { redirect_to(upcoming_assignments_url) }
       format.any(:xml, :json)  { head :ok }
     end
+  end
+  
+  def reorder
+    @assignment = Assignment.find_by_position(params[:id])
+    @assignment.move(params[:direction])
+    redirect_to upcoming_assignments_url
   end
   
 end

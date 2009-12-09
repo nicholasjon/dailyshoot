@@ -9,18 +9,22 @@
 
 <ul id="assignments" style="padding-left: 0;">
 <% @assignments.each do |assignment| -%>
-  <li style="list-style: none; padding: 2px 0;">
+  <% content_tag_for :li, assignment, :style => "list-style: none; padding: 2px 0;" do -%>
     <hr/>
     <p>
       <strong>#<%= assignment.position %></strong>. <%= assignment.as_tweet %>
     </p>
     <p>
-      ( <%= link_to 'Edit', edit_assignment_path(assignment) %> |
-       <%= link_to 'Delete', assignment, :confirm => 'Are you sure?', 
-                                           :method => :delete %> |
-       <%= link_to 'Photos', assignment_photos_path(assignment) %> )
+      [
+      <% if assignment.can_move_higher(@lowest_position) -%>
+      <%= link_to "Up", reorder_assignment_path(assignment, :direction => 'up') %> |
+      <% end -%>
+      <%= link_to "Down", reorder_assignment_path(assignment, :direction => 'down') %> |
+      <%= link_to 'Edit', edit_assignment_path(assignment) %> |
+      <%= link_to 'Delete', assignment, :confirm => 'Are you sure?', :method => :delete %>
+      ]
     </p>
-  </li>
+  <% end -%>
 <% end -%>
 </ul>
 </div>
