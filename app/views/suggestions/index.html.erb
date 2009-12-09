@@ -6,7 +6,9 @@
 <% @suggestions.each do |suggestion| -%>
   <p>
     <%= suggestion.created_at.to_s(:at) %> -
-    <em><%= h suggestion.name %></em> (<%= mail_to suggestion.email %>) said:
+    <em><%= h suggestion.name %></em> 
+    (<%= link_to "@#{suggestion.twitter_user_name}", 
+                 "http://twitter.com/#{suggestion.twitter_user_name}" %>) said:
   </p>
   <p>
     <strong><%= h suggestion.suggestion %></strong>

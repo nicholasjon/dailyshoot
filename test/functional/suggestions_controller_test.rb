@@ -26,7 +26,7 @@ class SuggestionsControllerTest < ActionController::TestCase
     assert_difference('Suggestion.count') do
       post :create, 
            :suggestion => {:name => "Joe Photog", 
-                           :email => "me@email.com",
+                           :twitter_user_name => "@joe",
                            :suggestion => "Here's an idea..."}
     end
     assert_redirected_to(thanks_suggestion_path(assigns(:suggestion)))

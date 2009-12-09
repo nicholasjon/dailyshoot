@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091130190150) do
+ActiveRecord::Schema.define(:version => 20091209223704) do
 
   create_table "assignments", :force => true do |t|
     t.string   "text",                        :null => false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20091130190150) do
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "twitter_user_name"
     t.text     "suggestion"
     t.datetime "created_at"
     t.datetime "updated_at"
