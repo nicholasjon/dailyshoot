@@ -257,6 +257,13 @@ textarea {
   padding:5px;
 }
 
+form .hint {
+  color: #666;
+  display: block;
+  font-size: 90%;
+  font-style: italic;
+}
+
 .clearfix {
   min-height: 1%;
 }
