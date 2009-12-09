@@ -39,7 +39,7 @@ class Mention < ActiveRecord::Base
 
     assignment = self.assignment
     unless assignment
-      @parse_message = "Unknown assignment tag: #{self.tag}"
+      @parse_message = "Unknown assignment tag: #{self.tag}"      
       return false
     end
 
@@ -52,7 +52,7 @@ class Mention < ActiveRecord::Base
     photog = self.photog
 
     photos = photos.select do |photo| 
-      Photo.find_by_url_and_photog_id(photo.url, photog.id).nil?
+      Photo.find_by_url(photo.url).nil?
     end
     if photos.empty?
       @parse_message = "Duplicate - skipping: #{self.text}"
@@ -77,7 +77,7 @@ class Mention < ActiveRecord::Base
     self.save
 
   rescue => e
-    @parse_message = "Unable to collect mention: #{self.text}: #{e.inspect}"
+    @parse_message = "Unable to collect mention: #{self.text}: #{e.inspect}"    
     return false
   end
   
