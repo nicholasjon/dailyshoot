@@ -9,7 +9,7 @@
 			<div class="photo-caption">
 			<% if caption == 'assignment' -%>
 				<%= link_to("#{photo.tweeted_at.to_s(:tweet_date)} ##{photo.assignment_tag}", 
-				            assignment_url(photo.assignment_id)) %>
+				            assignment_url(photo.assignment_position)) %>
 			<% else -%>
 				<%= link_to photo.photog_screen_name, 
 				            photog_url(photo.photog_screen_name) %>
