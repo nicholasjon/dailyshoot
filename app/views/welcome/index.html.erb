@@ -1,27 +1,82 @@
 <div class="span-22 prepend-1 append-1 last" id="second">
-	<div class="today"><%= link_to "Today&rsquo;s Daily Shoot assignment", assignment_url(@assignment) %> is:</div>
-	<div class="text"><%= @assignment.text %></div>
-	<div class="action">Get out there, take a photograph, upload it, and tweet a link to <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %></div>
+	<div class="today">
+	  <%= link_to "Today&rsquo;s Daily Shoot assignment", assignment_url(@assignment) %> is:
+	</div>
+	<div class="text">
+	  <%= h @assignment.text %>
+	</div>
+	<div class="action">
+	  Get out there, take a photograph, upload it, and tweet a link to 
+	  <a href="http://twitter.com/dailyshoot">@dailyshoot</a> with the hashtag: 
+	  <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %>
+	</div>
 </div>
 
-<%= render :partial => 'shared/photowall', :locals => {:photos => @photos, :caption => 'photog'} %>
+<%= render :partial => 'shared/photowall', 
+           :locals => {:photos => @photos, :caption => 'photog'} %>
 
 <div class="span-24 last" id="allaboutit">
 	<div class="span-22 prepend-1 append-1 last" id="stats">
-		<div class="count"><%= link_to "#{@photog_count} photographers", '/photogs' %> have made <%= @photos_count %> photos for <a href="/assignments"><%= @assignment_count %> assignments</a>.
+		<div class="count">
+		  <%= link_to "#{@photog_count} photographers", photogs_url %> 
+		  have made <%= @photos_count %> photos for 
+		  <%= link_to "#{@assignment_count} assignments", assignments_url %>.
 		</div>
 	</div>
 
 	<div class="span-12 prepend-1 append-1" id="mission">
-		<p>The Daily Shoot is a simple tool that encourages the daily practice of photography. It&rsquo;s not a contest. There aren&rsquo;t any prizes. We&rsquo;re simply about helping you pick up the camera and make photographs.</p>
+		<p>
+		  Photography is an art and a craft. Getting better at both requires practice&mdash;lots
+      of practice. <strong> The Daily Shoot is a simple daily routine to motivate and
+      inspire you to practice your photography, and share your results!</strong> It&rsquo;s
+      not a contest and there are no prizes. It's simply about encouraging you to pick up
+      your camera every day and make a photograph.
+    </p>
+    <p>
+      It's easy to get started! Here&rsquo;s how:
+		</p>
 
-		<p>Here&rsquo;s how it works: Every day at 9AM EST (14:00 GMT) a new photo assignment is pushed to the <a href="http://twitter.com/dailyshoot">@dailyshoot</a> twitter account. Sometimes it&rsquo;ll be simple. Sometimes it may be challenging, requiring you to do a bit of research. Either way, that&rsquo;s your cue to get out there and make a few photographs.</p>
+    <ol style="padding-left: 2em;">
+      <li>
+        <p>
+          <a href="http://twitter.com/dailyshoot">Follow @dailyshoot</a> on Twitter. Every
+          day at 9 AM EST (14:00 GMT) a new photo assignment is posted to the @dailyshoot
+          twitter account.  Some assignments are simple to help you keep the momentum, and
+          others are more challenging to push you to learn something new.
+        </p>
+      </li>
+      <li>
+        <p>
+          When you make a photo for the assignment you want to share, simply upload it to
+          one of the major photo sharing sites&mdash;Flickr, The Best Camera, SnapTweet,
+          TwitPic, TweetPhoto, and yfrog all work. You can also use any major URL shortening
+          service.
+        </p>
+      </li>
+      <li>
+        <p>
+          Tweet a link to your photo mentioning @dailyshoot and the assignment&rsquo;s
+          hashtag (<a href="http://twitter.com/lyzadanger/statuses/6183876947">example</a>).
+          Every hour The Daily Shoot elves process these tweets and add thumbnails to
+          your photos on this site.
+        </p>
+      </li>
+    </ol>
+        
+		<p>
+		  Although there are no rules necessarily, we have two small requests. First, please
+      don&rsquo;t short-change yourself and post a photo that you already have in your
+      portfolio. The idea is to encourage daily practice. That said, there&rsquo;s nothing
+      wrong with catching up on previous assignments and posting photo links days after the
+      assignment. Second, while you might want to post several photos, please choose your
+      best photo of the assignment to post. Editing is a skill that needs practice, too.
+      Have fun!
+		</p>
 
-		<p>When you come up with a photo you want to share, simply upload it to one of the major photo sharing sites&mdash;Flickr, The Best Camera, SnapTweet, TwitPic, TweetPhoto, yfrog, and imgur all work&mdash;and then tweet a link to it mentioning @dailyshoot and the assignment&rsquo;s hashtag. <a href="http://twitter.com/lyzadanger/statuses/6183876947">Here&rsquo;s an example</a>. We&rsquo;ll periodically process these tweets (every hour or so, most hours) and include thumbnails to your photos here on this site, just like the 30 recent photos above.</p>
-
-		<p>Lastly, two small requests: Please don&rsquo;t short-change yourself and post a pic that you already have. The idea is to encourage practice. That said, there&rsquo;s nothing wrong with catching up on previous assignments or posting links days after the assignment. Second, while you might want to post several pics, please choose your best photo of the assignment to post. Editing is a skill that needs practice too!</p>
-
-		<p>Have an assignment suggestion? <%= link_to "Let us know!", :controller => :suggestions, :action => :new %></a></p>
+		<p>
+		  Have an assignment suggestion? 
+		  <%= link_to "Let us know!", new_suggestion_url %>
+    </p>
 	</div>
 
 	<div class="span-8 prepend-1 append-1 last" id="about">
