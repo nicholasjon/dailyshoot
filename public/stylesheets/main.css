@@ -276,6 +276,17 @@ form .hint {
   visibility: hidden;
 }
 
+/* ADMIN ACTION HOVER */
+
+div.admin-actions {
+  color: #666;
+  background: #E9E9E9;
+  padding: 5px 4px;
+  font-size: 90%;
+  position: absolute; 
+  display: none;
+}
+
 /* ERRORS */
 
 .error_message {

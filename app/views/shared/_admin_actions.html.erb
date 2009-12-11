@@ -1,0 +1,8 @@
+<% if admin? -%>
+<div class="admin-actions">
+  <%= link_to 'Delete', photo, 
+              :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to 'Regen', regenerate_photo_url(photo), 
+              :confirm => 'Are you sure?', :method => :post %>
+</div>
+<% end -%>

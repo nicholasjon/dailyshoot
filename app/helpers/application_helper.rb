@@ -20,4 +20,8 @@ module ApplicationHelper
     @javascripts ||= []
     @javascripts << name
   end  
+  
+  def hover_menu_class(caption)
+    (admin? && caption == 'assignment') ? 'hover-menu' : ''		
+  end
 end
