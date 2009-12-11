@@ -15,7 +15,7 @@ class MentionTest < ActiveSupport::TestCase
       assert !mention.valid?
     end
   end
-
+  
   test "mention with hashtag should parse into a tag" do
     raw_mention = stub_mentions.first
     raw_mention.text = " #ds10"
@@ -69,6 +69,31 @@ class MentionTest < ActiveSupport::TestCase
     
     assert_equal 1, pending_mentions.size
     assert_equal mentions(:pending), pending_mentions.first
+  end
+  
+  test "mention with RT should be a retweet" do
+    raw_mention = stub_mentions.first
+    raw_mention.text = "RT"
+    mention = Mention.from_raw_mention(raw_mention)
+    
+    assert mention.retweet?
+  end
+  
+  test "mention without RT should not be a retweet" do
+    raw_mention = stub_mentions.first
+    raw_mention.text = "retweeting"
+    mention = Mention.from_raw_mention(raw_mention)
+    
+    assert !mention.retweet?
+  end
+  
+  test "mention with RT should not parse" do
+    raw_mention = stub_mentions.first
+    raw_mention.text = "#ds10 RT"
+    mention = Mention.from_raw_mention(raw_mention)
+    
+    assert !mention.parse!
+    assert_equal "Retweet: #ds10 RT", mention.parse_message
   end
   
 protected

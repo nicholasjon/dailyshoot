@@ -17,6 +17,10 @@ class Mention < ActiveRecord::Base
   def tag
     self.text =~ /#(ds\d{1,3})/ ? $1 : nil
   end
+  
+  def retweet?
+    self.text =~ /RT/
+  end
 
   def assignment
     self.tag ? Assignment.find_by_tag(self.tag) : nil
@@ -34,6 +38,11 @@ class Mention < ActiveRecord::Base
     @parse_message = ""
     unless self.tag
       @parse_message = "No hashtag: #{self.text}"
+      return false
+    end
+    
+    if self.retweet?
+      @parse_message = "Retweet: #{self.text}"
       return false
     end
 
