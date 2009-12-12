@@ -16,7 +16,7 @@
     </p>
     <p>
       [
-      <% if assignment.can_move_higher(@lowest_position) -%>
+      <% if assignment.can_move_higher(@first_upcoming_position) -%>
       <%= link_to "Up", reorder_assignment_path(assignment, :direction => 'up') %> |
       <% end -%>
       <%= link_to "Down", reorder_assignment_path(assignment, :direction => 'down') %> |

@@ -32,7 +32,7 @@ class AssignmentsController < ApplicationController
 # ADMIN ONLY
 
   def upcoming
-    @lowest_position = Assignment.lowest_position
+    @first_upcoming_position = Assignment.first_upcoming_position
     @assignments = Assignment.upcoming
 
     respond_to do |format|
@@ -45,9 +45,6 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
-    @assignment.position = Assignment.last.position + 1
-    @assignment.tag = "ds#{Assignment.last.position + 1}"
-    @assignment.date = Date.tomorrow
     
     respond_to do |format|
       format.html

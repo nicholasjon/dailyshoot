@@ -33,7 +33,7 @@ class Assignment < ActiveRecord::Base
     self.first(:conditions => ['date = ?', Date.today])
   end
   
-  def self.lowest_position
+  def self.first_upcoming_position
     self.published.first.position + 1
   end
 
@@ -61,8 +61,8 @@ class Assignment < ActiveRecord::Base
     self.position.to_s
   end
   
-  def can_move_higher(lowest_position=self.class.lowest_position)
-    self.position > lowest_position
+  def can_move_higher(first_upcoming_position=self.class.first_upcoming_position)
+    self.position > first_upcoming_position
   end
   
   def move(direction)
@@ -73,10 +73,9 @@ class Assignment < ActiveRecord::Base
   end 
   
   def set_tag_and_date
-    RAILS_DEFAULT_LOGGER.info "Changing #{self[:position]} with lowest #{self.class.lowest_position}"
     if self[:position]
       self.tag = "ds#{self[:position]}"
-      self.date = Date.today + (self[:position] - self.class.lowest_position)
+      self.date = Date.tomorrow + (self[:position] - self.class.first_upcoming_position)
     end 
   end
   

@@ -43,16 +43,24 @@ class AssignmentTest < ActiveSupport::TestCase
       assert !assignment.valid?
     end
   end
-
-  test "create should set position, tag, and date" do
-    assert_difference "Assignment.count" do
-      assignment = new_assignment
-      assignment.save
+  
+  test "create upcoming should set position, tag, and date" do
+    assignments(:upcoming_1).destroy
+    assignments(:upcoming_2).destroy
+  
+    assert_difference "Assignment.count", 2 do
+      assignment1 = new_assignment
+      assignment1.save
+      assignment2 = new_assignment
+      assignment2.save
       
-      assignment.reload
-      assert_not_nil assignment.position
-      assert_equal "ds6", assignment.tag
-      assert_not_nil assignment.date
+      assert_equal 4, assignment1.reload.position
+      assert_equal "ds4", assignment1.tag
+      assert_equal Date.tomorrow, assignment1.date
+      
+      assert_equal 5, assignment2.reload.position
+      assert_equal "ds5", assignment2.tag
+      assert_equal Date.tomorrow + 1, assignment2.date
     end
   end
   
@@ -113,8 +121,8 @@ class AssignmentTest < ActiveSupport::TestCase
     
     assert_equal 4, assignments(:upcoming_1).position
     assert_equal 5, assignments(:upcoming_2).position
-    assert_equal "ds98", assignments(:upcoming_1).tag
-    assert_equal "ds99", assignments(:upcoming_2).tag
+    assert_equal "ds4", assignments(:upcoming_1).tag
+    assert_equal "ds5", assignments(:upcoming_2).tag
     assert assignments(:upcoming_1).date < assignments(:upcoming_2).date
   end
   

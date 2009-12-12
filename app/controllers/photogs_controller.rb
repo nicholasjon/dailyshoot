@@ -1,6 +1,6 @@
 class PhotogsController < ApplicationController
   
-  before_filter :set_cache_control, :only => [:index, :show]
+  before_filter :set_cache_control, :only => [:index]
     
   def index
     @photogs = Photog.all_by_photos_count

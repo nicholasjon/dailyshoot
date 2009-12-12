@@ -1,19 +1,19 @@
 upcoming_2:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: <%= 2.days.from_now.to_s(:db) %>
-  tag: ds99
+  tag: ds5
   position: 5
   
 upcoming_1:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: <%= 1.days.from_now.to_s(:db) %>
-  tag: ds98
+  tag: ds4
   position: 4
   
 today:
   text: Let's play with movement today. Get a shot of something in motion. Freeze it or let it blur. It's up to you!
   date: <%= Date.today %>
-  tag: ds98
+  tag: ds11
   position: 3
   
 ds10:
