@@ -6,7 +6,7 @@ class Photog < ActiveRecord::Base
       find(:all, 
            :joins => :assignment, 
            :select => "photos.*, assignments.position as assignment_position, assignments.tag as assignment_tag",
-           :order => "assignments.position")
+           :order => "assignments.position desc")
     end
   end
   
