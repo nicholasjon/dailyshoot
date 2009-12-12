@@ -32,7 +32,6 @@ class Photo < ActiveRecord::Base
     urls.each do |url|
       photo = Photo.new(:url => url)
       if photo.compute_thumb_url
-#        photo.thumb_url = '/images/no-photo.png'
         photos << photo
       end
     end

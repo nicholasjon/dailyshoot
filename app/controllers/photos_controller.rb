@@ -40,6 +40,9 @@ class PhotosController < ApplicationController
       flash[:error] = "Unable to save photo."
       redirect_to @photog
     end
+  rescue Photo::ThumbRetrievalError => e
+    flash[:error] = "Photo error: #{e.message}"
+    redirect_to @photog
   end
 
 end
