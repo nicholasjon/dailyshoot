@@ -17,6 +17,8 @@ task :cron_daily do
   puts "rake cron: Invoking Daily Tasks // #{Time.now}"
   puts "----------------------------------------------------"
   
+  Rake::Task['db:clean'].invoke
+  
 end
 
 task :cron_weekly do
