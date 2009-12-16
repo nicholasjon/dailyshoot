@@ -7,6 +7,6 @@ namespace :db do
       session.destroy
     end
     
-    puts "Cleaned up #{sessions.count} sessions"
+    puts "Cleaned up #{sessions.size} sessions"
   end  
 end
