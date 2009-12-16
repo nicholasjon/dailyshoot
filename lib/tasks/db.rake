@@ -1,7 +1,12 @@
 namespace :db do
   task :clean => :environment do
     puts "Cleaning up session table, deleting sessions stale after 1 week"
-    ActiveRecord::Base.connection.delete(
-    "DELETE FROM sessions WHERE updated_at < #{Date.today - 1.week}")
+    sessions = ActiveRecord::SessionStore::Session::find(:all, :conditions => "updated_at < (current_timestamp - interval '1 week')")
+    
+    sessions.each do |session|
+      session.destroy
+    end
+    
+    puts "Cleaned up #{sessions.count} sessions"
   end  
 end
