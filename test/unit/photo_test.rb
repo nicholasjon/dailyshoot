@@ -71,13 +71,6 @@ class PhotoTest < ActiveSupport::TestCase
     assert_one_photo(tweet, url, thumb)
   end
   
-  test "tweet with pnt.me URL should expand url" do
-    tweet  = "@dailyshoot 11/24 - http://pnt.me/Sr6q0Z"
-    url    = "http://www.flickr.com/photos/spaceplatypus/4131695975/"
-
-    assert_photo_url_expands(tweet, url)
-  end
-  
   test "tweet with pnt.me URL should assign url and thumb url" do
     tweet  = "@dailyshoot 11/24 - http://pnt.me/Sr6q0Z"
     url    = "http://www.flickr.com/photos/spaceplatypus/4131695975/"
@@ -86,26 +79,12 @@ class PhotoTest < ActiveSupport::TestCase
     assert_one_photo(tweet, url, thumb)
   end
   
-  test "tweet with tr.im URL should expand url" do
-    tweet  = "@dailyshoot Grate Lake http://tr.im/FI9n"
-    url    = "http://www.flickr.com/photos/97151260@N00/4132412954/"
-
-    assert_photo_url_expands(tweet, url)
-  end
-  
   test "tweet with tr.im URL should assign url and thumb url" do
     tweet  = "@dailyshoot Grate Lake http://tr.im/FI9n"
     url    = "http://www.flickr.com/photos/97151260@N00/4132412954/"
     thumb  = "http://farm3.static.flickr.com/2668/4132412954_516be07418_s.jpg"
 
     assert_one_photo(tweet, url, thumb)
-  end
-  
-  test "tweet with j.mp URL should expand url" do
-    tweet  = "@dailyshoot Here's my shot for the water assignment. http://j.mp/7zgpjd"
-    url    = "http://www.flickr.com/photos/ejknapp/4131597128/in/pool-1251121@N24"
-
-    assert_photo_url_expands(tweet, url)
   end
   
   test "tweet with j.mp should URL should assign url and thumb url" do
@@ -119,8 +98,25 @@ class PhotoTest < ActiveSupport::TestCase
   test "tweet with bit.ly URL should expand url" do
     tweet  = "@dailyshoot: A low contrast droplet - http://bit.ly/8lfTwJ"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
+    thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
 
-    assert_photo_url_expands(tweet, url)
+    assert_one_photo(tweet, url, thumb)
+  end
+  
+  test "tweet with tinyurl should URL should assign url and thumb url" do
+    tweet  = "@dailyshoot http://tinyurl.com/yd9kgxn"
+    url    = "http://www.flickr.com/photos/clarkware/4193699212/"
+    thumb  = "http://farm3.static.flickr.com/2596/4193699212_147e5a576e_s.jpg"
+
+    assert_one_photo(tweet, url, thumb)
+  end
+  
+  test "tweet with tiny.cc should URL should assign url and thumb url" do
+    tweet  = "@dailyshoot http://tiny.cc/GrbEf"
+    url    = "http://www.flickr.com/photos/tooobi/4183248462/in/pool-1251121@N24"
+    thumb  = "http://farm3.static.flickr.com/2742/4183248462_5db53286ce_s.jpg"
+
+    assert_one_photo(tweet, url, thumb)
   end
   
   test "tweet with flickr.com URL should assign url and thumb url" do
@@ -182,16 +178,6 @@ protected
     
     assert_equal url, photo.url
     assert_equal thumb, photo.thumb_url
-  end
-  
-  def assert_photo_url_expands(tweet, url)
-    photos = Photo.all_from_tweet(tweet)
-
-    assert_equal 1, photos.size
-
-    photo = photos.first
-    
-    assert_equal url, photo.url
   end
   
 end
