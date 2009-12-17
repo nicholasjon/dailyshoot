@@ -1,4 +1,7 @@
 task :cron do
+  
+  puts "RAKE CRON PID #{Process.pid}; PARENT #{Process.ppid}"
+  
   Rake::Task['cron_daily'].invoke if Time.now.hour == 0
   
   puts "----------------------------------------------------"
