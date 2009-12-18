@@ -127,7 +127,7 @@ protected
     if self.url =~ %r(/p/(\w+))
       photo_id = Base58.base58_to_int($1)
     else
-      photo_id = self.url.scan(%r(/photos/[\w@]+/(\d+))).flatten.last
+      photo_id = self.url.scan(%r(/photos/[\w@-]+/(\d+))).flatten.last
     end
     return unless photo_id
     

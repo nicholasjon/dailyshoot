@@ -15,7 +15,7 @@ class Mention < ActiveRecord::Base
   end
   
   def tag
-    self.text =~ /#(ds\d{1,3})/ ? $1 : nil
+    self.text =~ /#(ds\d{1,3})/i ? $1.downcase : nil
   end
   
   def retweet?

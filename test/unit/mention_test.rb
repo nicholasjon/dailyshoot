@@ -23,6 +23,14 @@ class MentionTest < ActiveSupport::TestCase
     
     assert_equal "ds10", mention.tag
   end
+  
+  test "mention with capitalized hashtag should parse into a lowercase tag" do
+    raw_mention = stub_mentions.first
+    raw_mention.text = " #DS10"
+    mention = Mention.from_raw_mention(raw_mention)
+    
+    assert_equal "ds10", mention.tag
+  end
 
   test "mention without hashtag should have nil tag" do
     raw_mention = stub_mentions.first
