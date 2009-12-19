@@ -1,0 +1,13 @@
+
+<div class="span-24" style="margin-top: 24px; margin-bottom: 24px">
+	
+<h1>Oh Hai!</h1>
+
+<p>Here's what you've said on Twitter recently:</p>
+
+<ul>
+<% @twitter_client.user_timeline.each do |tweet| %>
+	<li><%= tweet.text%></li>
+<% end %>
+</ul>
+</div>

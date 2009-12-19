@@ -17,6 +17,8 @@ ActionController::Routing::Routes.draw do |map|
     sessions.logout 'logout', :action => 'destroy'
   end
 
+  map.connect 'twitter/:action', :controller => 'twitter'
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
