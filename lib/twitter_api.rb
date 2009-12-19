@@ -2,9 +2,14 @@ require 'twitter'
 
 class TwitterAPI
   
-  def initialize(username='dailyshoot', password=ENV['DAILYSHOOT_TWITTER_PASS'])
-    httpauth = Twitter::HTTPAuth.new(username, password)
-    @client = Twitter::Base.new(httpauth)
+  def initialize(consumer_key=ENV['TWITTER_CONSUMER_KEY'],
+                 consumer_secret=ENV['TWITTER_CONSUMER_SECRET'],
+                 access_token=ENV['TWITTER_ACCESS_TOKEN'],
+                 access_secret=ENV['TWITTER_ACCESS_SECRET'])
+                 
+    oauth = Twitter::OAuth.new(consumer_key, consumer_secret)
+    oauth.authorize_from_access(access_token, access_secret)
+    @client = Twitter::Base.new(oauth)    
   end
   
   def mentions(options = {})
