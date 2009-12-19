@@ -46,7 +46,7 @@ class Assignment < ActiveRecord::Base
   end
   
   def as_tweet
-    "#{self.tweet_date}: #{self.text} ##{self.tag}"
+    "#{self.tweet_date}: #{self.text.strip} ##{self.tag}"
   end
   
   def tweet_date
