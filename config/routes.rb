@@ -17,10 +17,6 @@ ActionController::Routing::Routes.draw do |map|
     sessions.logout 'logout', :action => 'destroy'
   end
 
-  map.connect 'googlehostedservice.html', 
-    :controller => 'welcome', 
-    :action     => 'google'
-
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
