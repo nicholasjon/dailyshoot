@@ -1,0 +1,15 @@
+ENV['BITLY_API_KEY'] = ''
+ENV['BITLY_LOGIN'] = ''
+ENV['FLICKR_API_KEY'] = ''
+
+# You'll have to get these from Twitter (http://twitter.com/apps) when logged
+# in as @dailyshoot
+
+ENV['TWITTER_CONSUMER_KEY'] = ""
+ENV['TWITTER_CONSUMER_SECRET'] = ""
+
+# Once you have the consumer key and secret, you'll need to generate your
+# own access token and secret. 
+
+ENV['TWITTER_ACCESS_TOKEN'] = ""
+ENV['TWITTER_ACCESS_SECRET'] = ""
