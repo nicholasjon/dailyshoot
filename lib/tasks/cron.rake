@@ -9,12 +9,6 @@ task :cron do
   puts "----------------------------------------------------"
   
   Rake::Task['collect:tweets'].invoke  
-  #Rake::Task['send:assignment'].invoke if Time.now.hour == 16
-  #Rake::Task['send:assignment'].invoke if Time.now.hour == 6 || Time.now.hour == 16
-  
-  if Time.now.hour == 18
-    Rake::Task['send:assignment'].invoke
-  end
 end
 
 task :cron_daily do
