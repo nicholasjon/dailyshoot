@@ -2,14 +2,50 @@ ENV['BITLY_API_KEY'] = ''
 ENV['BITLY_LOGIN'] = ''
 ENV['FLICKR_API_KEY'] = ''
 
-# You'll have to get these from Twitter (http://twitter.com/apps) when logged
-# in as @dailyshoot
+# -------------------------------------------------------------------------
+# The Twitter access tokens are a bit tricky. First, you'll have to get
+# a consumer key/token and secret. If you have access to the twitter 
+# @dailyshoot account, you'll want to login to Twitter as @dailyshoot and
+# go to http://twitter.com/apps and get the consumer key and secret. 
+#
+# If you don't have access to the @dailyshoot account, you'll need to set up
+# a test account and create an application for it and use the consumer key
+# and secret for that app.
 
 ENV['TWITTER_CONSUMER_KEY'] = ""
 ENV['TWITTER_CONSUMER_SECRET'] = ""
 
-# Once you have the consumer key and secret, you'll need to generate your
-# own access token and secret. 
+# Next, you'll need to set up an access token and secret so that you can 
+# login and pull tweets to be processed from the @dailyshoot account. This 
+# requires a bit of a song and dance.
+#
+# 1. Launch a script/console
+# 2. Execute the following code:
+#
+#    require 'oauth'
+#    consumer = OAuth::Consumer.new(ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], {:site => 'http://twitter.com'})
+#    request_token = consumer.get_request_token
+#    request_token.authorize_url
+#
+# 3. Got to that URL in your browser (logged in as the @dailyshoot or your
+#    test account). Accept and then make note of the PIN
+#
+# 4. Execute the following:
+#
+#    access_token = request_token.get_access_token(:oauth_verifier => PIN)
+#    access_token.token
+#    access_token.secret
+#
+# These two values need to go into these environment variables.
 
 ENV['TWITTER_ACCESS_TOKEN'] = ""
 ENV['TWITTER_ACCESS_SECRET'] = ""
+
+# Now, it's a bad idea for use to push test tweets here at the ranch to
+# twitter as @dailyshoot. So, use a test account if you have credentials
+# to @dailyshoot. Create a junk account on Twitter (@dailyshoot_testn), and
+# then, while you're logged into that account in your browser, do the same
+# process as above and come up with another token/secret combod
+
+ENV['TWITTER_POST_TOKEN'] =  ""
+ENV['TWITTER_POST_SECRET'] = ""
