@@ -1,40 +1,41 @@
-$(function() {
-    var countdown = {
-        init: function() {
-            countdown.remaining = countdown.max - $(countdown.obj).val().length;
-            if (countdown.remaining > countdown.max) {
-                $(countdown.obj).val($(countdown.obj).val().substring(0,countdown.max));
-            }
-            $(".remaining").html(countdown.remaining + " characters remaining");
-        },
-        max: null,
-        remaining: null,
-        obj: null
-    };
-    $(".countdown").each(function() {
+var CharacterCounter = {
+	max: null,
+    remaining: null,
+    obj: null,
+    start: function() {
+	    // NOTE: Called externally, so must use "CharacterCounter" instead of "this".
+	    CharacterCounter.update();
+    },
+    update: function() {
+        this.remaining = this.max - $(this.obj).val().length;
+        if (this.remaining > this.max) {
+            $(this.obj).val($(this.obj).val().substring(0, this.max));
+        }
+        $(".remaining").text(this.remaining + " characters remaining");
+    },
+};
+
+function showAdminActions() {
+  $(this).children(".admin-actions").slideDown();
+}
+
+function hideAdminActions() { 
+  $(this).children(".admin-actions").slideUp();
+}
+
+jQuery(function() {
+	
+    $('.countcharacters').each(function() {
         $(this).focus(function() {
             var c = $(this).attr("class");
-            countdown.max = parseInt(c.match(/limit_[0-9]{1,}_/)[0].match(/[0-9]{1,}/)[0]);
-            countdown.obj = this;
-            iCount = setInterval(countdown.init,1000);
+            CharacterCounter.max = parseInt(c.match(/limit_[0-9]{1,}_/)[0].match(/[0-9]{1,}/)[0]);
+            CharacterCounter.obj = this;
+            intervalCount = setInterval(CharacterCounter.start, 500);
         }).blur(function() {
-            countdown.init();
-            clearInterval(iCount);
+            CharacterCounter.start();
+            clearInterval(intervalCount);
         });
     });
-});
-
-$(document).ready(function() {
- 
-   function showAdminActions() {
-     var menu = $(this);
-     menu.children(".admin-actions").slideDown();
-   }
-  
-   function hideAdminActions() { 
-     var menu = $(this);
-     menu.children(".admin-actions").slideUp();
-   }
  
    $(".hover-menu").hoverIntent({
      sensitivity: 1,           // number = sensitivity threshold (must be 1 or higher)

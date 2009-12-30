@@ -3,10 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title><%= page_title %></title>
-	<link rel="stylesheet" href="<%= stylesheet_path 'blueprint/screen' %>" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="<%= stylesheet_path 'blueprint/print' %>" type="text/css" media="print">
-	<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-	<link rel="stylesheet" href="<%= stylesheet_path 'main' %>" type="text/css" media="screen, projection">
+	<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen, projection' %>
+	<%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+	<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="all"><![endif]-->
+	<%= stylesheet_link_tag 'main', :media => 'all' %>	
 	<link rel="alternate" type="application/rss+xml" title="Assignments RSS" 
         href="http://feeds.feedburner.com/dailyshoot_assignments">
   <%= custom_javascript_includes %>
@@ -28,14 +28,16 @@
 <div id="bottom" class="span-22 prepend-1 append-1 last">
 Copyright &copy; 2009
 <br>
-Third party content (Tweets and photo thumbnails from third party services such as Flickr) belongs to their respective owners and is accessed by public API.
+Third party content (Tweets and photo thumbnails from third party services such as Flickr) belongs to
+their respective owners and is accessed by public API.
 <br>
 All other content licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 License</a>.
 </div>
 
 <div> <!-- container -->
 
-<%# JavaScript content at the end of the page so that it can load in after page display. This is from the Yahoo performance guidelines. %>
+<%= javascript_include_tag 'jquery-1.3.2.min' %>
+<%= javascript_include_tag 'hoverIntent' %>
 <%= javascript_include_tag 'application' %>
 <%= javascript_include_tag 'ga'  %>
 

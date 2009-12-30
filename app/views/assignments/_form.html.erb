@@ -1,16 +1,12 @@
-<% add_javascript 'jquery' %>
-
 <% labeled_form_for @assignment do |f| -%>
 <%= f.error_messages %>
 <fieldset>  
-  <%= f.text_area :text, :rows => 3, :class => "countdown limit_122_" %>
+  <%= f.text_area :text, :rows => 3, :class => "countcharacters limit_122_" %>
   <strong><p class="remaining"></p></strong>
-  <p>
-    <% if @assignment.new_record? -%>
-      <%= f.submit 'Create' %>
-    <% else -%>
-      <%= f.submit 'Update' %>
-    <% end -%>
-  </p>
+  <% if @assignment.new_record? -%>
+    <%= f.submit 'Create' %>
+  <% else -%>
+    <%= f.submit 'Update' %>
+  <% end -%>
 </fieldset>
 <% end -%>
