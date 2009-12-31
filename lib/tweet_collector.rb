@@ -2,19 +2,19 @@ class TweetCollector
 
   attr_accessor :debug
   
-  def initialize(twitter)
-    @twitter = twitter
+  def initialize()
     @debug = false
     @count = 0
   end
   
   def run(max_pages=1000)
+  	twitter = TwitterAPI.new
     page = 1
     
     last = Mention.first(:order => 'tweet_id desc')
     loop do
       @count = 0
-      raw_mentions = @twitter.mentions(:page => page)
+      raw_mentions = twitter.mentions(:page => page)
       break unless raw_mentions.first
       mention_exists = false
       raw_mentions.each do |raw_mention|
@@ -49,6 +49,11 @@ class TweetCollector
     end
     
     true
+  end
+  
+  def perform
+	run
+    Delayed::Job.enqueue(self, 0, 10.minutes.from_now)  
   end
    
 private

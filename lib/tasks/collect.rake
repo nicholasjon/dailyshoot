@@ -4,7 +4,7 @@ namespace :collect do
   task :tweets => :environment do
     puts "Collecting tweets at #{Time.now}"
     require 'tweet_collector'
-    collector = TweetCollector.new(TwitterAPI.new)
+    collector = TweetCollector.new()
     collector.debug = true
     collector.run
   end
