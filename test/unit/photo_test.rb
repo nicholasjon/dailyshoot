@@ -141,6 +141,14 @@ class PhotoTest < ActiveSupport::TestCase
     
     assert_equal 0, photos.size
   end
+  
+  test "tweet with smugmug URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://bluecamel.smugmug.com/Photography/dailyshoot/10469863_EdveS#748954599_NUvea #ds11"
+    url   = "http://bluecamel.smugmug.com/Photography/dailyshoot/10469863_EdveS#748954599_NUvea"
+    thumb = "http://bluecamel.smugmug.com/Photography/dailyshoot/DSC0717/748954599_NUvea-Ti.jpg"
+
+    assert_one_photo(tweet, url, thumb)
+  end
 
   test "tweet with invalid URL should ignore it" do
     tweet = "My first assignment: Water http://bi.. http://bit.ly/6Jp0el"

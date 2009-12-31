@@ -49,6 +49,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /flic\.kr/: flickr
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
+      when self.url =~ /smugmug\.com/: smugmug
       when self.is_compressed : expand
       else nil
     end
@@ -134,8 +135,39 @@ protected
     flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
     doc = Nokogiri::XML(open(flickr_url))
     doc.css('size[label=Square]').first['source']
-  rescue
-    raise flickr_url
+  end
+  
+  # 
+  # Form:
+  #   /AlbumID_AlbumKey#ImageID_ImageKey
+  # 
+  # Example: 
+  #   http://bluecamel.smugmug.com/Photography/dailyshoot/10469863_EdveS#748954599_NUvea
+  # 
+  # Image ID = 748954599 (all numeric)
+  # Image Key = NUvea (mixed case, case sensitive)
+  def smugmug
+    if self.url =~ %r(#([0-9]+)_([a-zA-Z0-9]+))
+      image_id, image_key = $1, $2
+    else
+      return
+    end
+    
+    session_url = "http://api.smugmug.com/services/api/rest/1.2.2/?method=smugmug.login.anonymously&APIKey=#{ENV['SMUGMUG_API_KEY']}"
+    doc = Nokogiri::XML(open(session_url))
+    if doc.xpath('/rsp/@stat').first.value == "ok"
+      session_id = doc.xpath('//Session/@id').first.value
+    else
+      raise "SmugMug session failed"
+    end
+    
+    images_url = "http://api.smugmug.com/services/api/rest/1.2.2/?method=smugmug.images.getURLs&SessionID=#{session_id}&ImageID=#{image_id}&ImageKey=#{image_key}"
+    doc = Nokogiri::XML(open(images_url))
+    if doc.xpath('/rsp/@stat').first.value == "ok"
+      doc.xpath('//Image/@TinyURL').first.value
+    else
+      raise "SmugMug API failed"
+    end
   end
   
 end
