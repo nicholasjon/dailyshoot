@@ -78,5 +78,5 @@ class Assignment < ActiveRecord::Base
       self.date = Date.tomorrow + (self[:position] - self.class.first_upcoming_position)
     end 
   end
-  
+    
 end

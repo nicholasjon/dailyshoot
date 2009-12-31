@@ -2,6 +2,16 @@ require 'twitter'
 
 class TwitterAPI
   
+  def self.tweet_as_dailyshoot(text, options={})
+    twitter = TwitterAPI.new(ENV['TWITTER_CONSUMER_KEY'], 
+    						 ENV['TWITTER_CONSUMER_SECRET'],
+    						 ENV['TWITTER_POST_TOKEN'],
+    						 ENV['TWITTER_POST_SECRET'])
+    twitter.client.update(text, options)
+  end
+  
+  attr_accessor :client
+  
   def initialize(consumer_key=ENV['TWITTER_CONSUMER_KEY'],
                  consumer_secret=ENV['TWITTER_CONSUMER_SECRET'],
                  access_token=ENV['TWITTER_ACCESS_TOKEN'],
@@ -22,9 +32,11 @@ class TwitterAPI
     end
     tweets[0..2]
   end
+
+# NEUTERING FOR NOW 
   
-  def tweet(text, options={})
-    @client.update(text, options)
-  end
+#  def tweet(text, options={})
+#    @client.update(text, options)
+#  end
   
 end

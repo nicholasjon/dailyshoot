@@ -8,10 +8,8 @@ class AssignmentSender
     if assignment.tweeted_at      
       Rails.logger.warn "Today's assignment w/id #{assignment.id} already tweeted, skipping"
     else
-
-      twitter = TwitterAPI.new(ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'],
-      						   ENV['TWITTER_POST_TOKEN'], ENV['TWITTER_POST_SECRET'])
-      twitter.tweet assignment.as_tweet
+     
+      TwitterAPI.tweet_as_dailyshoot(assignment.as_tweet)
       
       # do our record keeping
       assignment.tweeted_at = Time.now
@@ -23,7 +21,7 @@ class AssignmentSender
     
     # enqueue ourselves for tomorrow. and use GMT time
     tom = Date.tomorrow
-    time = DateTime.civil(tom.year, tom.month, tom.day, 22)
+    time = DateTime.civil(tom.year, tom.month, tom.day, 14)
     
     Rails.logger.info "Scheduling AssignmentSender for #{time}"
     Delayed::Job.enqueue(self, 0, time)
