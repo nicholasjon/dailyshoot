@@ -12,7 +12,7 @@
   <% content_tag_for :li, assignment, :style => "list-style: none; padding: 2px 0;" do -%>
     <hr/>
     <p>
-      <strong>#<%= assignment.position %></strong>. <%= assignment.as_tweet %>
+      <strong>#<%= assignment.position %></strong>. <%= Date::DAYNAMES[assignment.date.wday] %> <%= assignment.as_tweet %>
     </p>
     <p>
       [
