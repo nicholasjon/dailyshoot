@@ -40,12 +40,12 @@ class AssignmentSender
     Delayed::Job.enqueue(self, 0, time)  
     
     # enqueue reminder for 10 hours from now
-    Delayed::Job.enqueue(AssignmentSender.new(:reminder), 0, 10.seconds.from_now)
+    Delayed::Job.enqueue(AssignmentSender.new(:reminder), 0, 10.hours.from_now)
   end
   
   def remind_todays_assignment
     assignment = Assignment.today
-    msg = "\##{assignment.tag} #{assignment.text} "
+    msg = "\##{assignment.tag} #{assignment.text}"
     TwitterAPI.tweet_as_dailyshoot(msg)
   end
 end
