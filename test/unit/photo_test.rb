@@ -135,6 +135,14 @@ class PhotoTest < ActiveSupport::TestCase
     assert_one_photo(tweet, url, thumb)
   end
 
+  test "tweet with flickr static URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://farm5.static.flickr.com/4036/4243576772_91ee986470_o.jpg #ds11"
+    url   = "http://farm5.static.flickr.com/4036/4243576772_91ee986470_o.jpg"
+    thumb = "http://farm5.static.flickr.com/4036/4243576772_91ee986470_s.jpg"
+
+    assert_one_photo(tweet, url, thumb)
+  end
+
   test "tweet with flickr set URL should not assign a photo" do
     tweet = "http://flickr.com/ari/sets/72157622699478909/"
     photos = Photo.all_from_tweet(tweet)
