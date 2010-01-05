@@ -19,7 +19,7 @@ class Mention < ActiveRecord::Base
   end
   
   def retweet?
-    self.text =~ /RT/
+    self.text =~ /RT\s/
   end
 
   def assignment

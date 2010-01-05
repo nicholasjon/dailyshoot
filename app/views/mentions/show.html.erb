@@ -10,7 +10,7 @@
 </p>
 
 <p>
-  <strong><%= h @mention.text %></strong>
+  <strong><%= auto_link @mention.text %></strong>
 </p>
 
 <p>
@@ -20,6 +20,7 @@
 
 <%= link_to 'Edit', edit_mention_path(@mention) %> |
 <%= link_to "Reparse", parse_mention_path(@mention), :method => :post %> |
+<%= link_to 'Destroy', @mention, :confirm => 'Are you sure?', :method => :delete %> |
 <%= link_to 'All Mentions', mentions_path %>
 
 </div>
