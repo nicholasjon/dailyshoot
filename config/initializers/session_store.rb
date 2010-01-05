@@ -17,4 +17,6 @@ ActionController::Base.session = {
 # (create the session table with "rake db:sessions:create")
 #ActionController::Base.session_store = :active_record_store
 
-ActionController::Base.session_store = :mem_cache_store
+unless RAILS_ENV == 'test'
+  ActionController::Base.session_store = :mem_cache_store
+end

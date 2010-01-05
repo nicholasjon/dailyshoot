@@ -97,11 +97,11 @@ class MentionTest < ActiveSupport::TestCase
   
   test "mention with RT should not parse" do
     raw_mention = stub_mentions.first
-    raw_mention.text = "#ds10 RT"
+    raw_mention.text = "#ds10 RT "
     mention = Mention.from_raw_mention(raw_mention)
     
     assert !mention.parse!
-    assert_equal "Retweet: #ds10 RT", mention.parse_message
+    assert_equal "Retweet: #ds10 RT ", mention.parse_message
   end
   
 protected
