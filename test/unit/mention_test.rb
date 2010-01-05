@@ -81,7 +81,7 @@ class MentionTest < ActiveSupport::TestCase
   
   test "mention with RT should be a retweet" do
     raw_mention = stub_mentions.first
-    raw_mention.text = "RT"
+    raw_mention.text = "RT "
     mention = Mention.from_raw_mention(raw_mention)
     
     assert mention.retweet?
