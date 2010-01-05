@@ -1,6 +1,9 @@
 ENV['BITLY_API_KEY'] = ''
 ENV['BITLY_LOGIN'] = ''
 ENV['FLICKR_API_KEY'] = ''
+ENV['SMUGMUG_API_KEY'] = ''
+ENV['SMUGMUG_API_SECRET'] = ''
+
 
 # -------------------------------------------------------------------------
 # The Twitter access tokens are a bit tricky. First, you'll have to get
