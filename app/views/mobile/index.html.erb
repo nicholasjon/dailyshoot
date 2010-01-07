@@ -5,9 +5,9 @@
   <ul class='rounded'>
     <% @assignments.each do |assignment| -%>
     <li class='arrow'>
-      <%= link_to assignment_date(assignment), 
+      <%= link_to assignment_summary(assignment), 
                   mobile_assignment_url(assignment.position) %>
-      <%= link_to truncate(assignment.text, :length => 40), 
+      <%= link_to assignment_date(assignment), 
                   mobile_assignment_url(assignment.position) %>
     </li>
     <% end -%>

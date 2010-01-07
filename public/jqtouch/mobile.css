@@ -1,3 +1,7 @@
+#home ul li a + a {
+    color: #979797;
+}
+
 #assignment p {
   margin: 20px 20px;
   font-size: 2em;
