@@ -1,7 +1,6 @@
 var jQT = new $.jQTouch({
-  icon: 'apple-touch-icon.png',
-  //addGlossToIcon: false,
-  startupScreen: "apple-touch-startup.png",
+  icon: '/images/mobile-icon.png',
+  startupScreen: "/images/mobile-startup.png",
   statusBar: 'black-translucent',
   preloadImages: [
     '/jqtouch/themes/jqt/img/back_button.png',
