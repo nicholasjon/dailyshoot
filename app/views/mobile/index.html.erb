@@ -1,0 +1,20 @@
+<div class='current' id='home'>
+  <div class='toolbar'>
+    <h1>The Daily Shoot</h1>
+  </div>
+  <ul class='rounded'>
+    <% @assignments.each do |assignment| -%>
+    <li class='arrow'>
+      <%= link_to assignment_date(assignment), 
+                  mobile_assignment_url(assignment.position) %>
+      <%= link_to truncate(assignment.text, :length => 40), 
+                  mobile_assignment_url(assignment.position) %>
+    </li>
+    <% end -%>
+  </ul>
+  <div class='info'>
+    <p>
+      Copyright &copy; 2009-2010
+    </p>
+  </div>
+</div>

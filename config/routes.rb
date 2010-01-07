@@ -16,6 +16,11 @@ ActionController::Routing::Routes.draw do |map|
     sessions.login  'login',  :action => 'new'
     sessions.logout 'logout', :action => 'destroy'
   end
+  
+  map.with_options(:controller => 'mobile') do |mobile|
+    mobile.mobile_assignment 'mobile/assignment/:id', 
+                             :action => 'assignment'
+  end
 
   map.connect 'twitter/:action', :controller => 'twitter'
 
