@@ -7,7 +7,7 @@
 		  <% if admin? && caption == 'assignment' -%>
 		    <%= render :partial => 'shared/admin_actions', :locals => {:photo => photo} %>
 		  <% end -%>
-		  <%= link_to image_tag(photo.thumb_url, :alt => photo.url, :width => 75, :height => 75), 
+		  <%= link_to image_tag(photo.thumb_url, :alt => '', :width => 75, :height => 75), 
 		              photo.url, :title => "", :rel => 'nofollow', :popup => true %>
 			<div class="photo-caption">
 			  <% if caption == 'assignment' -%>

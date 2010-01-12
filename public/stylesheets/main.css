@@ -78,6 +78,7 @@ p {
 .assignment-rect .icon {
   float: left;
   margin-right: 10px;
+  width: 75px;
 }
 .assignment-rect .icon img {
   width: 75px;
