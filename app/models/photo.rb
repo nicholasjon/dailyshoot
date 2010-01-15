@@ -134,7 +134,12 @@ protected
     
     flickr_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=#{photo_id}&api_key=#{ENV['FLICKR_API_KEY']}"
     doc = Nokogiri::XML(open(flickr_url))
-    doc.css('size[label=Square]').first['source']
+    if doc.xpath('/rsp/@stat').first.value == "ok"
+      doc.xpath("//size[@label='Square']").first['source']
+      #doc.xpath("//size[@label='Medium']").first['source']
+    else
+      raise "Flickr API failed"
+    end
   end
   
   # 
@@ -165,6 +170,7 @@ protected
     doc = Nokogiri::XML(open(images_url))
     if doc.xpath('/rsp/@stat').first.value == "ok"
       doc.xpath('//Image/@TinyURL').first.value
+      #doc.xpath('//Image/@MediumURL').first.value
     else
       raise "SmugMug API failed"
     end
