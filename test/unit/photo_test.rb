@@ -127,6 +127,14 @@ class PhotoTest < ActiveSupport::TestCase
     assert_one_photo(tweet, url, thumb)
   end
   
+  test "tweet with ow.ly should URL should assign url and thumb url" do
+    tweet  = "@dailyshoot http://ow.ly/WEJw"
+    url    = "http://www.flickr.com/photos/sutterview/4275570878/"
+    thumb  = "http://farm5.static.flickr.com/4006/4275570878_e3ee7201c3_s.jpg"
+
+    assert_one_photo(tweet, url, thumb)
+  end
+  
   test "tweet with flickr.com URL should assign url and thumb url" do
     tweet  = "@dailyshoot: A low contrast droplet - http://www.flickr.com/photos/clarkware/4131620353/"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
