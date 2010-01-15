@@ -135,6 +135,14 @@ class PhotoTest < ActiveSupport::TestCase
     assert_one_photo(tweet, url, thumb)
   end
   
+  test "tweet with short.to URL should expand url" do
+    tweet  = "@dailyshoot: http://short.to/13p5n"
+    url    = "http://www.flickr.com/photos/clarkware/4131620353/"
+    thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
+
+    assert_one_photo(tweet, url, thumb)
+  end
+  
   test "tweet with flickr.com URL should assign url and thumb url" do
     tweet  = "@dailyshoot: A low contrast droplet - http://www.flickr.com/photos/clarkware/4131620353/"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
