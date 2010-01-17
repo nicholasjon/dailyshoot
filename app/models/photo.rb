@@ -100,6 +100,7 @@ protected
 
   def tweetphoto
     api_url = "http://TweetPhotoAPI.com/api/TPAPI.svc/imagefromurl?size=thumbnail&url="
+    #api_url = "http://TweetPhotoAPI.com/api/TPAPI.svc/imagefromurl?size=medium&url="
     open(api_url + self.url) { |f| f.base_uri.to_s }
   end
   
