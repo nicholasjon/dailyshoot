@@ -1,7 +1,9 @@
 class Mention < ActiveRecord::Base
   validates_presence_of :tweet_id, :text, :user_id, :screen_name, :profile_image_url
   
-  named_scope :pending, :conditions => ['was_parsed = ?', false], :order => 'tweeted_at desc'
+  named_scope :pending, 
+              :conditions => ['was_parsed = ?', false], 
+              :order => 'tweeted_at desc'
 
   attr_reader :parse_message
     
@@ -15,7 +17,11 @@ class Mention < ActiveRecord::Base
   end
   
   def tag
-    self.text =~ /#(ds\d{1,3})/i ? $1.downcase : nil
+    case
+      when self.text =~ /#(ds\d{1,3})/i: $1.downcase
+      when self.text =~ /ds#(\d{1,3})/i: "ds#{$1}"
+      else nil
+    end
   end
   
   def retweet?
