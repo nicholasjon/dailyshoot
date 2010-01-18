@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   before_filter :set_cache_control, :only => [:index, :show]
   
   def index
-    @assignments = Assignment.published_with_photos
+    @assignments = Assignment.published_with_photos.paginate(:page => params[:page], :per_page => 30)
   
     respond_to do |format|
       format.html
@@ -20,7 +20,7 @@ class AssignmentsController < ApplicationController
       redirect_to assignments_url
       return
     end
-    @photos = @assignment.photos.with_photog
+    @photos = @assignment.photos.with_photog.paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
       format.html

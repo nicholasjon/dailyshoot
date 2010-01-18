@@ -301,3 +301,42 @@ div.admin-actions {
 div#fancy_title div a {
   color: white;
 }
+
+/* PAGINATION */
+
+.pagination {
+  margin: 1em 0;
+  padding: 3px;
+  text-align: center;
+}
+
+.pagination a {
+  padding: 5px 5px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #878787;
+}
+
+.pagination a:hover, 
+.pagination a:active {
+  border: 1px solid #636363;
+  color: #000;
+}
+
+.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #425038;
+  font-weight: bold;
+  background-color: #425038;
+  color: #FFF;
+}
+
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
+

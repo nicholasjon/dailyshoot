@@ -6,5 +6,9 @@ has tweeted
 </div>
 
 <%= render :partial => 'shared/photowall', 
-           :locals => {:photos  => @photog.photos.with_assignment, 
+           :locals => {:photos  => @photos, 
                        :caption => 'assignment'} %>
+
+<div>
+  <%= will_paginate @photos %>
+</div>

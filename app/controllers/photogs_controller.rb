@@ -21,7 +21,7 @@ class PhotogsController < ApplicationController
       redirect_to(photogs_url) 
       return
     end
-      
+    @photos = @photog.photos.with_assignment.paginate(:page => params[:page], :per_page => 30)
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @photog }
