@@ -44,5 +44,7 @@ jQuery(function() {
      timeout: 300,             // number = milliseconds delay before onMouseOut
      out: hideAdminActions     // function = onMouseOut callback (required)
    });
+
+	$("a.zoom").fancybox();
   
 });

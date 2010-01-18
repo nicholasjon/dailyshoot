@@ -32,7 +32,7 @@ class PhotosController < ApplicationController
   def regenerate
     @photo = Photo.find(params[:id])
     @photog = @photo.photog
-    @photo.compute_thumb_url
+    @photo.update_image_urls
     if @photo.save
       flash[:notice] = "Successfully regenerated thumbnail."
       redirect_to @photog

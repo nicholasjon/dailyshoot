@@ -7,6 +7,8 @@
 	<%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
 	<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="all"><![endif]-->
 	<%= stylesheet_link_tag 'main', :media => 'all' %>	
+	<%= stylesheet_link_tag '/fancybox/jquery.fancybox-1.2.6.css', :media => 'screen' %>	
+
 	<link rel="alternate" type="application/rss+xml" title="Assignments RSS" 
         href="http://feeds.feedburner.com/dailyshoot_assignments">
   <%= custom_javascript_includes %>
@@ -39,7 +41,8 @@ All other content licensed under <a rel="license" href="http://creativecommons.o
 <%= javascript_include_tag 'jquery-1.3.2.min' %>
 <%= javascript_include_tag 'hoverIntent' %>
 <%= javascript_include_tag 'application' %>
-<%= javascript_include_tag 'ga'  %>
+<%= javascript_include_tag 'ga' %>
+<%= javascript_include_tag '/fancybox/jquery.fancybox-1.2.6.pack.ds.js' %>
 
 </body>
 </html>

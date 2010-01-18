@@ -295,3 +295,9 @@ div.admin-actions {
   color: #D00;
   font-size: 1em;
 }
+
+/* FANCY BOX */
+
+div#fancy_title div a {
+  color: white;
+}

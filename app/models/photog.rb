@@ -4,8 +4,8 @@ class Photog < ActiveRecord::Base
   has_many :photos, :dependent => :nullify do
     def with_assignment(options={})
       find(:all, 
-           :joins => :assignment, 
-           :select => "photos.*, assignments.position as assignment_position, assignments.tag as assignment_tag",
+           :joins => [:assignment, :photog],
+           :select => "photos.*, photogs.screen_name as photog_screen_name, assignments.position as assignment_position, assignments.tag as assignment_tag",
            :order => "assignments.position desc")
     end
   end

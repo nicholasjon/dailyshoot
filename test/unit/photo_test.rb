@@ -27,16 +27,18 @@ class PhotoTest < ActiveSupport::TestCase
     tweet  = "http://bestc.am/oGuf Fort Point Channel—Boston. (For @dailyshoot.)"
     url    = "http://bestc.am/oGuf"
     thumb  = "http://s3.amazonaws.com/cjapps/images/143131/thumb.jpg"
+    medium = "http://s3.amazonaws.com/cjapps/images/143131/iphone.jpg"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, medium)
   end
   
   test "tweet with yfrog URL should assign url and thumb url" do
     tweet  = "@dailyshoot http://yfrog.com/4izptj"
     url    = "http://yfrog.com/4izptj"
-    thumb  = "http://yfrog.com/4izptj.th.jpg"
+    thumb  = "http://img162.imageshack.us/img162/6803/zpt.th.jpg"
+    medium = "http://img162.imageshack.us/img162/6803/zpt.jpg"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, medium)
   end
   
   test "tweet with twitpic URL should assign url and thumb url" do
@@ -44,15 +46,16 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://twitpic.com/qosz0"
     thumb  = "http://twitpic.com/show/thumb/qosz0"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, thumb)
   end
 
   test "tweet with tweetphoto URL should assign url and thumb url" do
     tweet  = "@dailyshoot #ds14 patterns  http://tweetphoto.com/5588888"
     url    = "http://tweetphoto.com/5588888"
     thumb  = "http://cdn.cloudfiles.mosso.com/c54112/x2_554798"
+    medium = "http://cdn.cloudfiles.mosso.com/c54102/x2_554798"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, medium)
   end
   
   test "tweet with imgur URL should assign url and thumb url" do
@@ -60,15 +63,16 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://imgur.com/TRxN1.jpg"
     thumb  = "http://i.imgur.com/TRxN1s.jpg"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, thumb)
   end
   
   test "tweet with snaptweet URL should assign url and thumb url" do
     tweet  = "My @dailyshoot submission for today is 'See Food' http://snaptweet.com/03c12"
     url    = "http://snaptweet.com/03c12"
-    thumb  = "http://farm3.static.flickr.com/2754/4117367227_d82460f234.jpg"
+    thumb  = "http://farm3.static.flickr.com/2754/4117367227_d82460f234_s.jpg"
+    medium = "http://farm3.static.flickr.com/2754/4117367227_d82460f234.jpg"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb, medium)
   end
   
   test "tweet with pnt.me URL should assign url and thumb url" do
@@ -76,7 +80,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/spaceplatypus/4131695975/"
     thumb  = "http://farm3.static.flickr.com/2538/4131695975_6db349916a_s.jpg"
     
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with tr.im URL should assign url and thumb url" do
@@ -84,7 +88,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/97151260@N00/4132412954/"
     thumb  = "http://farm3.static.flickr.com/2668/4132412954_516be07418_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with j.mp should URL should assign url and thumb url" do
@@ -92,7 +96,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/ejknapp/4131597128/in/pool-1251121@N24"
     thumb  = "http://farm3.static.flickr.com/2565/4131597128_e04154164f_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
 
   test "tweet with bit.ly URL should expand url" do
@@ -100,7 +104,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
     thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with tinyurl should URL should assign url and thumb url" do
@@ -108,7 +112,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/clarkware/4193699212/"
     thumb  = "http://farm3.static.flickr.com/2596/4193699212_147e5a576e_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with tiny.cc should URL should assign url and thumb url" do
@@ -116,7 +120,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/tooobi/4183248462/in/pool-1251121@N24"
     thumb  = "http://farm3.static.flickr.com/2742/4183248462_5db53286ce_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with ping.fm should URL should assign url and thumb url" do
@@ -124,7 +128,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/roswellsgirl/4257030107/"
     thumb  = "http://farm5.static.flickr.com/4057/4257030107_01e9e51c6d_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with ow.ly should URL should assign url and thumb url" do
@@ -132,7 +136,7 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/sutterview/4275570878/"
     thumb  = "http://farm5.static.flickr.com/4006/4275570878_e3ee7201c3_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with short.to URL should expand url" do
@@ -140,33 +144,44 @@ class PhotoTest < ActiveSupport::TestCase
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
     thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
 
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
   
   test "tweet with flickr.com URL should assign url and thumb url" do
     tweet  = "@dailyshoot: A low contrast droplet - http://www.flickr.com/photos/clarkware/4131620353/"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
     thumb  = "http://farm3.static.flickr.com/2662/4131620353_51affbc130_s.jpg"
-
-    assert_one_photo(tweet, url, thumb)
+    medium = "http://farm3.static.flickr.com/2662/4131620353_51affbc130.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
   end
 
   test "tweet with flic.kr URL should assign url and thumb url" do
-    tweet = "@dailyshoot http://flic.kr/p/7iDPb7 #ds11"
-    url   = "http://flic.kr/p/7iDPb7"
-    thumb = "http://farm3.static.flickr.com/2609/4137898878_2874643ebd_s.jpg"
-
-    assert_one_photo(tweet, url, thumb)
+    tweet  = "@dailyshoot http://flic.kr/p/7iDPb7 #ds11"
+    url    = "http://flic.kr/p/7iDPb7"
+    thumb  = "http://farm3.static.flickr.com/2609/4137898878_2874643ebd_s.jpg"
+    medium = "http://farm3.static.flickr.com/2609/4137898878_2874643ebd.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
   end
 
   test "tweet with flickr static URL should assign url and thumb url" do
     tweet = "@dailyshoot http://farm5.static.flickr.com/4036/4243576772_91ee986470_o.jpg #ds11"
     url   = "http://farm5.static.flickr.com/4036/4243576772_91ee986470_o.jpg"
-    thumb = "http://farm5.static.flickr.com/4036/4243576772_91ee986470_s.jpg"
-
-    assert_one_photo(tweet, url, thumb)
+    thumb = "http://farm5.static.flickr.com/4036/4243576772_cc4e890299_s.jpg"
+    medium = "http://farm5.static.flickr.com/4036/4243576772_cc4e890299.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
   end
 
+  test "tweet with flic.kr URL with no medium image should default to thumb URL" do
+    tweet = "@dailyshoot http://www.flickr.com/photos/46600585@N03/4283473824/ #ds11"
+    url   = "http://www.flickr.com/photos/46600585@N03/4283473824/"
+    thumb = "http://farm5.static.flickr.com/4037/4283473824_eb4b5b864e_s.jpg"
+
+    assert_photo(tweet, url, thumb, thumb)
+  end
+  
   test "tweet with flickr set URL should not assign a photo" do
     tweet = "http://flickr.com/ari/sets/72157622699478909/"
     photos = Photo.all_from_tweet(tweet)
@@ -178,8 +193,9 @@ class PhotoTest < ActiveSupport::TestCase
     tweet = "@dailyshoot http://bluecamel.smugmug.com/Photography/dailyshoot/10469863_EdveS#748954599_NUvea #ds11"
     url   = "http://bluecamel.smugmug.com/Photography/dailyshoot/10469863_EdveS#748954599_NUvea"
     thumb = "http://bluecamel.smugmug.com/Photography/dailyshoot/DSC0717/748954599_NUvea-Ti.jpg"
-
-    assert_one_photo(tweet, url, thumb)
+    medium = "http://bluecamel.smugmug.com/Photography/dailyshoot/DSC0717/748954599_NUvea-M.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
   end
 
   test "tweet with invalid URL should ignore it" do
@@ -187,7 +203,7 @@ class PhotoTest < ActiveSupport::TestCase
     url   = "http://www.flickr.com/photos/bg/4131881234/"
     thumb = "http://farm3.static.flickr.com/2589/4131881234_1cb6f072ca_s.jpg"
         
-    assert_one_photo(tweet, url, thumb)
+    assert_photo(tweet, url, thumb)
   end
 
   test "tweet with two photo URLs should assign two photos with url and thumb url" do
@@ -208,8 +224,8 @@ class PhotoTest < ActiveSupport::TestCase
   end
             
 protected
-
-  def assert_one_photo(tweet, url, thumb)
+  
+  def assert_photo(tweet, url, thumb, medium=nil)
     photos = Photo.all_from_tweet(tweet)
     
     assert_equal 1, photos.size
@@ -218,6 +234,7 @@ protected
     
     assert_equal url, photo.url
     assert_equal thumb, photo.thumb_url
+    assert_equal medium, photo.medium_url if medium
   end
-  
+
 end
