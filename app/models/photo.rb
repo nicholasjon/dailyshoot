@@ -42,7 +42,7 @@ class Photo < ActiveRecord::Base
     self.thumb_url = case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /twitpic\.com/: twitpic
-      #when self.url =~ /tweetphoto\.com/: tweetphoto
+      when self.url =~ /tweetphoto\.com/: tweetphoto
       when self.url =~ /yfrog\.com/: yfrog
       when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
       when self.url =~ /flickr\.com/: flickr
