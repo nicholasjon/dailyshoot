@@ -3,9 +3,8 @@ class PhotogsController < ApplicationController
   before_filter :set_cache_control, :only => [:index]
     
   def index
-    @photogs = Photog.all_by_photos_count
+    @photogs = Photog.all_by_photos_count.paginate(:page => params[:page], :per_page => 50)
     @photog_count = Photog.count
-    @photos_count = Photo.count 
     
     respond_to do |format|
       format.html
