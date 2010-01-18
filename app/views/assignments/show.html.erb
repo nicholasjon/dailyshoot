@@ -3,9 +3,11 @@
 <div class="today">The Daily Shoot assignment for <%= @assignment.tweet_date %>:</div>
 <div class="text"><%= h @assignment.text %></div>
 <div class="hashtag">
-  There are <%= pluralize(@photos.size, 'photo') %> tweeted to this assignment with the 
-  <%= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %>   
+  <!--
+  There are <%#= pluralize(@photos.size, 'photo') %> tweeted to this assignment with the 
+  <%#= link_to "##{@assignment.tag}", "http://twitter.com/#search?q=%23#{@assignment.tag}" %>   
   hashtag.
+  -->
 </div>
 </div>
 
@@ -24,9 +26,8 @@ Get out there and be one of the first to make a photo!
 </div>
 <% end -%>
 
-<%= nav %>
-
-
 <p>
   <%= will_paginate @photos %>
 </p>
+
+<%= nav %>
