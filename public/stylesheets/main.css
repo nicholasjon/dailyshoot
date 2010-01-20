@@ -320,21 +320,21 @@ div#fancy_title div a {
 
 .pagination a:hover, 
 .pagination a:active {
-  border: 1px solid #636363;
+  border: 1px solid #535353;
   color: #000;
 }
 
 .pagination span.current {
   padding: 5px 5px;
   margin: 2px;
-  border: 1px solid #425038;
+  border: 1px solid #535353;
   font-weight: bold;
-  background-color: #425038;
+  background-color: #535353;
   color: #FFF;
 }
 
 .pagination span.disabled {
-  padding: 2px 5px 2px 5px;
+  padding: 5px 5px;
   margin: 2px;
   border: 1px solid #eee;
   color: #ddd;
