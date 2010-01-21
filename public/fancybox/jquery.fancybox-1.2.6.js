@@ -32,7 +32,8 @@
 		});
 	};
 
-	var elem, opts, busy = false, imagePreloader = new Image, loadingTimer, loadingFrame = 1, imageRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i;
+    // MIKE: Added regexps for TwitPic and TweetPhoto image URLs
+	var elem, opts, busy = false, imagePreloader = new Image, loadingTimer, loadingFrame = 1, imageRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$|twitpic\.com\/show\/thumb|cdn\.cloudfiles\.mosso\.com/i;
 	var ieQuirks = null, IE6 = $.browser.msie && $.browser.version.substr(0,1) == 6 && !window.XMLHttpRequest, oldIE = IE6 || ($.browser.msie && $.browser.version.substr(0,1) == 7);
 
 	$.fn.fancybox = function(o) {
