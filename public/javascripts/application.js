@@ -47,4 +47,19 @@ jQuery(function() {
 
 	$("a.zoom").fancybox();
   
+  $(document).keydown(function(e){
+    if ((e.keyCode == 32)||(e.keyCode == 13)) { // spacebar or enter key
+      var ftm = $("#fancy_title_main");
+      if(ftm.is(":visible")) {
+        var ftm_links = ftm.find("a[href]");
+        ftm_links.each(function() {
+          if(! $(this).attr("href").match(/twitter/)) { // open the first non-twitter link
+            $(this).click();
+            return false;
+          }
+        });
+      }
+    }
+  });
+    
 });
