@@ -51,7 +51,11 @@ class Photo < ActiveRecord::Base
       else "site"
     end
   end
-  
+
+  def supports_slideshow
+    !["TwitPic", "TweetPhoto"].include?(self.service_name)
+  end
+    
   def update_image_urls
     expand_url if is_compressed 
     

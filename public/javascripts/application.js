@@ -45,7 +45,10 @@ jQuery(function() {
      out: hideAdminActions     // function = onMouseOut callback (required)
    });
 
-	$("a.zoom").fancybox();
+	$("a.zoom").fancybox({
+		'overlayOpacity': 0.5,
+		'overlayColor':	  '#666'
+	});
   
   $(document).keydown(function(e){
     if ((e.keyCode == 32)||(e.keyCode == 13)) { // spacebar or enter key

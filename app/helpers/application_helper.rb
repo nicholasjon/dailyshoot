@@ -33,7 +33,7 @@ module ApplicationHelper
     thumb_image = image_tag(photo.thumb_url, 
                             :alt => "", :width => 75, :height => 75)
     
-    if photo.medium_url.nil? || photo.service_name == "TwitPic"
+    if photo.medium_url.nil? || !photo.supports_slideshow
       link_to(thumb_image, photo.url, 
               :title => "", :class => "", :rel => "nofollow", :popup => true)
 	  else	
