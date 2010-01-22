@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'ryanb-acts-as-list', :lib => 'acts_as_list', :source => 'http://gems.github.com'
   config.gem 'twitter', :lib => 'twitter'
-#  config.gem 'nokogiri'
+  config.gem 'nokogiri'
   config.gem 'base58'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
