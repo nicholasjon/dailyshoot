@@ -1,5 +1,5 @@
 twitter
-nokogiri
+nokogiri --version 1.4.1
 base58
 ryanb-acts-as-list --source http://gems.github.com
 
