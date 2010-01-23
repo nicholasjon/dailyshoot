@@ -95,7 +95,7 @@ class Photo < ActiveRecord::Base
 protected
 
   def is_compressed
-    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|short\.to|ping\.fm|ow\.ly|tinyurl\.com|tiny\.cc|twurl\.nl|(is|pic)\.gd/
+    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|short\.to|ping\.fm|ow\.ly|tinyurl\.com|tiny\.cc|twurl\.nl|(is|pic)\.gd|twitpwr\.com|trunc.it/i
   end
 
   def expand_url

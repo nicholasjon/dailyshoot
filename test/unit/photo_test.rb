@@ -147,6 +147,22 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo(tweet, url, thumb)
   end
   
+  test "tweet with twitpwr.com URL should expand url" do
+    tweet  = "@dailyshoot: http://TwitPWR.com/CfK/"
+    url    = "http://www.flickr.com/photos/29857520@N02/4296179015/"
+    thumb  = "http://farm5.static.flickr.com/4043/4296179015_6a051f2486_s.jpg"
+
+    assert_photo(tweet, url, thumb)
+  end
+
+  test "tweet with trunc.it URL should expand url" do
+    tweet  = "@dailyshoot: http://trunc.it/4v93o"
+    url    = "http://www.flickr.com/photos/labrujulainquieta/4294015584/"
+    thumb  = "http://farm3.static.flickr.com/2753/4294015584_654a067260_s.jpg"
+
+    assert_photo(tweet, url, thumb)
+  end
+  
   test "tweet with flickr.com URL should assign url and thumb url" do
     tweet  = "@dailyshoot: A low contrast droplet - http://www.flickr.com/photos/clarkware/4131620353/"
     url    = "http://www.flickr.com/photos/clarkware/4131620353/"
