@@ -15,14 +15,20 @@ namespace :collect do
     # only need fakeweb in testing, not in production up on heroku
     require 'fakeweb'
     
-    url = 'http://username:password@twitter.com:80/statuses/mentions.json'
+    # fake oath access_token and verify credentials
+    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/request_token', :body => 'oauth_token=faketoken&oauth_token_secret=faketokensecret')
+
+    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/access_token', :body => 'oauth_token=fakeaccesstoken&oauth_token_secret=fakeaccesstokensecret')
+
+    # fake the mentions timeline
+    url = 'http://twitter.com:80/statuses/mentions.json'
     file_path = File.expand_path(File.dirname(__FILE__) + '/../../db/tweets.json')
 
     FakeWeb.register_uri(:get, url, {:body => File.read(file_path)})
 
-    twitter = TwitterAPI.new('username', 'password')
+    twitter = TwitterAPI.new()
     
-    collector = TweetCollector.new(twitter)
+    collector = TweetCollector.new()
     collector.debug = true
 
     count = 0    
