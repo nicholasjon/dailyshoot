@@ -34,7 +34,11 @@ class Assignment < ActiveRecord::Base
   end
   
   def self.first_upcoming_position
-    self.published.first.position + 1
+    unless self.published.first.nil?
+      self.published.first.position + 1
+    else
+      1
+    end
   end
 
   def random_photo
@@ -75,7 +79,9 @@ class Assignment < ActiveRecord::Base
   def set_tag_and_date
     if self[:position]
       self.tag = "ds#{self[:position]}"
-      self.date = Date.tomorrow + (self[:position] - self.class.first_upcoming_position)
+      if self.date.nil?
+        self.date = Date.tomorrow + (self[:position] - self.class.first_upcoming_position)
+      end
     end 
   end
     
