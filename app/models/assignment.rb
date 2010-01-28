@@ -79,7 +79,7 @@ class Assignment < ActiveRecord::Base
   def set_tag_and_date
     if self[:position]
       self.tag = "ds#{self[:position]}"
-      if self.date.nil?
+      if self.date.nil? || !self.new_record?
         self.date = Date.tomorrow + (self[:position] - self.class.first_upcoming_position)
       end
     end 
