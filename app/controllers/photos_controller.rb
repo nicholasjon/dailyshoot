@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
       redirect_to assignments_url
       return
     end
-    @photos = @assignment.photos.with_photog
+    @photos = @assignment.photos.with_photog.paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
       format.html { render :template => "assignments/show" }
