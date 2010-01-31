@@ -214,6 +214,15 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo(tweet, url, thumb, medium)
   end
 
+  test "tweet with twitgoo URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://twitgoo.com/crlg5 #ds11"
+    url   = "http://twitgoo.com/crlg5"
+    thumb = "http://i46.tinypic.com/10fti7t_th.jpg"
+    medium = "http://i46.tinypic.com/10fti7t.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
+  end
+
   test "tweet with invalid URL should ignore it" do
     tweet = "My first assignment: Water http://bi.. http://bit.ly/6Jp0el"
     url   = "http://www.flickr.com/photos/bg/4131881234/"

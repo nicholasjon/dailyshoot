@@ -48,6 +48,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet/: "SnapTweet"
       when self.url =~ /smugmug/: "SmugMug"
+      when self.url =~ /twitgoo/: "Twitgoo"
       else "site"
     end
   end
@@ -66,6 +67,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /imgur\.com/: imgur
       when self.url =~ /snaptweet\.com/: snaptweet
       when self.url =~ /smugmug\.com/: smugmug
+      when self.url =~ /twitgoo\.com/: twitgoo
       else [nil, nil]
     end
     self.thumb_url = image_urls[0]
@@ -135,6 +137,25 @@ protected
     doc = Nokogiri::XML(open(api_url + photo_id))
     thumb = doc.css('thumb_link').first.text
     medium = doc.css('image_link').first.text
+    [thumb, medium]
+  end
+
+  def twitgoo
+    if self.url =~ %r(/([\w\d]+)$)
+      photo_id = $1
+    else
+      return [nil, nil]
+    end
+    
+    api_url = "http://twitgoo.com/api/message/info/"
+    
+    doc = Nokogiri::XML(open(api_url + photo_id))
+    if doc.xpath('/rsp/@status').first.value == "ok"
+      thumb = doc.xpath("//thumburl").first.text
+      medium = doc.xpath("//imageurl").first.text
+    else
+      raise "Twitgoo API failed"
+    end
     [thumb, medium]
   end
   
