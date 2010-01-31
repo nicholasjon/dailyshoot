@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  before_filter :set_cache_control, :only => [:index, :show]
+  before_filter :set_cache_control, :only => [:index, :show, :services]
 
   def index
     twitter = TwitterAPI.new
@@ -10,6 +10,9 @@ class WelcomeController < ApplicationController
     @photog_count = Photog.count
     @photos_count = Photo.count
     @assignment_count = Assignment.published.count
+  end
+  
+  def services
   end
   
 end
