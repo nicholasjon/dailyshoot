@@ -7,6 +7,7 @@
 <% @mentions.each do |mention| -%>
   <tr>
     <td><%= link_to mention.tweeted_at.to_s(:tweet_date), mention %>:</td>
+    <td><%= link_to_tweet mention %>
     <td><%= auto_link mention.text %></td>
     <td><%= link_to 'Edit', edit_mention_path(mention) %></td>
     <td><%= link_to "Reparse", parse_mention_path(mention), :method => :post %></td>
