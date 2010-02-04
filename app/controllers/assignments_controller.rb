@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
     
     all_photos = @assignment.photos.with_photog
     
-    @photo_count = all_photos.count
+    @photo_count = all_photos.size
     @photos = all_photos.paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
