@@ -20,13 +20,19 @@ class AssignmentsController < ApplicationController
       redirect_to assignments_url
       return
     end
-    @photos = @assignment.photos.with_photog.paginate(:page => params[:page], :per_page => 30)
+    
+    all_photos = @assignment.photos.with_photog
+    
+    @photo_count = all_photos.count
+    @photos = all_photos.paginate(:page => params[:page], :per_page => 30)
     
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @assignment }
       format.json { render :json => @assignment }
     end
+  rescue ActiveRecord::StatementInvalid
+    redirect_to assignments_url
   end
 
 # ADMIN ONLY
